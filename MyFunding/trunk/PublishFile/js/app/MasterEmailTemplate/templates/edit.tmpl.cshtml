@@ -1,0 +1,39 @@
+﻿@using Core.Web.Helpers
+@model MyWeb.ViewModels.Statement.MasterEmailTemplateViewModel
+@{
+    var add = Html.Angular().ModelFor("vm.masteremailtemplate");
+}
+
+<form class="form-horizontal" novalidate name="vm.form" ng-submit="vm.form.$valid && vm.save()">
+    <fieldset ng-disabled="vm.saving">
+        <div class="modal-header">
+            <h3 class="modal-title text-center">{{vm.title}}</h3>
+        </div>
+        <div class="modal-body">
+            @Html.Angular().AlertGlobal("vm.message")
+            @add.FormGroupFor(x => x.Name).SetLabelSize("col-sm-4").SetInputSize("col-sm-8")
+            @add.FormGroupFor(x => x.Description).SetLabelSize("col-sm-4").SetInputSize("col-sm-8")
+            @*@add.FormGroupFor(x => x.Content).SetLabelSize("col-sm-4").SetInputSize("col-sm-8")*@
+            @(Html.Angular().PicklistFor("vm.codeSearch")
+                                .Title("Product Code")
+                                .Id("code")
+                                .Name("productName")
+                                .Message("vm.message")
+                                .ListService("vm.CategoryMasterProductGetPage")
+                                .OnSelect("vm.onSelectCodeSearch()")
+                                .SetLabelSize("col-sm-4")
+                                .SetInputSize("col-sm-8")
+            )
+            @(Html.Angular().TexthtmlFor("vm.masteremailtemplate.content")
+                              .Title("Content")
+                    //.Disabled("true")
+                              .editorFitur(editorFitur.simple)
+            )
+            <p class="control-label">Keywords :{{vm.keyword}}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" ng-click="$parent.$dismiss()" class="btn btn-warning">Cancel</button>
+        </div>
+    </fieldset>
+</form>

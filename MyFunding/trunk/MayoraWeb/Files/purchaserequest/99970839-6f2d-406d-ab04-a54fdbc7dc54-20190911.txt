@@ -1,0 +1,55 @@
+DECLARE @accountno varchar(50) ='6001243789'
+DECLARE @date date = '20190801'
+SELECT
+	'553000' SandiBank,
+	SUBSTRING(REPLACE(ent.batch_date, '-', ''), 1, 4) AS TahunTransaksi,
+	SUBSTRING(REPLACE(ent.batch_date, '-', ''), 5, 2) AS BulanTransaksi,
+	SUBSTRING(REPLACE(ent.batch_date, '-', ''), 7, 2) AS TanggalTransaksi,
+	ent.trans_reference NomorIdentifikasiTransaksi,
+	'5A' JenisTransaksiKhusuSDHE,
+	CASE
+		WHEN ent.transaction_code IN ('220') THEN 'ID'
+		ELSE 'N1'
+	END NegaraPenerima,
+	CASE
+		WHEN ent.transaction_code IN ('220') THEN 'E0'
+		ELSE 'N1'
+	END KategoriPenerima,
+	'' NegaraPembayar,
+	'' KategoriPembayar,
+
+	'N' HubunganKeuangan,
+	ent.currency Valuta,
+	ent.amount_fcy NilaiTransaksi,
+	'' TujuanTransaksi,
+	acc1.account_title_1 NamaPenerima,
+	'A' JenisIdentifikasiPenerima,
+	cus1.cus_npwp NomorIdentifikasiPenerima,
+	ISNULL(ft.ordering_cust, acc2.account_title_1) NamaPembayar,
+	'A' JenisIdentifikasiPembayar,
+	ISNULL(ft.ord_cust_acct, cus2.cus_npwp) NomorIdentifikasiPembayar,
+	ISNULL(ft.in_swift_msg,  'MAYOIDJAXXX') BankPengirim,
+	'MAYOIDJAXXX' BankPenerima,
+	acc2.[@ID] NoRekeningKhususDHE,
+	acc1.[@ID] NoRekeningLawanTransaksi,
+	'553000' BankPenerimaDHE,
+	ISNULL(ft.payment_details, ent.their_reference) NomorDokumen,
+	acc2.[@ID] NoRekeningPenerimaDHE,
+
+	'JOB' CreateBy,
+	GETDATE() CreateDate,
+	0 StatusData,
+	0 IsDelete
+
+	FROM SQL_TEMENOS.dbo.STMT_ENTRY_HISTORI ent
+	INNER JOIN SQL_TEMENOS.dbo.FUNDS_TRANSFER_HISTORI ft ON ft.[@ID] = ent.our_reference --AND ent.system_id = 'FT'
+	INNER JOIN SQL_TEMENOS.dbo.ACCOUNT acc1 ON ft.debit_acct_no = acc1.account_no
+	INNER JOIN SQL_TEMENOS.dbo.ACCOUNT acc2 ON ft.credit_acct_no = acc2.account_no
+	INNER JOIN SQL_TEMENOS.dbo.CUSTOMER cus1 ON acc1.customer_no = cus1.[@ID]
+	INNER JOIN SQL_TEMENOS.dbo.CUSTOMER cus2 ON acc2.customer_no = cus2.[@ID]
+
+	WHERE ent.account_number = '6001243789' AND
+	MONTH(ent.batch_date) = DATEPART(MONTH, @date) AND
+	YEAR(ent.batch_date) = DATEPART(YEAR, @date) AND
+	MONTH(ft.batch_date) = DATEPART(MONTH, @date) AND
+	YEAR(ft.batch_date) = DATEPART(YEAR, @date)

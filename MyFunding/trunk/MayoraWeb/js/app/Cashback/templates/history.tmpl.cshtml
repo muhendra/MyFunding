@@ -1,0 +1,85 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.PurchaseOrderViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.purchaseorder");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Detail Authorize Cashback</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    @(Html.Angular()
+                    .GridFor("vm.getListPOGroup")
+                    .HideSearch()
+                    .Title("Detail List Cashback Group")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshCashback")
+                    .SearchParams("vm.params")
+                    .Columns<POGroupListViewModel>(config =>
+                    {
+                        config.Add(x => x, "Action", null, "<div><a href='' title='Delete' ng-click='grid.appScope.tableActions.onDelete(row.entity)'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-trash fa-lg'></i></a></div>", width: 75);
+                        config.Add(x => x.PODate, "Cashback Date", "dateFormat");
+                        config.Add(x => x.POGroupId, "Cashback Group");
+                        config.Add(x => x.POId, "Cashback Id (Included)");
+                        config.Add(x => x.Keterangan);
+                        config.Add(x => x.NoRekening);
+                        config.Add(x => x.NamaNasabah);
+                        config.Add(x => x.TglBukaRekening, "Tanggal Buka Rekening", "dateFormat");
+                        config.Add(x => x.RewardBudget, null, "number: 2");
+                        config.Add(x => x.Penalty, null, "number: 2");
+                    }
+                    ))
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+
+                    @(Html.Angular()
+                    .GridFor("vm.detailJurnalCashback")
+                    .Title("Detail Jurnal Cashback")
+                    .RefreshData("vm.refreshJurnalCashback")
+                    .SearchParams("vm.params")
+                    .Disabled("true")
+                    .HideSearch()
+                    .Columns<DetailJurnalCashbackViewModel>(config =>
+                    {
+                        config.Add(x => x.POId, "Cashback Id");
+                        config.Add(x => x.AccountDebet);
+                        config.Add(x => x.AccountKredit);
+                        config.Add(x => x.Nominal, "Nominal Cashback", "number: 2");
+                        config.Add(x => x.KodeCabang);
+                        config.Add(x => x.NamaCabang);
+                        config.Add(x => x.CCYDebet, "CCY Debet");
+                        config.Add(x => x.CCYKredit, "CCYKredit");
+                        config.Add(x => x.Keterangan);
+                        config.Add(x => x.CostCenter);
+                        config.Add(x => x.NoBatch);
+                    }
+                    ))
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            @*<button class="btn btn-success">Approve</button>*@
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Close</button>
+        </div>
+
+    </fieldset>
+</form>

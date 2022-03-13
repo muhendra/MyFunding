@@ -1,0 +1,113 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.AmortisasiRequestDetailViewModel
+@{
+    var formModel = Html.Angular().ModelFor("vm.detailjurnal");
+    var formModel2 = Html.Angular().ModelFor("vm.detailjurnal2");
+}
+<form class="form-horizontal" novalidate name="vm.form" form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+        <div class="modal-header">
+            <h3 class="modal-title">Break Amortisasi Request Form</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.Angular().AlertGlobal("vm.message")
+                    <label>Reff Code Transaksi : {{vm.detailjurnal.ref_code}}</label>
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @*@formModel.FormGroupFor(x => x.DOid)*@
+                            @formModel.FormGroupFor(x => x.Value_date)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @*@formModel.FormGroupFor(x => x.BranchId).OnBlur("vm.getBranceName()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")*@
+                            @(Html.Angular().PicklistFor("vm.selectedCabang")
+                              .ListService("vm.cabanggetpage")
+                              .Title("Cabang")
+                              .OnSelect("vm.onSelectCabang()")
+                              .Name("branchCodeT24")
+                              .Id("branchCodeT24")
+                              .Message("vm.message")
+                              .HideColumns("id,branchId,branchCode,areaId,areaName,createBy,createDate,updateBy,updateDate")
+                              .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                        <div class="col-lg-6">
+                            @formModel.FormGroupFor(x => x.BranchName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @formModel.FormGroupFor(x => x.IntAccCategoryId).OnBlur("vm.getCatName()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                        </div>
+                        <div class="col-lg-6">
+                            @formModel.FormGroupFor(x => x.IntAccCategoryName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @formModel.FormGroupFor(x => x.DebitKredit).Disabled("true").DefaultValue("D")
+                            @formModel.FormGroupFor(x => x.Narative)
+                            @formModel.FormGroupFor(x => x.Currency)
+                            @formModel.FormGroupFor(x => x.Amount)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @*@formModel.FormGroupFor(x => x.DOid)*@
+                            @formModel2.FormGroupFor(x => x.Value_date)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @*@formModel2.FormGroupFor(x => x.BranchId).OnBlur("vm.getBranceName2()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")*@
+                            @(Html.Angular().PicklistFor("vm.selectedCabang2")
+                              .ListService("vm.cabanggetpage2")
+                              .Title("Cabang")
+                              .OnSelect("vm.onSelectCabang2()")
+                              .Name("branchCodeT24")
+                              .Id("branchCodeT24")
+                              .Message("vm.message")
+                              .HideColumns("id,branchId,branchCode,areaId,areaName,createBy,createDate,updateBy,updateDate")
+                              .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                        <div class="col-lg-6">
+                            @formModel2.FormGroupFor(x => x.BranchName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @formModel2.FormGroupFor(x => x.IntAccCategoryId).OnBlur("vm.getCatName2()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                        </div>
+                        <div class="col-lg-6">
+                            @formModel2.FormGroupFor(x => x.IntAccCategoryName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @formModel2.FormGroupFor(x => x.DebitKredit).Disabled("true").DefaultValue("K")
+                            @formModel2.FormGroupFor(x => x.Narative)
+                            @formModel2.FormGroupFor(x => x.Currency)
+                            @formModel2.FormGroupFor(x => x.Amount)
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$parent.$dismiss()">Cancel</button>
+        </div>
+    </fieldset>
+</form>

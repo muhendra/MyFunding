@@ -1,0 +1,47 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.EnquirytabunganViewModel
+@{
+    var approveModel = Html.Angular().ModelFor("vm.enquirytabungan");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Approve MOA</h3>
+            </div>
+            <table class="table">
+                <tr>
+                    <td>
+                        @approveModel.FormGroupFor(x => x.ApproveDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @(Html.Angular().PicklistFor("vm.selectedApprove")
+                                    .Title("Approve By")
+                                    .Id("id")
+                                    .Name("nama")
+                                    .ListService("vm.masteruserGetPage")
+                                    .OnSelect("vm.onSelectApprove()")
+                                    .Message("vm.message")
+                                  .HideColumns("id")
+                        )
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @approveModel.FormGroupFor(x => x.StatusData)
+                    </td>
+                </tr>
+            </table>
+            <div class="modal-footer">
+                <button class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-warning" ng-click="$parent.$close()">Cancel</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,21 @@
+- Remote Desktop 
+    Link : 10.100.2.248   user : bplogin2    Password    :        P@ssw0rd
+
+- SQL Server 
+    Server Name    :     10.100.2.248
+    Login                 :      sa
+    Password          :      Mayora1234  
+
+user login dev
+link : MYSERVERDEV\APPSERVERDEV
+user : sa
+pas  : mayora
+
+login prod
+link : 10.10.3.20\APPSERVERNEW
+user : applogin	
+pas  : 1mp@ctC0r3V@lu3
+
+===========================================================================================
+
+https://10.100.2.120/svn/Mayora/MyOperation

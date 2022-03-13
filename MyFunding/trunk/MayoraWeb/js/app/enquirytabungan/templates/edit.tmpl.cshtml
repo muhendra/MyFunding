@@ -1,0 +1,114 @@
+﻿@using Core.Web.Helpers
+@model MyWeb.ViewModels.Reward.EnquirytabunganViewModel
+@{
+    var detailModel = Html.Angular().ModelFor("vm.enquirytabungan");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Draft Purchase Request Barang Hadiah</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @detailModel.FormGroupFor(x => x.NamaCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.TglBukaRekening).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.JenisTabungan).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.NoRekening).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.NamaNasabah).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.Requester).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                </div>
+                <div class="col-lg-6">
+                    @detailModel.FormGroupFor(x => x.DraftPRId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.DraftPRDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.StartDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.MaturityDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @detailModel.FormGroupFor(x => x.CatatanCabang).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                </div>
+            </div>
+            <div class="row">
+
+
+                <div class="col-lg-6">
+                    @(Html.Angular().FileUploadFor("vm.enquirytabungan.attachmentSPNasabah")
+                                            .Title("Upload SP Nasabah")
+                            //.OnChange("vm.onUploadFileChange()")
+                            //.Error("vm.fileerror")
+                                            .MaxSize("10MB")
+                                            .Folder("enquirytabungan")
+                                            .LabelSize("col-sm-4")
+                                            .InputSize("col-sm-8")
+                                            .SetFile("vm.setFile")                                                    
+                    )
+
+                    @*@addModel.FormGroupFor(x => x.FinalMoa)*@
+
+                    @*<button class="btn-default" ngf-select="vm.uploadFiles($files, $invalidFiles)"
+                            accept="*/*"
+                            ngf-max-size="10MB">
+                        Attachment SP.Nasabah
+                    </button>
+                    <a href="" ng-click="vm.viewSPNasabah()">View</a>
+
+                    <ul>
+                        <li ng-repeat="f in vm.files" style="font:smaller">
+                            {{f.name}} {{f.$errorParam}}
+                            <span class="progress" ng-show="f.progress >= 0">
+                                <div style="width:{{f.progress}}%"
+                                        ng-bind="f.progress + '%'"></div>
+                            </span>
+                        </li>
+                        <li ng-repeat="f in vm.errFiles" style="font:smaller">
+                            {{f.name}} {{f.$error}} {{f.$errorParam}}
+                        </li>
+                    </ul>
+                    {{vm.errorMsg}}*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4><a href="" ng-click="vm.addDetailBarang()"><i class="fa fa-plus-circle"></i>Detail Barang</a></h4>
+
+                    @(Html.Angular()
+                            .GridFor("vm.enquirytabungan.detailBarangList")
+                                    .HideSearch()
+                    .Title("Detail Barang")
+                    .TableActions("vm.detailBarangTableActions")
+                    .RefreshData("vm.refreshDetailBarang")
+                    .SearchParams("vm.search")
+                    .Columns<MyWeb.ViewModels.Reward.DetailbarangViewModel>(config =>
+                    {
+                        config.Add(x => x, "Action", null, "<div><a href='' title='Delete' ng-click='grid.appScope.tableActions.onDelete(row.entity)'><i class='fa fa-trash fa-lg'></i></a></div>");
+                        config.Add(x => x.PromotionCode);
+                        config.Add(x => x.Keterangan);
+                        config.Add(x => x.KategoriBarang);
+                        config.Add(x => x.TypeBarang);
+                        config.Add(x => x.Merek);
+                        config.Add(x => x.Penalty, null, "number: 2");
+                        config.Add(x => x.Quantity, null, "number: 2");
+                        config.Add(x => x.Warna, "Warna / Jenis");
+
+                    }))
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">     
+            <button class="btn btn-success">Save</button>       
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Close</button>
+        </div>
+
+    </fieldset>
+</form>

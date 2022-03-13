@@ -1,0 +1,157 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+@*@model MyWeb.Forms.Customers.CustomerForm
+    @{
+        var customer = Html.Angular().ModelFor("vm.customer");
+        ViewBag.Title = "Customer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+<div ng-controller="EnquirytabunganController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Enquiry Tabungan</b></div>
+            <div class="panel-body">
+
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-lg-6">
+                        @(Html.Angular().DateFor("vm.searchParams.tanggal")
+                        .Title("Tanggal Buka Rekening")
+                        .OnChange("vm.onChangeTanggal()")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().EnumFor("vm.searchParams.jenisTabungan")
+                        .Title("Jenis Tabungan")
+                        .EnumType("MyWeb.Models.JenisTabungan,MyWeb")
+                        .OnChange("vm.onChangeJenisTabungan()")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-lg-6">
+                        @(Html.Angular().PicklistFor("vm.selectedCabang")
+                        .ListService("vm.cabanggetpage")
+                        .Title("Cabang")
+                        .OnSelect("vm.onSelectCabang()")
+                        .Name("branchName")
+                        .Id("branchCodeT24")
+                        .Message("vm.message")
+                        .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                        .Disabled("vm.isKpno == 'no'")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-success" ng-click="vm.search()">Search</button>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    @(Html.Angular()
+                    .GridFor("vm.enquirytabunganGetPage")
+                    .HideSearch()
+                    .SearchParams("vm.searchParams")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                    .TotalItems("vm.totalItems")
+                    .Response("vm.response")
+                    .RowStyle("vm.rowStyle")
+                    .AutoLoad(false)
+                    .Columns<EnquirytabunganViewModel>(config =>
+                    {
+                        config.Add(x => x, "Action", null, "<div>&nbsp;&nbsp;<a href=''ng-show='row.entity.rejectBy == null' ng-click='grid.appScope.tableActions.onAdd(row.entity)'><i class='fa fa-plus-circle fa-lg'></i></a> <a href='' ng-show='row.entity.rejectBy != null' ng-click='grid.appScope.tableActions.onEdit(row.entity)' title='edit'><i class='fa fa-edit fa-lg'></i></a> </div>", width: 60);
+                        config.Add(x => x.NoRekening);
+                        config.Add(x => x.NoCif);
+                        config.Add(x => x.NamaNasabah);
+                        config.Add(x => x.KodePromosi);
+                        config.Add(x => x.Keterangan);
+                        config.Add(x => x.Cabang);
+                        config.Add(x => x.NamaCabang);
+                        config.Add(x => x.Nominal, null, "number: 2");
+                        config.Add(x => x.TglBukaRekening, "Tgl Buka Rekening", "dateFormat");
+                        config.Add(x => x.StartDate, "Start Date", "dateFormat");
+                        config.Add(x => x.MaturityDate, "Maturity Date", "dateFormat");
+                    }))
+                    @*<div class="panel-footer">
+                            Panel Footer
+                        </div>*@
+                </div>
+            </div>
+
+        </div>
+        <!-- /.colhttp://fontawesome.io/icon/plus-circle-lg-12 -->
+    </div>
+
+
+
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TerminationDate)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            <tr ng-repeat="customer in vm.customers" customer="customer">
+                <td>{{customer.customerType}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.address}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.terminationDate}}</td>
+
+                <td>
+                    <a href="" ng-click="vm.edit(customer)"><i class="fa fa-edit fa-lg"></i></a>
+                    <a href="" ng-click="vm.detail(customer)"><i class="fa fa-pencil fa-lg"></i></a>
+                    <a href="" ng-click="vm.delete(customer)"><i class="fa fa-trash fa-lg"></i></a>
+                </td>
+            </tr>
+        </table>*@
+
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageClassName)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageClassName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ImageClassId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ImageClassId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ImageClassId })
+                    </td>
+                </tr>
+            }
+
+        </table>*@
+</div>

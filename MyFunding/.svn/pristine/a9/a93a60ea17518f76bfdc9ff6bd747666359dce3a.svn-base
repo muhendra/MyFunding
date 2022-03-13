@@ -1,0 +1,47 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.PurchaseReceiveViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.purchasereceive");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Purchase Receive</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    @addModel.FormGroupFor(x => x.PurchaseReceiveId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.PurchaseReceiveDate).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Receiver).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Quantity).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Condition).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    <div class="col-lg-4">                        
+                    </div>
+                    <div class="col-lg-8">
+                        <a href="" ng-click="vm.purchaseOrderView(vm.purchasereceive.poId)">View Purchase Order</a>                        
+                    </div>
+               </div>                
+        </div>
+            <br />
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

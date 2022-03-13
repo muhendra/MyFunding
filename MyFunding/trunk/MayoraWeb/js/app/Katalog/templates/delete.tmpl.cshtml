@@ -1,0 +1,85 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.KatalogViewModel
+@{
+    var ModelObj = Html.Angular().ModelFor("vm.katalog");
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Detail Katalog : @ModelObj.BindingFor(x => x.Kode_Promo)
+    </div>
+    <div class="panel-body">
+        <table class="table" >
+            <tr>
+                <th>Kode Promo</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.Kode_Promo)
+                </td>
+            </tr>
+            <tr>
+                <th>Keterangan</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.Keterangan)
+                </td>
+            </tr>
+            <tr>
+                <th>Kategori</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.Kategory)
+                </td>
+            </tr>
+            <tr>
+                <th>Merk</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.Merk)
+                </td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.Type)
+                </td>
+            </tr>
+            <tr>
+                <th>Jangka Waktu</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.JangkaWaktu)
+                </td>
+            </tr>
+            <tr>
+                <th>Month / Year</th>
+                <td>
+                    @ModelObj.BindingFor(x => x.MonthsYears)
+                </td>
+            </tr>
+            <tr>
+                <th>Nominal Hold</th>
+                <td>
+                    {{ vm.katalog.nominalHold | number }}
+                </td>
+            </tr>
+            <tr>
+                <th>Penalty</th>
+                <td>
+                    {{ vm.katalog.penalty | number }}
+                </td>
+            </tr>
+            <tr>
+                <th>Nama Program</th>
+                <td>
+                    {{ vm.katalog.programName }}
+                </td>
+            </tr>
+            <tr>
+                <th>Attachment</th>
+                <td>
+                    <span class="btn btn-warning btn-file glyphicon glyphicon-eye-open" title="view" ng-click="vm.viewOrDownload(vm.katalog.attachmentKatalog)" ng-disabled="vm.katalog.attachmentKatalog == null || vm.katalog.attachmentKatalog == ''"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="vm.delete()">Delete</button>
+        <button type="button" class="btn btn-warning" ng-click="$parent.$dismiss()">Cancel</button>
+    </div>
+</div>

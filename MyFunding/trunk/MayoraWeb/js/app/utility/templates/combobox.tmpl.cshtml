@@ -1,0 +1,12 @@
+﻿@*<div class="form-group">*@
+    @*<label for="{{title}}" class="control-label col-sm-2">{{title}}</label>*@
+    @*<div class="col-sm-10">*@
+    <select class="form-control" ng-model="ngModel" ng-disabled="ngDisabled" ng-change="handleSelection(model)"
+        data-ng-options="item as item[idColumn] + ' - ' + item[nameColumn] for item in items track by item[nameColumn]">
+    <!--<option value=""></option>-->
+</select>
+    @*</div>*@
+@*</div>*@
+
+
+

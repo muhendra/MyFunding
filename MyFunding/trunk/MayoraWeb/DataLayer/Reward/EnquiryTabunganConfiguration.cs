@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.Data.Entity.ModelConfiguration;
+using System.Linq;
+using System.Web;
+using MyWeb.Models.Reward;
+
+namespace MyWeb.DataLayer.Reward
+{
+    public class EnquiryTabunganConfiguration : EntityTypeConfiguration<EnquiryTabungan>
+    {
+        public EnquiryTabunganConfiguration()
+        {
+            //Property(c => c.AccountNumber)
+            //    .HasMaxLength(8)
+            //    .IsRequired()
+            //    .HasColumnAnnotation("Index",
+            //        new IndexAnnotation(new IndexAttribute("AK_Customer_AccountNumber") {IsUnique = true}));
+
+            //Property(c => c.Name)
+            //    .HasMaxLength(30)
+            //    .IsRequired()
+            //    .HasColumnAnnotation("Index",
+            //        new IndexAnnotation(new IndexAttribute("AK_Customer_Name") { IsUnique = true }));
+
+            //Property(c => c.Address).HasMaxLength(30).IsRequired();
+            ////Property(c => c.City).HasMaxLength(15).IsRequired();
+            ////Property(c => c.State).HasMaxLength(2).IsRequired();
+            ////Property(c => c.ZipCode).HasMaxLength(10).IsRequired();
+            //Property(c => c.Phone).HasMaxLength(15).IsOptional();
+            //Property(c => c.Email).HasMaxLength(100).IsRequired();
+
+        }
+    }
+}

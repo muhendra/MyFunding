@@ -1,0 +1,322 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.AmortisasiRequestViewModel
+@{
+    var formModel = Html.Angular().ModelFor("vm.amortisasirequest");
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Are Yo sure approve Amortisasi Request: @formModel.BindingFor(x => x.RequestId)
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.Angular().AlertGlobal("vm.message")
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-4">
+                <table class="table">
+                    <tr>
+                        <td>Cabang</td>
+                        <td>@formModel.BindingFor(x => x.PR_Cabang)</td>
+                    </tr>
+                    <tr>
+                        <td>Tgl Buka Rekening</td>
+                        <td>{{vm.amortisasirequest.pR_TglBukaRekening | dateFormat}}</td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Tabungan Berhadiah</td>
+                        <td>@formModel.BindingFor(x => x.PR_JenisTabungan)</td>
+                    </tr>
+                    <tr>
+                        <td>No Rekening</td>
+                        <td>@formModel.BindingFor(x => x.PR_NoRekening)</td>
+                    </tr>
+                    <tr>
+                        <td>Nama Nasabah</td>
+                        <td>@formModel.BindingFor(x => x.PR_NamaNasabah)</td>
+                    </tr>
+                    <tr>
+                        <td>Attachment SP Nasabah</td>
+                        <td><span class="btn btn-warning btn-file glyphicon glyphicon-eye-open" title="view" ng-click="vm.viewOrDownload(vm.pathET + vm.amortisasirequest.pR_AttachmentSPNasabah)" ng-disabled="vm.amortisasirequest.pR_AttachmentSPNasabah == null || vm.amortisasirequest.pR_AttachmentSPNasabah == ''"></span></td>
+                        @*<td>@formModel.BindingFor(x => x.PR_AttachmentSPNasabah)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Draft Purchase Request ID</td>
+                        <td>@formModel.BindingFor(x => x.PR_DraftPRId)</td>
+                    </tr>
+                    <tr>
+                        <td>Draft PR Date</td>
+                        <td>{{vm.amortisasirequest.pR_DraftPRDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PR_DraftPRDate)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Kode Promosi</td>
+                        <td>@formModel.BindingFor(x => x.PR_KodePromosi)</td>
+                    </tr>
+                    <tr>
+                        <td>Kategori Barang</td>
+                        <td>@formModel.BindingFor(x => x.DB_KategoriBarang)</td>
+                    </tr>
+                    <tr>
+                        <td>Type Barang</td>
+                        <td>@formModel.BindingFor(x => x.DB_TypeBarang)</td>
+                    </tr>
+                    <tr>
+                        <td>Merk</td>
+                        <td>@formModel.BindingFor(x => x.DB_Merek)</td>
+                    </tr>
+                    <tr>
+                        <td>Warna</td>
+                        <td>@formModel.BindingFor(x => x.DB_Warna)</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td>@formModel.BindingFor(x => x.DB_Quantity)</td>
+                    </tr>
+                    <tr>
+                        <td>Pinalty Ammount</td>
+                        <td>{{vm.amortisasirequest.dB_Penalty | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date</td>
+                        <td>{{vm.amortisasirequest.pR_StartDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Maturity Date</td>
+                        <td>{{vm.amortisasirequest.pR_MaturityDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Request Name</td>
+                        <td>@formModel.BindingFor(x => x.PR_Requester)</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase Request Id</td>
+                        <td>@formModel.BindingFor(x => x.PR_PRId)</td>
+                    </tr>
+                    <tr>
+                        <td>Purcahse Request Date</td>
+                        <td>{{vm.amortisasirequest.pR_PRDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Reward Budget</td>
+                        <td>{{vm.amortisasirequest.pR_RewardBudget | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Attachment Memo direksi</td>
+                        <td><span class="btn btn-warning btn-file glyphicon glyphicon-eye-open" title="view" ng-click="vm.viewOrDownload(vm.pathPR + vm.amortisasirequest.pR_AttachmentMemoDireksi)" ng-disabled="vm.amortisasirequest.pR_AttachmentMemoDireksi == null || vm.amortisasirequest.pR_AttachmentMemoDireksi == ''"></span></td>
+                        @*<td>@formModel.BindingFor(x => x.PR_AttachmentMemoDireksi)</td>*@
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table class="table">
+                    <tr>
+                        <td>Purchase Order Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_POId)</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase Order Date</td>
+                        <td>{{vm.amortisasirequest.pO_PODate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Category Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_CategoryId)</td>
+                    </tr>
+                    <tr>
+                        <td>Pola Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_PolaId)</td>
+                    </tr>
+                    <tr>
+                        <td>Unit Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_UnitId)</td>
+                    </tr>
+                    <tr>
+                        <td>Type Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_TypeId)</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Method</td>
+                        <td>@formModel.BindingFor(x => x.PO_PaymentMethod)</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Type</td>
+                        <td>@formModel.BindingFor(x => x.PO_PaymentType)</td>
+                    </tr>
+                    <tr>
+                        <td>Type Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_TypeId)</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td>@formModel.BindingFor(x => x.PO_Quantity)</td>
+                    </tr>
+                    <tr>
+                        <td>Currency</td>
+                        <td>@formModel.BindingFor(x => x.PO_Currency)</td>
+                    </tr>
+                    <tr>
+                        <td>Nom Barang</td>
+                        <td>{{vm.amortisasirequest.pO_NominalBarang | number}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PO_NominalBarang)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Nom Purchase</td>
+                        <td>{{vm.amortisasirequest.pO_NominalPurchase | number}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PO_NominalPurchase)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Tot Purchase</td>
+                        <td>{{vm.amortisasirequest.pO_TotalPurchase | number}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PO_TotalPurchase)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Supplier Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_SupplierId)</td>
+                    </tr>
+                    <tr>
+                        <td>Nilai buku</td>
+                        <td>{{vm.amortisasirequest.pO_NilaiBuku | number}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PO_NilaiBuku)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Nik Emp</td>
+                        <td>@formModel.BindingFor(x => x.PO_NikEmp)</td>
+                    </tr>
+                    <tr>
+                        <td>Dept Id</td>
+                        <td>@formModel.BindingFor(x => x.PO_DeptId)</td>
+                    </tr>
+                    <tr>
+                        <td>Vendor Quotation No.</td>
+                        <td>@formModel.BindingFor(x => x.PO_VendorQuotationNo)</td>
+                    </tr>
+                    <tr>
+                        <td>Vendor Quotation Date</td>
+                        <td>{{vm.amortisasirequest.pO_VendorQuotationDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Vendor Quotation Amount</td>
+                        <td>{{vm.amortisasirequest.pO_VendorQuotationAmount | number}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PO_VendorQuotationAmount)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Vendor Invoice No.</td>
+                        <td>@formModel.BindingFor(x => x.PO_VendorInvoiceNo)</td>
+                    </tr>
+                    <tr>
+                        <td>Vendor Invoice Date</td>
+                        <td>{{vm.amortisasirequest.pO_VendorInvoiceDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Vendor Invoice Amount</td>
+                        <td>{{vm.amortisasirequest.pO_VendorInvoiceAmount | number}}</td>
+                        @*<td>@formModel.BindingFor(x => x.PO_VendorInvoiceAmount)</td>*@
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table class="table">
+                    <tr>
+                        <td>Delivery Order ID</td>
+                        <td>@formModel.BindingFor(x => x.Do_DeliveryOrderId)</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Order Date</td>
+                        <td>{{vm.amortisasirequest.do_DeliveryOrderDate | dateFormat}}</td>
+                        @*<td>@formModel.BindingFor(x => x.Do_DeliveryOrderDate)</td>*@
+                    </tr>
+                    <tr>
+                        <td>Condition</td>
+                        <td>@formModel.BindingFor(x => x.Do_Condition)</td>
+                    </tr>
+                    <tr>
+                        <td>Receiver</td>
+                        <td>@formModel.BindingFor(x => x.Do_Receiver)</td>
+                    </tr>
+                    <tr>
+                        <td>Attachment Tanda Terima</td>
+                        <td><span class="btn btn-warning btn-file glyphicon glyphicon-eye-open" title="view" ng-click="vm.viewOrDownload(vm.pathDO + vm.amortisasirequest.do_attachmentTandaTerima)" ng-disabled="vm.amortisasirequest.do_attachmentTandaTerima == null || vm.amortisasirequest.do_attachmentTandaTerima == ''"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>@formModel.BindingFor(x => x.Do_Description)</td>
+                    </tr>
+                </table>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Detail Kartu Amortisasi</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Periode</th>
+                                <th>Value Date</th>
+                                <th>Amortize Amount</th>
+                            </tr>
+                            <tr ng-repeat="item in vm.kartuAmortisasi">
+                                <td>{{item.periode}}</td>
+                                <td>{{item.valueDate | dateFormat}}</td>
+                                <td>{{item.amortizeAmount | number}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{vm.totalBeban | number:0}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2">Request Id</label>
+            <div class="col-lg-9">
+                @formModel.BindingFor(x => x.RequestId)
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2">Request Date</label>
+            <div class="col-lg-9">
+                {{vm.amortisasirequest.requestDate | dateFormat}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                @(Html.Angular()
+                                    .GridFor("vm.amortisasirequest.jurnalDetail")
+                            .Title("Detail Jurnal Amortisasi")
+                                    .HideSearch()
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                        //.SelectColumn(true)
+                    .Columns<MyWeb.Models.Reward.AmortisasiRequestDetail>(config =>
+                    {
+                        config.Add(x => x.Value_date, null, "dateFormat");
+                        config.Add(x => x.BranchId);
+                        config.Add(x => x.BranchName);
+                        config.Add(x => x.IntAccCategoryId);
+                        config.Add(x => x.IntAccCategoryName);
+                        config.Add(x => x.DebitKredit);
+                        config.Add(x => x.Narative);
+                        config.Add(x => x.Currency);
+                        config.Add(x => x.Amount, null, "number");
+                    }))
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-green" ng-click="vm.approve()">Approve</button>
+        <button class="btn btn-danger" ng-click="vm.reject()">Reject</button>
+    </div>
+  
+</div>

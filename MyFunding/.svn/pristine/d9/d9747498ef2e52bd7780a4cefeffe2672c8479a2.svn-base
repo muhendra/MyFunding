@@ -1,0 +1,43 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Statement
+@model dynamic
+
+<div ng-controller="MasterPromotionController as vm">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h1>Master Promotion</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-success" ng-click="vm.add()">Add</button>
+        </div>
+    </div>
+    <div>
+        @(Html.Angular().GridFor("vm.GetPage")
+                .Message("vm.message")
+                .SearchParams("vm.searchParams")
+                .GetAll("vm.getAll")
+                .CsvFilename("Master Promotion.csv")
+                .TableActions("vm.tableActions")
+                .HideSearch()
+                .RefreshData("vm.refreshData")
+                        .Columns<MasterPromotionViewModel>(config =>
+                        {
+                            //config.Add(x => x, " ", null, "<div>&nbsp&nbsp<input type='checkbox' class='form-check-input'>&nbsp</div>", width: 50);
+                            config.Add(x => x.Name, "Name");
+                            config.Add(x => x.ProductCode, "Product Code");
+                            config.Add(x => x.Message, "Message");
+                            config.Add(x => x.PeriodFrom, "Period From","dateFormat");
+                            config.Add(x => x.PeriodTo, "Period To","dateFormat");
+                            config.Add(x => x, "Aksi ", null, "<div>&nbsp&nbsp<a href='' ng-click='grid.appScope.tableActions.onEdit(row.entity)' class='btn btn-info btn-xs' style='margin-top:4px'>Edit</a>&nbsp|&nbsp<a href='' class='btn btn-danger btn-xs' ng-click='grid.appScope.tableActions.onDelete(row.entity)' style='margin-top:4px'>Delete</a>&nbsp</div>", width: 150);
+                        })
+         )
+    </div>
+</div>

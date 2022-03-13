@@ -1,0 +1,14 @@
+﻿Enable-Migrations -MigrationsDirectory "Migrations\SqlFunding" -ContextTypeName  MyWeb.DataLayer.SqlFunding.SqlFundingDbContext
+Add-Migration -ConfigurationTypeName SqlFundingConfiguration edittable
+Update-Database -ConfigurationTypeName SqlFundingConfiguration
+
+
+You can rollback to any migration by using:
+
+Update-Database -ConfigurationTypeName SqlFundingConfiguration
+If you want to rollback all migrations you can use:
+
+Update-Database -ConfigurationTypeName SqlCreditConfiguration -TargetMigration:0
+or equivalent:
+
+Update-Database  -ConfigurationTypeName SqlCreditConfiguration -TargetMigration:$InitialDatabase 

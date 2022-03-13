@@ -1,0 +1,80 @@
+﻿@using Core.Web.Helpers
+@model MyWeb.ViewModels.Reward.PaymentRequestViewModel
+@{
+    var detailModel = Html.Angular().ModelFor("vm.paymentrequest");
+}
+<form class="form-horizontal" novalidate name="vm.form" form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Detail Payment Request</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                    @detailModel.FormGroupFor(x => x.PaymentRequestId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @detailModel.FormGroupFor(x => x.PaymentRequestDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @detailModel.FormGroupFor(x => x.JurnalName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @detailModel.FormGroupFor(x => x.TransactionCode).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    @detailModel.FormGroupFor(x => x.PaymentRequestType).Disabled("true").OnChange("vm.onChangePaymentRequestType()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @detailModel.FormGroupFor(x => x.VendorInvoiceNo).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @detailModel.FormGroupFor(x => x.VendorInvoiceDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @detailModel.FormGroupFor(x => x.VendorInvoiceAmount).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    <a href="" ng-click="vm.purchaseOrderView(vm.paymentrequest.poid)">View Purchase Order</a>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    @*<h4><a href="" ng-click="vm.addJurnalPembayaran()"><i class="fa fa-plus-circle"></i>Tambah Jurnal Pembayaran Uang Muka</a></h4>*@
+
+                    @(Html.Angular()
+                    .GridFor("vm.paymentrequest.jurnalPembayaranList")
+                    .HideSearch()
+                    .Title("Detail Jurnal")
+                    .TableActions("vm.detailJurnalPembayaranTableActions")
+                    .RefreshData("vm.refreshJurnalPembayaran")
+                    .Columns<MyWeb.ViewModels.Reward.JurnalpembayaranViewModel>(config =>
+                    {
+                        //config.Add(x => x, "Action", null, "<div><a href='' title='edit' ng-click='grid.appScope.tableActions.onEdit(row.entity)'><i class='fa fa-edit fa-lg'></i></a><a href='' ng-click='grid.appScope.tableActions.onDelete(row.entity)'><i class='fa fa-trash fa-lg'></i></a></div>");
+                        config.Add(x => x.BranchId);
+                        config.Add(x => x.BranchName);
+                        config.Add(x => x.InternalAccount);
+                        config.Add(x => x.InternalAccountName);
+                        config.Add(x => x.DebetKredit);
+                        config.Add(x => x.Narrative);
+                        config.Add(x => x.Amount, null, "number: 2",width:200);
+                    }))
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">          
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>
+

@@ -1,0 +1,87 @@
+﻿@using Core.Web.Utilities
+<!DOCTYPE html>
+<html lang="en" ng-app="MyWeb">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bank Mayora Application</title>
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/css/all.css")
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- DataTables CSS -->
+    <link href="@Url.Content("~/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css")" rel="stylesheet" type="text/css" />
+    <!-- DataTables Responsive CSS -->
+    <link href="@Url.Content("~/bower_components/datatables-responsive/css/dataTables.responsive.css")" rel="stylesheet" type="text/css" />
+
+    <link href="@Url.Content("~/bower_components/morrisjs/morris.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/bower_components/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @*<script src="@Url.Content("~/bower_components/jquery/dist/jquery.min.js")"></script>*@
+    <!-- jQuery -->
+
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="@Url.Content("~/bower_components/metisMenu/dist/metisMenu.min.js")"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        @Html.Action("MainMenu", "Navbar"
+                 , new { controller = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), action = @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() })
+        <!-- Navigation -->
+
+        <div id="page-wrapper">
+            @*<div class="container alert-container"></div>*@ 
+            <div class="alert-container"></div>
+            @RenderBody()
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- DataTables JavaScript -->
+    <script src="@Url.Content("~/bower_components/raphael/raphael-min.js")"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="@Url.Content("~/bower_components/datatables/media/js/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js")"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="@Url.Content("~/Scripts/sb-admin-2.js")"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+    window.MyApplication = {};
+    (function (cr) {
+        var rootPath;
+        cr.rootPath = rootPath;
+    }(window.MyApplication));
+    MyApplication.rootPath = '@Request.GetBaseUrl()';
+    //MyApplication.rootPath = '@Url.Content("~")';
+    //alert(MyApplication.rootPath);
+    </script>
+
+    @Scripts.Render("~/js/all.js")
+    @Html.Partial("_Alerts")
+    @Html.Partial("_ModalSuccess")
+    @Html.Partial("_ModalError")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

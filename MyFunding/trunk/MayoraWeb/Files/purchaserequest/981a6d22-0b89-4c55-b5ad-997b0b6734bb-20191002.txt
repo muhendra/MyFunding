@@ -1,0 +1,13 @@
+Payment_GetTableBranch
+Payment_GetTableAO
+Payment_GetSequence
+Payment_GetDataTrxToProcessV2
+Payment_GetDataTablePL
+Payment_GetDataTableBranch
+Payment_GetDataTableAO
+Payment_CreateJurnalGLToGLTemenos
+PaymentUploadTempShow
+PaymentUploadInsertTransaction
+PaymentUpdateUploadTempShow
+Payment_ReportTransaction
+Payment_InsertIntoMyAuthorize

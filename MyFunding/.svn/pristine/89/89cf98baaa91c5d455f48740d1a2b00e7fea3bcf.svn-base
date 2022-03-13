@@ -1,0 +1,79 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Menus
+@model dynamic
+
+@{
+    ViewBag.Title = "Image Class";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div ng-controller="ImageClassListController as vm">
+    <h1 class="page-header">
+        Image Class
+        <a class="pull-right" href="" ng-click="vm.add()"><i class="fa fa-plus-circle"></i></a>
+    </h1>
+    <div class="customer-list">    
+        <imageclass-details ng-repeat="imageclass in vm.imageclasses" imageclass="imageclass"></imageclass-details>
+    </>
+</div>*@
+
+
+<div ng-controller="ImageClassController as vm">   
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Image Class
+                <a class="pull-right" href="" ng-click="vm.add()"><i class="fa fa-plus-circle"></i></a>
+            </h1>
+        </div>
+    </div>
+
+    @(Html.Angular()
+    .GridFor("vm.imageclassLoadAll")
+    .Title("Image Class List")
+    .Message("vm.message")
+    .TableActions("vm.tableActions")
+    .Columns<ImageClassViewModel>(config =>
+    {
+        config.Add(x => x.ImageClassId);
+        config.Add(x => x.ImageClassName);    
+        config.Add(x => x, "Action", null, "<div><a href='' ng-click='grid.appScope.tableActions.onEdit(row.entity)'><i class='fa fa-edit fa-lg'></i></a> <a href='' ng-click='grid.appScope.tableActions.onDetail(row.entity)'><i class='fa fa-pencil fa-lg'></i></a> <a href='' ng-click='grid.appScope.tableActions.onDelete(row.entity.customerId)'><i class='fa fa-trash fa-lg'></i></a></div>");
+    }))
+
+    @*<table class="table">
+        <tr><th>Name</th><th>Phone</th></tr>
+        <tr ng-repeat="imageclass in vm.imageclasses">
+            <td>{{ imageclass.imageClassId }}</td>
+            <td>{{ imageclass.imageClassName }}</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = 1 }) |
+                @Html.ActionLink("Details", "Details", new { id = 1 }) |
+                @Html.ActionLink("Delete", "Delete", new { id = 1 })
+            </td>
+        </tr>
+    </table>*@
+
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageClassName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageClassName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ImageClassId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ImageClassId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ImageClassId })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+</div>

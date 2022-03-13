@@ -1,0 +1,81 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.JurnalpelunasanViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.addjurnalpelunasan");
+   
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.saveJurnalPelunasan()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Jurnal Pelunasan</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    @addModel.FormGroupFor(x => x.ValueDate).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @(Html.Angular().PicklistFor("vm.cabang")
+                                        .ListService("vm.cabanggetpage")
+                                        .Title("Cabang")
+                                        .OnSelect("vm.onSelectCabang()")
+                                        .Name("id")
+                                                .Id("id")
+                                        .AddValidation("vm.validateCabang", "Cabang harus dipilih!")
+                                        .Message("vm.message")
+                                                //.HideColumns("id,createBy,createDate,updateBy,updateDate")
+                                                .SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                                       
+                    )
+                     @*@(Html.Angular().ComboboxFor("vm.addjurnalpelunasaninternalAccount")
+                            .Title("Internal Account")
+                            .Id("nomorIA")
+                            .Name("namaCabang")
+                            .Items("vm.internalAccountItem")
+                            .OnSelect("vm.onSelectIA()")
+                            // .AddValidation("vm.validateInternalAccount", "Internal Account harus dipilih!")
+                    )*@
+                    @(Html.Angular().PicklistFor("vm.addjurnalpelunasaninternalAccount")
+                            .Title("Internal Account")
+                            .Id("nomorIA")
+                            .AddValidation("vm.validateInternalAccount", "Internal Account harus dipilih!")
+                            .Name("nomorIA")
+                            .ListService("vm.internalAccountItem")
+                                    .SearchParams("vm.searchParamInternalAccount")
+                                    .OnSelect("vm.onSelectIA()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                            //.SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                            
+                    )
+                   @* <label>Cabang:{{vm.addjurnalpelunasaninternalAccount.namaCabang}}</label><br />*@
+
+                    @*<label>Internal Account Name:{{vm.addjurnalpelunasaninternalAccount.deskripsi}}</label>*@
+                                       
+
+                    @*@addModel.FormGroupFor(x => x.InternalAccount).OnBlur("vm.getCatName()")*@
+                    @addModel.FormGroupFor(x => x.InternalAccountName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.NamaCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    
+                    @addModel.FormGroupFor(x => x.DebetKredit).OnChange("vm.debetKreditChange()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Narrative).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Amount).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$parent.$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

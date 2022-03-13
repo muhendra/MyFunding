@@ -1,0 +1,98 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+@*@model MyWeb.Forms.Customers.CustomerForm
+    @{
+        var customer = Html.Angular().ModelFor("vm.customer");
+        ViewBag.Title = "Customer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+<div ng-controller="AuthorizepurchasereceiveController as vm">
+    <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><b>Authorize</b></div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @(Html.Angular().PicklistFor("vm.selectedCabang")
+                            .ListService("vm.cabanggetpage")
+                            .Title("Cabang")
+                            .OnSelect("vm.onSelectCabang()")
+                            .Name("branchName")
+                            .Id("branchCodeT24")
+                            .Message("vm.message")
+                            .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                            .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                        <div class="col-lg-6">
+                            @(Html.Angular().TextFor("vm.searchParams.nopo")
+                            .Title("Purchase Order ID")
+                            .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:10px;">
+                        <div class="col-lg-6">
+                            @(Html.Angular().DateFor("vm.searchParams.tanggalpo")
+                            .Title("Purchase Order Date")
+                            .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                        <div class="col-lg-6">
+                            @(Html.Angular().TextFor("vm.searchParams.no")
+                            .Title("Purchase Receive ID")
+                            .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:10px;">
+                        <div class="col-lg-6">
+                            @(Html.Angular().DateFor("vm.searchParams.tanggal")
+                            .Title("Purchase Receive Date")
+                            .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button class="btn btn-success" ng-click="vm.search()">Search</button>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        @(Html.Angular()
+                        .GridFor("vm.authorizepurchasereceiveGetPage")
+                        .HideSearch()
+                        .SearchParams("vm.searchParams")
+                        .Message("vm.message")
+                        .TableActions("vm.tableActions")
+                        .RefreshData("vm.refreshData")
+                        .TotalItems("vm.totalItems")
+                        .Response("vm.response")
+                        .RowStyle("vm.rowStyle")
+                        .AutoLoad(false)
+                        .Columns<PurchaseReceiveViewModel>(config =>
+                        {
+                            //config.Add(x => x, "Select", null, "<div><a href='' ng-click='grid.appScope.tableActions.onSelect(row.entity)'><i class='fa fa-edit fa-lg'></i></a></div>");
+                            config.Add(x => x, "Action", null, "<div><a href='' ng-click='grid.appScope.tableActions.onDetail(row.entity)' title='detail'><i class='fa fa-eye fa-lg'></i></a> <a href='' ng-click='grid.appScope.tableActions.onReject(row.entity)' title='reject'><i class='fa fa-remove fa-lg'></i></a> <a href='' ng-click='grid.appScope.tableActions.onApprove(row.entity)' title='approve'><i class='fa fa-check-square-o fa-lg'></i></a></div>");
+                            config.Add(x => x.PurchaseReceiveId, "Purchase Receive Id");
+                            config.Add(x => x.PurchaseReceiveDate, "Purchase Receive Date", "dateFormat");
+                            config.Add(x => x.PoId, "Purchase Order Id");
+                            config.Add(x => x.PoDate, "Purchase Order Date", "dateFormat");
+                            config.Add(x => x.Merek);
+                            config.Add(x => x.TypeBarang);
+                            config.Add(x => x.Quantity);
+                        }))
+                    </div>
+                    @*<div class="panel-footer">
+                            Panel Footer
+                        </div>*@
+                </div>
+            </div>
+            <!-- /.colhttp://fontawesome.io/icon/plus-circle-lg-12 -->
+        </div>
+    </div>

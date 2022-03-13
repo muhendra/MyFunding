@@ -1,0 +1,79 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.KatalogViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.katalog");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Katalog Form</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    @*@(Html.Angular().PicklistFor("vm.selectedKodePromo")
+                              .Title("Kode Promo")
+                              .Id("id")
+                              .Name("description")
+                              .ListService("vm.kodePromoGetPage")
+                              .OnSelect("vm.onSelectKodePromo()")
+                              .HideColumns("id")                              
+                              .Message("vm.message"))*@
+                    @addModel.FormGroupFor(x => x.Kode_Promo).Disabled("true")
+                    @addModel.FormGroupFor(x => x.Keterangan).Disabled("true")
+                    @addModel.FormGroupFor(x => x.Kategory)
+                    @addModel.FormGroupFor(x => x.Merk)
+                    @addModel.FormGroupFor(x => x.Type)
+                    @addModel.FormGroupFor(x => x.JangkaWaktu).AddValidation("vm.validationJangkaWaktu", "Jangka Waktu value must be bigger than 0 !")
+                    @addModel.FormGroupFor(x => x.MonthsYears)
+                    @addModel.FormGroupFor(x => x.NominalHold)
+                    @addModel.FormGroupFor(x => x.Penalty).AddValidation("vm.validationPenalty", "Penalty value must be bigger than 0 !")
+                    @addModel.FormGroupFor(x => x.ProgramName)
+                    <div class="form-group">
+                        <label for="Upload" class="control-label col-sm-2 ng-binding">Upload Data</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="form-control btn-primary btn-default" ngf-select="vm.uploadFiles($files, $invalidFiles)"
+                                            accept="*/*"
+                                            ngf-max-size="10MB">
+                                        ...
+                                    </button>
+                                </span>
+                                <div class="form-control">
+                                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ vm .files[0].progress == null ? 0 : vm.files[0].progress; }}%;">
+                                    </div>
+                                    <span class="progress-value">{{vm.files[0].progress == 100 || vm.files[0].progress == null ? vm.attachmentKatalogTemp : vm.files[0].progress.toString() + "0% Complete"}}</span>
+                                </div>
+                                <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file glyphicon glyphicon-remove" title="reset" ng-click="vm.resetFile(vm.attachmentKatalogTemp)" ng-disabled="vm.attachmentKatalogTemp == null || vm.attachmentKatalogTemp == ''"></span>
+                                    <span class="btn btn-warning btn-file glyphicon glyphicon-eye-open" title="view" ng-click="vm.viewOrDownload(vm.attachmentKatalogTemp)" ng-disabled=" vm.attachmentkatalogtemp= =null || vm.attachmentkatalogtemp= ='' "></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <code>{{vm.modelUpload | json}}</code>
+                <hr />
+                <code>{{vm.uploadData | json}}</code>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="vm.closeAction()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

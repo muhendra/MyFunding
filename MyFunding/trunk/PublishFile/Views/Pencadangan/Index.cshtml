@@ -1,0 +1,53 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+@*@model MyWeb.Forms.Customers.CustomerForm
+    @{
+        var customer = Html.Angular().ModelFor("vm.customer");
+        ViewBag.Title = "Customer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+<div ng-controller="PencadanganController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <b>Pencadangan</b>
+                @*<a class="pull-right" href="" ng-click="vm.add()"><i class="glyphicon glyphicon-plus"></i></a>*@
+            </div>
+
+            <div class="panel-body">
+
+                <div class="row">
+                    @(Html.Angular().GridFor("vm.pencadanganGetPage")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                    .Columns<PencadanganViewModel>(config =>
+                    {
+                        //config.Add(x => x, "Select", null, "<div><a href='' ng-click='grid.appScope.tableActions.onSelect(row.entity)'><i class='fa fa-edit fa-lg'></i></a></div>");
+                        config.Add(x => x, "Action", null, "<div>&nbsp;&nbsp;<a href='' title='Details' ng-click='grid.appScope.tableActions.onDetail(row.entity)'><i class='fa fa-eye fa-lg'></i></a></div>", width: 70);
+                        config.Add(x => x.RequestId, "Pencadangan Id");
+                        config.Add(x => x.startDate, "Start Date", "dateFormat");
+                        config.Add(x => x.maturityDate, "End Date", "dateFormat");
+                        config.Add(x => x.PO_POId, "Purchase Order id");
+                        config.Add(x => x.PO_PODate, "Purchase Order Date", "dateFormat");
+                        config.Add(x => x.PO_CategoryId, "Category");
+                        config.Add(x => x.DB_Merek, "Merek");
+                        config.Add(x => x.DB_TypeBarang, "Type Barang");
+                        config.Add(x => x.DB_Warna, "Warna");
+                        config.Add(x => x.DB_Quantity, "Quantity");
+                        config.Add(x => x.PO_NominalBarang, "Harga");
+                        config.Add(x => x.StatusData);
+                        config.Add(x => x.ApproveBy);
+                        config.Add(x => x.ApproveDate, null, "dateFormat");
+                    }))
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

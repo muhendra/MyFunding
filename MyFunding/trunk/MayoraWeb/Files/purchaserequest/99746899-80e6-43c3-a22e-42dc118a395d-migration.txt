@@ -1,0 +1,4 @@
+Add-Migration -Configuration MyWeb.Migrations.SQL_DHN_WEB.SQL_DHN_WEBConfiguration CentralisasiBO_Add_IsDelete
+Update-Database -Configuration MyWeb.Migrations.SQL_DHN_WEB.SQL_DHN_WEBConfiguration -Verbose
+
+exec SP_InsertLLD1FromTemenos 

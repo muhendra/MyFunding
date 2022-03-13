@@ -1,0 +1,46 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.DetailbarangViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.detailbarang");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.saveDetailBarang()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Detail Barang</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    @addModel.FormGroupFor(x => x.PromotionCode).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.PromotionCode2).Disabled("vm.detailbarang.promotionCode != 'Lain-Lain'").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @*@addModel.FormGroupFor(x => x.KategoriBarang).Disabled("vm.detailbarang.promotionCode != 'Lain-Lain'").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")*@
+                    @addModel.FormGroupFor(x => x.KategoriBarang).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.TypeBarang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Penalty).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Quantity).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Warna).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Merek).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

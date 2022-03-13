@@ -1,0 +1,44 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Statement
+@model dynamic
+
+<div ng-controller="ListEmailPendingController as vm">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header">
+                <h2 class="text-center">{{vm.title}}</h2>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            @(Html.Angular().MonthFor("vm.period")
+                                .Title("Bulan / Tahun")
+                                .SetLabelSize("col-lg-2")
+                                .SetInputSize("col-lg-4")
+            )
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-info" ng-click="vm.search()">Search</button>
+            </div>
+        </div>
+    </div>
+    @(Html.Angular().GridFor("vm.listEmailPendingGetPage")
+                .Message("vm.message")
+                .GetAll("vm.listEmailPendingGetAll")
+                .CsvFilename("List Email Pending.csv")
+                .SearchParams("vm.searchParams")
+                .TableActions("vm.tableActions")
+                //.HideSearch()
+                //.EnableFilter(enableFilter: true)
+                .RefreshData("vm.refreshData")
+                        .Columns<ListEmailPendingViewModel>(config =>
+                        {
+                            config.Add(x => x.Number, "No", width: 35);
+                            config.Add(x => x, "Action ", null, "<div>&nbsp<span ng-show='row.entity.email != null'><a href='' ng-click='grid.appScope.tableActions.onSend(row.entity)' class='btn btn-xs' style='margin-top:4px'><span class='glyphicon glyphicon-open-file'></span></a>&nbsp|</span>&nbsp<a href='' class='btn btn-xs' ng-click='grid.appScope.tableActions.onView(row.entity)' style='margin-top:4px'><span class='glyphicon glyphicon-zoom-in'></span></a>&nbsp|&nbsp<a href='' class='btn btn-xs' ng-click='grid.appScope.tableActions.onDownload(row.entity)' style='margin-top:4px'><span class='glyphicon glyphicon-download-alt'></span></a>&nbsp</div>", width: 120);
+                            config.Add(x => x.Period, "Period", width: 90);
+                            config.Add(x => x.ProcessDate, "Process Date");
+                            config.Add(x => x.Category, "Category");//, enableFiltering: true
+                            config.Add(x => x.AccountName, "CIF NAME", null, width: 200);//, enableFiltering: true
+                            config.Add(x => x.AccountNo, "Acct. No");//, enableFiltering: true
+                            config.Add(x => x.Email, "Email To");//, enableFiltering: true
+                        })
+    )
+</div>

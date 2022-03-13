@@ -1,0 +1,104 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+@*@model MyWeb.Forms.Customers.CustomerForm
+    @{
+        var customer = Html.Angular().ModelFor("vm.customer");
+        ViewBag.Title = "Customer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+<div ng-controller="PurchasereceiveController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Purchase Receive</b></div>
+
+            <div class="panel-body">
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().PicklistFor("vm.selectedCabang")
+                        .ListService("vm.cabanggetpage")
+                        .Title("Cabang")
+                        .OnSelect("vm.onSelectCabang()")
+                        .Name("branchName")
+                        .Id("branchCodeT24")
+                        .Message("vm.message")
+                        .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                        .Disabled("vm.isKpno == 'no'")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().EnumFor("vm.searchParams.jenisTabungan")
+                        .Title("Jenis Tabungan")
+                        .EnumType("MyWeb.Models.JenisTabungan,MyWeb")
+                        .OnChange("vm.onChangeJenisTabungan()")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.no")
+                        .Title("Purchase Order ID")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().DateFor("vm.searchParams.tanggal")
+                        .Title("Purchase Order Date")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.noRekening")
+                        .Title("No Rekening")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.nopr")
+                        .Title("Payment Request ID")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-success" ng-click="vm.search()">Search</button>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    @(Html.Angular().GridFor("vm.purchasereceiveGetPage")
+                    .HideSearch()
+                    .SearchParams("vm.searchParams")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                    .TotalItems("vm.totalItems")
+                    .Response("vm.response")
+                    .RowStyle("vm.rowStyle")
+
+                    .AutoLoad(false)
+                    .Columns<PurchaseReceiveViewModel>(config =>
+                    {
+                        //config.Add(x => x, "Select", null, "<div><a href='' ng-click='grid.appScope.tableActions.onSelect(row.entity)'><i class='fa fa-edit fa-lg'></i></a></div>");
+                        config.Add(x => x, "Action", null, "<div><a href='' ng-click='grid.appScope.tableActions.onAdd(row.entity)'><i class='fa fa-plus-circle fa-lg'></i></a></div>");
+                        config.Add(x => x.PoId, "PO ID");
+                        config.Add(x => x.PaymentRequestId);
+                        config.Add(x => x.PaymentRequestDate, "Payment Request Date", "dateFormat");
+                        config.Add(x => x.TypeBarang);
+                        config.Add(x => x.Merek);
+                        config.Add(x => x.PaymentMethod);
+                        config.Add(x => x.Quantity);
+                    }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

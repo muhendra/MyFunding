@@ -1,0 +1,43 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.DetailbarangViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.detailbarang");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Detail Barang</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @addModel.FormGroupFor(x => x.PromotionCode)
+                    @addModel.FormGroupFor(x => x.KategoriBarang)
+                    @addModel.FormGroupFor(x => x.TypeBarang)
+                    @addModel.FormGroupFor(x => x.Merek)
+                    @addModel.FormGroupFor(x => x.Penalty)
+                    @addModel.FormGroupFor(x => x.Quantity)
+                    @addModel.FormGroupFor(x => x.Warna)
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

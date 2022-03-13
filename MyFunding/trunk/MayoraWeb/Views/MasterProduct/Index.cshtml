@@ -1,0 +1,53 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Statement
+@model dynamic
+
+
+<div ng-controller="MasterProductController as vm">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h1>Master Product</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-success" ng-click="vm.add()">Add</button>
+        </div>
+    </div>
+    <div>
+        <style>
+            .ui-grid-cell-contents {
+                white-space: pre !important;
+            }
+        </style>
+
+        @(Html.Angular()
+                .GridFor("vm.GetPage")
+                //.Title("Master Nostro List")
+                .Message("vm.message")
+                .GetAll("vm.GetAll")
+                .CsvFilename("Master Product.csv")
+                .SearchParams("vm.searchParams")
+                .TableActions("vm.tableActions")
+                .HideSearch()
+                .RefreshData("vm.refreshData")
+                //.SelectColumn(true)
+
+                    .Columns<MasterProduct>(config =>
+                {
+                    //config.Add(x => x, " ", null, "<div>&nbsp&nbsp<input type='checkbox' class='form-check-input'>&nbsp</div>", width: 50);
+                     config.Add(x => x.Code, "Product Code");
+                    config.Add(x => x.ProductName, "Product Name");
+                    config.Add(x => x.IsActive, "Is Active");
+                    config.Add(x => x.Description, "Description");
+                    config.Add(x => x, "Aksi ", null, "<div>&nbsp&nbsp<a href='' ng-click='grid.appScope.tableActions.onEdit(row.entity)' class='btn btn-info btn-xs' style='margin-top:4px'>Edit</a>&nbsp|&nbsp<a href='' class='btn btn-danger btn-xs' ng-click='grid.appScope.tableActions.onDelete(row.entity)' style='margin-top:4px'>Delete</a>&nbsp</div>", width: 150);
+                }))
+    </div>
+</div>

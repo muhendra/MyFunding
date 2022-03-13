@@ -1,0 +1,83 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+<div ng-controller="AuthorizecashbackController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Authorize Cashback</b></div>
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().PicklistFor("vm.selectedCabang")
+                        .ListService("vm.cabanggetpage")
+                        .Title("Cabang")
+                        .OnSelect("vm.onSelectCabang()")
+                        .Name("branchName")
+                        .Id("branchCodeT24")
+                        .Message("vm.message")
+                        .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                        .Disabled("vm.isKpno == 'no'")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().EnumFor("vm.searchParams.jenisTabungan")
+                        .Title("Jenis Tabungan")
+                        .EnumType("MyWeb.Models.JenisTabungan,MyWeb")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4")
+                        )
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.no")
+                        .Title("Cashback Group ID")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().DateFor("vm.searchParams.tanggal")
+                        .Title("Cashback Date")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-success" ng-click="vm.search()">Search</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @(Html.Angular()
+                    .GridFor("vm.authorizeCashbackGetPage")
+                    .HideSearch()
+                    .SearchParams("vm.searchParams")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshDataAuthorizeCashback")
+                    .TotalItems("vm.totalItems")
+                    .Response("vm.response")
+                    .RowStyle("vm.rowStyle")
+                    .AutoLoad(false)
+                    .Columns<PurchaseOrderViewModel>(config =>
+                    {
+                        config.Add(x => x, "Action", null, "<div>&nbsp;&nbsp;<a href='' ng-click='grid.appScope.tableActions.onDetail(row.entity)' title='detail'><i class='fa fa-eye fa-lg'></i></a>&nbsp;&nbsp;<a href='' ng-click='grid.appScope.tableActions.onReject(row.entity)' title='reject'><i class='fa fa-remove fa-lg'></i></a>&nbsp;&nbsp;<a href='' ng-click='grid.appScope.tableActions.onApprove(row.entity)' title='approve'><i class='fa fa-check-square-o fa-lg'></i></a> </div>", width: 80);
+                        config.Add(x => x.PODate, "Cashback Date", "dateFormat");
+                        config.Add(x => x.POGroupId, "Cashback Group ID");
+                        config.Add(x => x.CatatanPO, "Catatan Cashback");
+                        config.Add(x => x.totalpo, "Total Cashback");
+                        //config.Add(x => x.PODescription, "Keterangan");
+                        //config.Add(x => x.AdditionalInfoDetailItem, "No. Batch");
+                        //config.Add(x => x.CCYDebet, "CCY Debet");
+                        //config.Add(x => x.CCYKredit, "CCY Kredit");
+                        config.Add(x => x.Requester);
+                        //config.Add(x => x.PurchaseReceiveBy);
+                        config.Add(x => x.StatusData);
+                    }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

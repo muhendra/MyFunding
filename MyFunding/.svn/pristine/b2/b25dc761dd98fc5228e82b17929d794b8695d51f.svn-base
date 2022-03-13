@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MyWeb.Models
+{
+        public enum JenisTabungan
+        {
+            //TabunganSiPucuk = 6501,
+            TabunganSiPucukReward = 6502,
+            //TabunganHadiahLangsung = 6008
+        }
+    
+}

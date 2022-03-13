@@ -1,0 +1,41 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Statement
+@model dynamic
+
+<div ng-controller="InsertLogController as vm">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h1>View Insert Log</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @*<div class="col-lg-12">
+            <button type="button" class="btn btn-success" ng-click="vm.add()">Add</button>
+        </div>*@
+    </div>
+    <div>
+        @(Html.Angular().GridFor("vm.insertLogGetPage")
+        .Message("vm.message")
+        .SearchParams("vm.searchParams")
+        .TableActions("vm.tableActions")
+        .RefreshData("vm.refreshData")
+        .Columns<InsertLogViewModel>(config =>
+            {
+                //config.Add(x => x, " ", null, "<div>&nbsp&nbsp<input type='checkbox' class='form-check-input'>&nbsp</div>", width: 50);
+                config.Add(x => x.CreateDate, "ProcessDate", "dateFormat");
+                config.Add(x => x.Module, "Module");
+                config.Add(x => x.Process, "Process");
+                config.Add(x => x.LogMessage, "LogMessage");
+                config.Add(x => x.CreateBy, "CreateBy");
+                config.Add(x => x.TimeSpend, "TimeSpend"); 
+                //config.Add(x => x, "Aksi ", null, "<div>&nbsp&nbsp<a href='' ng-click='grid.appScope.tableActions.onEdit(row.entity)' class='btn btn-info btn-xs' style='margin-top:4px'>Edit</a>&nbsp</div>", width: 150);
+            })
+        )
+    </div>
+</div>

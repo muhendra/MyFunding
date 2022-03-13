@@ -1,0 +1,88 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+
+<div ng-controller="CashbackController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Add Cashback</b></div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().PicklistFor("vm.selectedCabang")
+                        .ListService("vm.cabanggetpage")
+                        .Title("Cabang")
+                        .OnSelect("vm.onSelectCabang()")
+                        .Name("branchName")
+                        .Id("branchCodeT24")
+                        .Message("vm.message")
+                        .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                        .Disabled("vm.isKpno == 'no'")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.noRekening")
+                        .Title("No Rekening")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().EnumFor("vm.searchParams.jenisTabungan")
+                        .Title("Jenis Tabungan")
+                        .EnumType("MyWeb.Models.JenisTabungan,MyWeb")
+                        .OnChange("vm.onChangeJenisTabungan()")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4")
+                        //.Disabled("true")
+                        )
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.nomor")
+                        .Title("Purchase Request ID")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-success" ng-click="vm.search()">Search</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @(Html.Angular().GridFor("vm.cashbackGetPage")
+                    .SearchParams("vm.searchParams")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                    .TotalItems("vm.totalItems")
+                    .Response("vm.response")
+                    .RowStyle("vm.rowStyle")
+                    .AutoLoad(false)
+                    .HideSearch()
+                            .Columns<EnquirytabunganViewModel>(config =>
+                            {
+                                config.Add(x => x, "Action", null, "<div>&nbsp;&nbsp;<a href='' ng-click='grid.appScope.tableActions.onAdd(row.entity)'><i class='fa fa-plus-circle fa-lg'></i></a>&nbsp;&nbsp;<a href='' ng-click='grid.appScope.tableActions.onRejecttoPr(row.entity)' title='reject'><i class='fa fa-remove fa-lg'></i></a></div>", width: 60);
+                                config.Add(x => x.PRId, "Purchase Request ID");
+                                config.Add(x => x.PRDate, "Purchase Request Date", "dateFormat");
+                                config.Add(x => x.NoRekening);
+                                config.Add(x => x.NoCif);
+                                config.Add(x => x.NamaNasabah);
+                                config.Add(x => x.TypeCashback);
+                                config.Add(x => x.Cabang);
+                                config.Add(x => x.NamaCabang);
+                                config.Add(x => x.RewardBudget, null, "number: 2");
+                                config.Add(x => x.JenisTabungan);
+                                config.Add(x => x.Requester);
+                                config.Add(x => x.StartDate, "Start Date", "dateFormat");
+                                config.Add(x => x.MaturityDate, "Maturity Date", "dateFormat");
+                            })
+                    )
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

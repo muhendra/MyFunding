@@ -1,0 +1,82 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.DeliveryOrderViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.deliveryorder");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Delivery Order</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    @addModel.FormGroupFor(x => x.DeliveryOrderId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.DeliveryOrderDate).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.StatusBarang).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Receiver).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Quantity).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Condition).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.Description).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    @(Html.Angular().FileUploadFor("vm.deliveryorder.attachmentTandaTerima")
+                                            .Title("Upload Tanda Terima")
+                            //.OnChange("vm.onUploadFileChange()")
+                            //.Error("vm.fileerror")
+                                            .MaxSize("10MB")
+                                            .Folder("deliveryorder")
+                                            .LabelSize("col-sm-4")
+                                            .InputSize("col-sm-8")
+                                            .SetFile("vm.setFile")
+                    )
+                    @*<button class="btn-default" ngf-select="vm.uploadFiles($files, $invalidFiles)"
+                            accept="*/*"
+                            ngf-max-size="10MB">
+                        Attachment Tanda Terima
+                    </button>
+
+                    <ul>
+                        <li ng-repeat="f in vm.files" style="font:smaller">
+                            {{f.name}} {{f.$errorParam}}
+                            <span class="progress" ng-show="f.progress >= 0">
+                                <div style="width:{{f.progress}}%"
+                                     ng-bind="f.progress + '%'"></div>
+                            </span>
+                        </li>
+                        <li ng-repeat="f in vm.errFiles" style="font:smaller">
+                            {{f.name}} {{f.$error}} {{f.$errorParam}}
+                        </li>
+                    </ul>
+                    {{vm.errorMsg}}*@
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-8">
+                        <a href="" ng-click="vm.purchaseOrderView(vm.deliveryorder.poId)">View Purchase Order</a>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+</fieldset>
+</form>

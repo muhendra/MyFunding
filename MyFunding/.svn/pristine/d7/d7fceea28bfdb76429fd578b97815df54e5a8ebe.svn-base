@@ -1,0 +1,99 @@
+﻿@using Core.Web.Helpers
+@model MyWeb.ViewModels.Reward.PurchaseOrderViewModel
+@{
+    var detailModel = Html.Angular().ModelFor("vm.purchaseorder");
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Purchase Order</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Purchase Order ID</th>
+            <td>
+                @detailModel.BindingFor(x => x.POId)
+            </td>
+        </tr>
+        <tr>
+            <th>Purchase Order Date</th>
+            <td>
+                {{vm.purchaseorder.poDate | dateFormat}}
+            </td>
+        </tr>
+        <tr>
+            <th>No Rekening : </th>
+            <td>
+                @detailModel.BindingFor(x => x.NoRekening)
+            </td>
+        </tr>
+        <tr>
+            <th>Nama Nasabah : </th>
+            <td>
+                @detailModel.BindingFor(x => x.NamaNasabah)
+            </td>
+        </tr>
+        <tr>
+            <th>Jenis Tabungan : </th>
+            <td>
+                @detailModel.BindingFor(x => x.JenisTabungan)
+            </td>
+        </tr>
+        <tr>
+            <th>Cabang : </th>
+            <td>
+                @detailModel.BindingFor(x => x.Cabang)
+            </td>
+        </tr>
+        <tr>
+            <th>Tgl Buka Rekening : </th>
+            <td>
+                {{vm.purchaseorder.tglBukaRekening | dateFormat}}
+            </td>
+        </tr>
+        <tr>
+            <th>Tgl Mulai : </th>
+            <td>
+                {{vm.purchaseorder.startDate | dateFormat}}
+            </td>
+        </tr>
+        <tr>
+            <th>Tgl Maturity : </th>
+            <td>
+                {{vm.purchaseorder.maturityDate | dateFormat}}
+            </td>
+        </tr>
+        <tr>
+            <th>Category ID : </th>
+            <td>
+                @detailModel.BindingFor(x => x.CategoryId)
+            </td>
+        </tr>
+
+        <tr>
+            <th>Merek : </th>
+            <td>
+                @detailModel.BindingFor(x => x.Merek)
+            </td>
+        </tr>
+        <tr>
+            <th>Type Barang : </th>
+            <td>
+                @detailModel.BindingFor(x => x.TypeBarang)
+            </td>
+        </tr>
+        <tr>
+            <th>Warna : </th>
+            <td>
+                @detailModel.BindingFor(x => x.Warna)
+            </td>
+        </tr>
+        <tr>
+            <th>Quantity Barang : </th>
+            <td>
+                {{vm.purchaseorder.quantity | number:2}}
+            </td>
+        </tr>
+
+    </table>
+
+</div>

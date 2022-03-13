@@ -1,0 +1,477 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Customers
+@model MyWeb.ViewModels.Customers.CustomerViewModel
+@{
+	var customer = Html.Angular().ModelFor("vm.customer"); 
+}
+    <form class="form-horizontal"
+          novalidate
+          name="vm.form"
+          ng-submit="vm.form.$valid && vm.save()">
+        <fieldset ng-disabled="vm.saving">
+
+            <div class="modal-header">
+                <h3 class="modal-title">{{vm.title}}</h3>
+                <button type="button" class="btn btn-danger" ng-click="vm.testError()">Test Error</button>
+            </div>
+
+            <div class="modal-body">
+                @*<div class="alert alert-info" ng-hide="vm.errorMessage != null">
+                    Enter details for the new customer below.
+                </div>
+                <div class="alert alert-danger" ng-show="vm.errorMessage != null">
+                    {{vm.errorMessage}}
+                </div>*@
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        @Html.Angular().AlertGlobal("vm.message")
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().PicklistFor("vm.selectedCustomerTemenos")
+                        .Title("Customer Temenos")
+                        .Id("cifNo")
+                        .Name("nama")
+                        .ListService("vm.customertemenosGetPage")
+                        .Message("vm.message")
+                        .DefaultValue("Default Customer")
+                        )
+
+                        @*@(Html.Angular().UploadFileFor("vm.modelUploadFile")
+                                            .Title("Upload File")
+                                            .OnChange("vm.onUploadFileChange()")
+                                            .Path("customer/upload")
+                                            .File("vm.file")
+                                            .Response("vm.fileresponse")
+                                            .Error("vm.fileerror")
+                                            .MaxSize("10MB")
+                                            .LabelSize("col-sm-2")
+                                            .InputSize("col-sm-10")
+                        )*@
+
+                        @(Html.Angular().FileUploadFor("vm.modelUploadFile")
+                                            .Title("Upload File")
+                                            .OnChange("vm.onUploadFileChange()")
+                                            .Error("vm.fileerror")
+                                            .MaxSize("10MB")
+                                            .Folder("UjiCoba")
+                                            .LabelSize("col-sm-2")
+                                            .InputSize("col-sm-10")
+                                            .SetFile("vm.setImage")
+                        )
+                        @*<my-upload-file title="Upload File" path="customer/upload" file="vm.file" response="vm.fileresponse" error="vm.fileerror" max-size="10MB" ng-model="vm.modelUploadFile" ng-change="vm.onUploadFileChange()"></my-upload-file>*@
+                        @*<file-upload title="Upload File" set-image="vm.setImage" response="vm.fileresponse" error="vm.fileerror" max-size="10MB" ng-model="vm.testUploadfile"></file-upload>*@
+                        <button ng-click="vm.action()">Set Image</button>
+                        @*<div class="form-group">
+                            <label for="Upload" class="control-label col-sm-2">Upload File</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file" ngf-select="vm.uploadFiles($files, $invalidFiles)" multiple
+                                              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                              ngf-max-height="1000"
+                                              ngf-max-size="10MB">
+                                            ...
+                                        </span>
+                                    </span>
+                                    <span ng-repeat="f in vm.files" style="font:smaller">
+                                        <input type="text" class="form-control" ng-model="f.progress + '% ' + f.name" readonly="" style="width:{{f.progress}}%">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>*@
+
+
+                        @(Html.Angular().UploadDataFor("vm.modelUpload")
+                                    .Title("Upload Testing")
+                                            .OnChange("vm.uploadDataChange()")
+                                            .Data("vm.uploadData")
+                                            .LabelSize("col-sm-3")
+                                            .InputSize("col-sm-9")
+                        )
+
+                        @*<input type="file" ng-mouseleave="vm.loadFile($event)" />*@
+
+                        @*<input type="file" custom-on-change="vm.uploadFile">*@
+
+                        @*<div class="form-group">
+                            <label for="Upload" class="control-label col-sm-2">Upload</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            ...<input type="file" data-bind-file="" data-ng-model="theFile" on-change="vm.uploadFile" />
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" data-ng-model="theFile.name" readonly="">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">Reset</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>*@
+
+                        @*<input type="file" data-bind-file="" data-ng-model="theFile" on-change="vm.uploadFile" />
+                        <input type="button" data-ng-click="resetFile()" value="Reset" />
+                        <div ng-show="theFile">
+                            {{theFile.name}}<br />
+                            {{theFile.size}} byte(s)<br />
+                            {{theFile.type}}
+                        </div>*@
+
+                        @*<button id="uploadFileButton" class="btn btn-info" ng-click="vm.uploadFile()">
+                            <span class="fa fa-paperclip"></span>
+                        </button>
+                        <input type="file" id="txtUploadFile" name="fileInput" style="display: none;" custom-on-change="vm.uploadFile" />*@
+
+                        @*<button class="btn-default" ngf-select="vm.uploadFile($files, $invalidFiles)"
+                                accept="*/*"
+                                ngf-max-height="1000"
+                                ngf-max-size="10MB">
+                            Test Upload
+                        </button>*@
+
+                        @(Html.Angular().TextFor("vm.selectedInputText")
+                                    .Title("Test Text Test Test Text")
+                                    .LabelSize("col-sm-4")
+                                    .InputSize("col-sm-8")
+                                    .DefaultValue("Default Text")
+                                    .Disabled("true")
+                        )
+
+                        @(Html.Angular().EnumFor("vm.selectedCustomerType")
+                                    .Title("Customer Type Test")
+                                    .EnumType("MyWeb.Models.Customers.CustomerType,MyWeb")
+                        )
+
+                        @(Html.Angular().DateFor("vm.selectedDateTest")
+                            .Title("Test Date")
+                            .OnChange("vm.onChangeDateTest()")
+                            .OnBlur("vm.onBlurDateTest()")
+                            .MinDate("vm.minDate")                    
+                        )
+
+
+                        @(Html.Angular().MonthFor("vm.selectedMonthTest")
+                            .Title("Test Month")
+                            .OnChange("vm.onChangeMonthTest()")
+                            .OnBlur("vm.onBlurMonthTest()")
+                            .DateFormat("M yy")                           
+                        )
+                        @*@(Html.Angular().TimeFor("vm.selectedTimeTest")
+                            .Title("Test Time")
+                            .ShowMeridian(true)
+                            .OnChange("vm.onChangeTimeTest()")
+                            .OnBlur("vm.onBlurTimeTest()")
+                        )*@
+
+                        @*<my-number title="test My Number" min="0" max="10" ng-model="vm.selectedNumberTest" ng-change="vm.onChangeNumberTest()"></my-number>*@
+
+                        @(Html.Angular().NumberFor("vm.selectedNumberTest")
+                            .Title("Test NumberTesting")
+                            .Start("0")
+                            .Min("-10000")
+                            .Max("100000")
+                            .Hint("-10000 - 100000")
+                            .OnChange("vm.onChangeNumberTest()")
+                            .OnBlur("vm.onBlurNumberTest()")
+                            .DisableDecimal(true)
+                            .LabelSize("col-sm-4")
+                            .InputSize("col-sm-8")
+                            .DefaultValue(1000)
+                           
+                                //.Disabled("true")
+                        )
+                        @(Html.Angular().CheckboxFor("vm.selectedCheckboxTest")
+                                    .Title("Test Checkbox")
+                                    .OnChange("vm.onChangeCheckboxTest()")
+                                    .OnBlur("vm.onBlurCheckboxTest()")
+                                //.Disabled("true")
+                        )
+                        @(Html.Angular().EnumFor("vm.selectedEnumTest")
+                                    .Title("Test Enum")
+                                    .EnumType("Core.Web.Utilities.StatusData")
+                                    .OnChange("vm.onChangeEnumTest()")
+                                    .OnBlur("vm.onBlurEnumTest()")
+                        )
+
+                        @(customer.FormGroupFor(x => x.CustomerType)
+                                .OnChange("vm.onChangeCustomerType()")
+                                .OnBlur("vm.onBlurCustomerType()")
+                        )
+
+                        @(customer.FormGroupFor(x => x.Name)
+                            .OnChange("vm.onChangeName()")
+                            .OnBlur("vm.onBlurName()")
+                                .AddValidation("vm.isNameNotValid", "Nama harus Admin")
+                        )
+
+                        @customer.FormGroupFor(x => x.Address).SetInputSize("col-sm-9").SetLabelSize("col-sm-3").OnChange("vm.onChangeAddress()").OnBlur("vm.onBlurAddress()")
+
+                        @customer.FormGroupFor(x => x.Total).OnChange("vm.onChangeTotal()").OnBlur("vm.onBlurTotal()").OnKeyPress("vm.onKeyPressTotal()")
+
+                        @customer.FormGroupFor(x => x.Nominal).OnChange("vm.onChangeNominal()").OnBlur("vm.onBlurNominal()").OnKeyPress("vm.onKeyPressNominal()").AddValidation("vm.isNominalNotValid", "Nominal harus lebih besar dari 0")
+
+
+                        @*<div class="form-group has-feedback ng-isolate-scope has-error" ng-class="vm.getValidationClass()" form-group-validation="Nominal2">
+
+                            <label for="Nominal2" class="control-label col-sm-2 ng-scope">Nominal2</label>
+                            <div class="col-sm-10 ng-scope">
+                                <number-input decimal-places="2" ng-model="vm.customer.nominal2" name="Nominal2" placeholder="Nominal2..." required="" min="0" start="0" max="10000" hint="0 to 10000" ng-change="vm.onChangeNominal()" ng-blur="vm.onBlurNominal()" ng-keydown="vm.onKeyPressNominal()">
+                                    <style>
+                                        .number-input-container {
+                                            height: 50px;
+                                        }
+
+                                        .number-input {
+                                            width: calc(100% - 68px);
+                                            border-top-right-radius: 0px;
+                                            border-bottom-right-radius: 0px;
+                                            box-shadow: none;
+                                        }
+
+                                        .number-input-btns-container {
+                                            width: 68px;
+                                            height: 34px;
+                                        }
+
+                                            .number-input-btns-container button {
+                                                width: 34px;
+                                                height: 34px;
+                                                border-left: none;
+                                                box-shadow: none;
+                                                line-height: 5px;
+                                            }
+
+                                                .number-input-btns-container button:focus {
+                                                    outline: 0;
+                                                    background-color: white;
+                                                    border-color: #ccc;
+                                                }
+
+                                        .number-input-plus {
+                                            border-radius: 0px;
+                                            background: white;
+                                        }
+
+                                        .number-input-minus {
+                                            border-top-left-radius: 0px;
+                                            border-bottom-left-radius: 0px;
+                                            background: white;
+                                        }
+
+                                        .number-input-hint {
+                                            font-size: 0.9em;
+                                            opacity: 1;
+                                        }
+                                    </style>
+                                    <div class="number-input-container">
+                                        <input type="text" class="pull-left form-control number-input text-left" ng-model="model"
+                                               ng-disabled="ngDisabled"
+                                               ng-change="numberInput.onChange()"
+                                               ng-keydown="numberInput.onKeyPress($event)"
+                                               ng-blur="numberInput.onBlur()">
+                                        <div class="pull-right number-input-btns-container">
+                                            <button type="button" class="btn btn-default pull-left number-input-plus"
+                                                    ng-disabled="ngDisabled"
+                                                    ng-click="numberInput.inc()">
+                                                <strong>+</strong>
+                                            </button>
+                                            <button type="button" class="btn btn-default pull-right number-input-minus" ng-disabled="ngDisabled" ng-click="numberInput.dec()">
+                                                <strong>-</strong>
+                                            </button>
+                                        </div>
+                                        <small ng-show="!hideHint" class="number-input-hint">0 to 10000</small>
+                                    </div>
+                                </number-input>
+                                <div class="help-block">
+                                    <p ng-show="vm.form.Nominal2.$error.required && (vm.form.Nominal2.$touched || vm.form.$submitted)">Harus Diisi!</p>
+                                    <p custom-validation="" ng-show="vm.form.Nominal2.$invalid  && (vm.form.Nominal2.$touched || vm.form.$submitted)"
+                                       ng-model="vm.customer.nominal2"
+                                       ng-form="vm.form.Nominal2"
+                                       element-name="Nominal2"
+                                       validate-function="vm.isNominalNotValid">
+                                        Nominal harus lebih besar dari 0
+                                    </p>
+                                </div>
+                            </div>
+                            <input-validation-icons field="vm.field" class="ng-isolate-scope">
+                                <span ng-show="vm.canBeValidated() && vm.isValid()" class="fa fa-2x fa-check-square form-control-feedback"></span>
+                                <span ng-show="vm.canBeValidated() && !vm.isValid()" class="fa fa-2x fa-exclamation-triangle form-control-feedback"></span>
+                            </input-validation-icons>
+                        </div>
+
+                        <div class="form-group has-feedback ng-isolate-scope has-success" ng-class="vm.getValidationClass()" form-group-validation="vmselectedImageclassPicklist2" style="margin-bottom:4px">
+                            <label for="vmselectedImageclassPicklist2" class="control-label col-sm-2 ng-scope">Image Class 2</label><div class="col-sm-10 ng-scope">
+                                <my-picklist ng-model="vm.selectedImageclassPicklist" name="vmselectedImageclassPicklist2" title="Image Class" id-column="imageClassId" name-column="imageClassName" list-service="vm.imageclassLoadAll" on-select="vm.onSelectImageClass()" message="vm.message">
+                                    <div class="inner-addon right-addon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        <input type="text" ng-click="show()" ng-model="viewValue" ng-disabled="ngDisabled" class="form-control" readonly="readonly">
+                                    </div>
+                                </my-picklist>
+                                <div class="help-block">
+                                    <p custom-validation="" ng-show="vm.form.vmselectedImageclassPicklist2.$invalid  && (vm.form.vmselectedImageclassPicklist2.$touched || vm.form.$submitted)"
+                                       ng-model="vm.selectedImageclassPicklist"
+                                       ng-form="vm.form.vmselectedImageclassPicklist2"
+                                       element-name="vmselectedImageclassPicklist2"
+                                       validate-function="vm.isImageClassPicklistNotValid">Image Class 2 harus dipilih!</p>
+                                </div>
+                            </div>
+                            <input-validation-icons field="vm.field" class="ng-isolate-scope">
+                                <span ng-show="vm.canBeValidated() && vm.isValid()" class="fa fa-2x fa-check-square form-control-feedback"></span>
+                                <span ng-show="vm.canBeValidated() && !vm.isValid()" class="fa fa-2x fa-exclamation-triangle form-control-feedback ng-hide"></span>
+                            </input-validation-icons>
+                        </div>*@
+
+
+                        @*<button class="btn-default" ngf-select="vm.uploadFiles($files, $invalidFiles)" multiple
+                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                ngf-max-height="1000"
+                                ngf-max-size="10MB">
+                            Select Files
+                        </button>
+
+                        <ul>
+                            <li ng-repeat="f in vm.files" style="font:smaller">
+                                {{f.name}} {{f.$errorParam}}
+                                <span class="progress" ng-show="f.progress >= 0">
+                                    <div style="width:{{f.progress}}%"
+                                         ng-bind="f.progress + '%'"></div>
+                                </span>
+                            </li>
+                            <li ng-repeat="f in vm.errFiles" style="font:smaller">
+                                {{f.name}} {{f.$error}} {{f.$errorParam}}
+                            </li>
+                        </ul>
+                        {{vm.errorMsg}}
+
+                        <div class="center">
+                            <span class="muted">Select Spreadsheet File</span>
+                            <br />
+                            <input type="file" accept=".xls,.xlsx,.ods,.csv" fileread="" opts="vm.gridOptions" multiple="false" on-finish="vm.onFinishUpload()" />
+                        </div>
+
+                        <div ui-grid="vm.gridOptions" class="grid"></div>*@
+
+                        @*<number-input ng-model="testmodel" options="vm.options"></number-input>*@
+
+                        @*<div class="form-group">
+                            <label class="control-label col-md-2">Input:</label>
+                            <div class="input-group col-md-10">
+                                <input class="form-control" type="text">
+                                <span class="input-group-addon">...</span>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="col-lg-6">
+                        @customer.FormGroupFor(x => x.Email).OnChange("vm.onChangeEmail()").OnBlur("vm.onBlurEmail()")
+
+                        @customer.FormGroupFor(x => x.Phone).OnChange("vm.onChangePhone()").OnBlur("vm.onBlurPhone()")
+
+                        @customer.FormGroupFor(x => x.TerminationDate).OnChange("vm.onChangeTerminationDate()").OnBlur("vm.onBlurTerminationDate()").MinDate("vm.minDate").MaxDate("vm.maxDate")
+
+                        @customer.FormGroupFor(x => x.StartTime)
+                        @*.OnChange("vm.onChangeStartTime()").OnBlur("vm.onBlurStartTime()")*@
+
+                        @(Html.Angular().ComboboxFor("vm.selectedImageclassCombobox")
+                            .Title("Image Class")
+                            .Id("imageClassId")
+                            .Name("imageClassName")
+                            .Items("vm.imageclassCombobox")
+                            .OnSelect("vm.onSelectImageClassCombobox()")
+                            .AddValidation("vm.isImageClassComboboxNotValid", "Image Class harus dipilih!")
+                        )
+                        @*<my-combobox model="vm.selectedImageclass" items="vm.imageclassCombobox" on-select="onSelectImageClass()" title="Image Class" id-column="imageClassId" name-column="imageClassName"></my-combobox>*@
+
+
+                        @(Html.Angular().PicklistFor("vm.selectedImageclassPicklist")
+                              .Title("Image Class")
+                              .Id("imageClassId")
+                              .Name("imageClassName")
+                                //.Picklist("vm.imageclassPicklist")
+                                                  .ListService("vm.imageclassLoadAll")
+                                                  .OnSelect("vm.onSelectImageClassPicklist()")
+                                                  .Message("vm.message")
+                                                  .AddValidation("vm.isImageClassPicklistNotValid", "Image Class harus dipilih!")
+                                                  .ShowColumns("imageClassId")
+                                //.HideColumns("imageClassId,imageClassName")
+                        )
+
+                        @*<my-picklist title="Image Class" model="vm.selectedImageclass" picklist="vm.imageclassPicklist" id-column="imageClassId" name-column="imageClassName" on-select="vm.onSelectImageClass()"></my-picklist>*@
+
+                        @(Html.Angular().PicklistFor("vm.selectedUser")
+                              .Title("User")
+                              .Id("id")
+                              .Name("userName")
+                              .ListService("vm.applicationusersGetPage")
+                              .OnSelect("vm.onSelectApplicationUsers()")
+                              .Message("vm.message")
+                        )
+
+                        @(Html.Angular().PicklistFor("vm.selectedCustomerTemenos")
+                              .Title("Customer Temenos")
+                                      .Id("cifNo")
+                              .Name("nama")
+                              .ListService("vm.customertemenosGetPage")
+                              .OnSelect("vm.onSelectCustomerTemenos()")
+                              .Message("vm.message")                              
+                        )
+
+                    </div>
+
+                    @*<div class="container">
+                        <div class="col-sm-6" style="height:130px;">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker10'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar">
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker10').datetimepicker({
+                                    viewMode: 'years',
+                                    format: 'MM/YYYY'
+                                });
+                            });
+                        </script>
+                    </div>*@
+
+                    @*<div class="form-group">
+                     <label for="Tanggal" class="col-lg-2 control-label">Tanggal</label>
+                     <div class="col-lg-10">
+                         <ng-bs3-datepicker data-ng-model="vm.customer.terminationDate" date-format="hh:mm" />
+                     </div>
+                    </div>*@
+                    @*<div class="col-lg-12">
+                        <textarea ui-tinymce="vm.tinymceOptions" ng-model="vm.customer.tinymceModel"></textarea>
+                    </div>*@
+                    @*<div class="col-lg-12">
+                        <my-texthtml title='Cekin Direktif' ng-model="vm.customer.tinymceModel"></my-texthtml>
+                    </div>*@
+                    @(Html.Angular().TexthtmlFor("vm.cekin")
+                              .Title("Customer Temenos")
+                              //.Disabled("true")
+                              .editorFitur(editorFitur.simple)
+                              .OnBlur("vm.blur()")
+                              .OnChange("vm.change()")
+                              .Hint("Hint Dicoba")
+                    )
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success">Add</button>
+                <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+            </div>
+
+        </fieldset>
+    </form>
+

@@ -1,0 +1,61 @@
+﻿@using Core.Web.Helpers
+@*@using MyWeb.ViewModels.LBBUK*@
+@model dynamic
+@{
+    var uploadFile = Html.Angular().ModelFor("vm.customer");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+        <div class="modal-header">
+            <h3 class="modal-title">Upload Form Text File</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+                <div class="col-lg-12">
+                    <label class="col-lg-3">Browse</label>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            @(Html.Angular().FileUploadFor("vm.uploadFile.NameFile")
+                                            .OnChange("vm.onUploadFileChange()")
+                                            .MaxSize("10MB")
+                                            .Folder("UjiCoba")
+                                            .LabelSize("col-sm-2")
+                                            .InputSize("col-sm-10")
+                                            .SetFile("vm.setFile")
+                           )
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            @*@(Html.Angular()
+            .GridFor("vm.savedata")
+            .Title("Form 02")
+            .Message("vm.message")
+            .RefreshData("vm.refreshData")
+            .GetAll("vm.getAllData")
+            .HideSearch()
+                    .Columns<LBBUK_UploadForm02ViewModel>(config =>
+            {
+                config.Add(x => x.form, "Form", width: 200);
+                config.Add(x => x.line, "Line", width: 250);
+                config.Add(x => x.jenis, "Jenis", width: 150);
+                //config.Add(x => x.Lain, " ", width: 150);
+            }))*@
+        </div>
+
+        <div class="modal-footer">
+            @*<button class="btn btn-success" ng-click="vm.save()">Save</button>*@
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

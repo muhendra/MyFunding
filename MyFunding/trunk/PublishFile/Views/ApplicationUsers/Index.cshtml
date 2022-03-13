@@ -1,0 +1,66 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Applications
+@model IEnumerable<ApplicationUserViewModel>
+
+<div ng-controller="ApplicationUsersController as vm" class="form-horizontal">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Users</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    @(Html.Angular()
+        .GridFor("vm.applicationusersGetPage")
+        .Title("User List")
+        .Message("vm.message")
+        .TableActions("vm.tableActions")
+        .RefreshData("vm.refreshData")
+            .Columns<ApplicationUserViewModel>(config =>
+        {
+            config.Add(x => x.UserName);
+            config.Add(x => x.NIK);
+            config.Add(x => x.FullName, "Name");           
+            config.Add(x => x, "Action", null, "<div align='center'><a href='#' data-toggle='tooltip' title='Edit' ng-click='grid.appScope.tableActions.onEdit(row.entity)'><i class='fa fa-edit fa-lg'></i> {{row.entity}}</a></div>");
+        }))
+
+<!--<table class="table">
+    <tr>
+        <th>
+            Html.DisplayNameFor(model => model.FullName)
+        </th>        
+        <th>
+            Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+        </th>
+        <th>
+            Html.DisplayNameFor(model => model.AccessFailedCount)
+        </th>
+        <th></th>
+    </tr>
+
+foreach (var item in Model) {
+    <tr>
+        <td>
+            Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            Html.DisplayFor(modelItem => item.Email)
+        </td>      
+        <td>
+            Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+        </td>
+        <td>
+            Html.DisplayFor(modelItem => item.AccessFailedCount)
+        </td>
+        <td>
+            Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>-->
+</div>

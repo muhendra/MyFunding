@@ -1,0 +1,46 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.UploadNasabahViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.detailupload");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.saveDetailUpload()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Detail Upload</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+            @(Html.Angular().FileUploadFor("vm.attachmentSPNasabah")
+                    .Title("Upload SP Nasabah")
+                    //.OnChange("vm.onUploadFileChange()")
+                    //.Error("vm.fileerror")
+                    .MaxSize("10MB")
+                    .Folder("enquirytabungan")
+                    .LabelSize("col-sm-4")
+                    .InputSize("col-sm-8")
+                    .SetFile("vm.setFile")
+            )
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

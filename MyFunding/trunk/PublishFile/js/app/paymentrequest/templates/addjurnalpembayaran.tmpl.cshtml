@@ -1,0 +1,120 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.JurnalpembayaranViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.jurnalpembayaran");
+    var addModel2 = Html.Angular().ModelFor("vm.jurnalpembayaran2");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.saveJurnalPembayaran()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Jurnal Pembayaran</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    @*@addModel.FormGroupFor(x => x.BranchId).OnBlur("vm.getBranceName()").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")*@
+                    @(Html.Angular().PicklistFor("vm.selectedCabang")
+                            .Title("Kode Cabang")
+                            .Id("id")
+                            .AddValidation("vm.validateCabang", "Cabang harus dipilih!")
+                            .Name("id")
+                            .ListService("vm.cabangGetPage")
+                            .OnSelect("vm.onSelectCabang()")
+                            .Message("vm.message")
+                            //.HideColumns("branchId,areaId,createBy,createDate,updateBy,updateDate")
+                            .SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                          
+                    )
+                    @addModel.FormGroupFor(x => x.BranchName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                   @* @addModel.FormGroupFor(x => x.InternalAccountName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")*@
+                    @*@addModel.FormGroupFor(x => x.InternalAccountName).OnBlur("vm.getCatName()").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")*@
+                    @(Html.Angular().PicklistFor("vm.jurnalpembayaraninternalAccount")
+                            .Title("Internal Account")
+                            .Id("nomorIA")
+                            .AddValidation("vm.validateInternalAccount", "Internal Account harus dipilih!")
+                            .Name("nomorIA")
+                            .ListService("vm.internalAccountItem")
+                                    .SearchParams("vm.searchParamInternalAccount")
+                            .OnSelect("vm.onSelectIA()")
+                            .SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                            
+                        )  
+                   @* <label>Cabang:{{vm.jurnalpembayaraninternalAccount.namaCabang}}</label><br />*@
+                    
+                    @*<label>Internal Account Name:{{vm.jurnalpembayaraninternalAccount.deskripsi}}</label>*@
+                    
+                    @addModel.FormGroupFor(x => x.InternalAccountName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @addModel.FormGroupFor(x => x.NamaCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @addModel.FormGroupFor(x => x.DebetKredit).SetLabelSize("col-lg-4").SetInputSize("col-lg-7").Disabled("true")
+                    @addModel.FormGroupFor(x => x.Narrative).SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @addModel.FormGroupFor(x => x.Amount).SetLabelSize("col-lg-4").SetInputSize("col-lg-7").OnChange("vm.changeamount()")
+                </div>
+                
+                <div class="col-lg-6">
+                   @* @addModel2.FormGroupFor(x => x.BranchId).OnBlur("vm.getBranceName2()").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")*@
+                    @(Html.Angular().PicklistFor("vm.selectedCabang2")
+                            .Title("Kode Cabang")
+                            .Id("id")
+                            .AddValidation("vm.validateCabang2", "Cabang harus dipilih!")
+                            .Name("id")
+                            .ListService("vm.cabangGetPage2")
+                            .OnSelect("vm.onSelectCabang2()")
+                            .Message("vm.message")
+                            .HideColumns("branchId,areaId,createBy,createDate,updateBy,updateDate")
+                            .SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                            
+                    )
+                    @addModel2.FormGroupFor(x => x.BranchName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @*@addModel2.FormGroupFor(x => x.InternalAccount).OnBlur("vm.getCatName2()").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")*@
+                    @*@addModel2.FormGroupFor(x => x.InternalAccount).SetLabelSize("col-lg-4").SetInputSize("col-lg-7")*@
+                    @*@(Html.Angular().ComboboxFor("vm.jurnalpembayaran2internalAccount")
+                            .Title("Internal Account")
+                            .Id("nomorIA")
+                            .Name("namaCabang")
+                            .Items("vm.internalAccountItem")
+                            .OnSelect("vm.onSelectIA2()")
+                            .SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                            //.AddValidation("vm.validateInternalAccount", "Internal Account harus dipilih!")
+                    )*@
+                    @(Html.Angular().PicklistFor("vm.jurnalpembayaran2internalAccount")
+                            .Title("Internal Account")
+                            .Id("nomorIA")
+                            .AddValidation("vm.validateInternalAccount2", "Internal Account harus dipilih!")
+                            .Name("nomorIA")
+                            .ListService("vm.internalAccountItemKredit")
+                                    .SearchParams("vm.searchParamInternalAccountKredit")
+                            .OnSelect("vm.onSelectIA2()")
+                            .SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                            
+                    )
+                    @*<label>Cabang:{{vm.jurnalpembayaran2internalAccount.namaCabang}}</label><br />*@
+
+                    @*<label>Internal Account Name:{{vm.jurnalpembayaran2internalAccount.deskripsi}}</label>*@                   
+                    @addModel2.FormGroupFor(x => x.InternalAccountName).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @addModel2.FormGroupFor(x => x.NamaCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @addModel2.FormGroupFor(x => x.DebetKredit).SetLabelSize("col-lg-4").SetInputSize("col-lg-7").Disabled("true")
+                    @addModel2.FormGroupFor(x => x.Narrative).SetLabelSize("col-lg-4").SetInputSize("col-lg-7")
+                    @addModel2.FormGroupFor(x => x.Amount).SetLabelSize("col-lg-4").SetInputSize("col-lg-7").OnChange("vm.changeamount2()")
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$parent.$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

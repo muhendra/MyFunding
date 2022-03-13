@@ -1,0 +1,148 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.PurchaseOrderViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.cashback");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Add Cashback</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+
+                    @addModel.FormGroupFor(x => x.NamaCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.TglBukaRekening).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.JenisTabungan).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.NoRekening).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.NamaNasabah).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.DraftPRId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.DraftPRDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.CatatanCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().PicklistFor("vm.selectedDetailBarang")
+                    .Title("Kode Promosi")
+                    .Id("id")
+                    .Name("promotionCode")
+                    .SearchParams("vm.data")
+                    .ListService("vm.detailbarangGetPage")
+                    .OnSelect("vm.onSelectDetailBarang()")
+                    .Message("vm.message")
+                    .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @addModel.FormGroupFor(x => x.KategoriBarang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().TextFor("vm.cashback.keterangan").Title("Type Cashback").Disabled("true").LabelSize("col-lg-4").InputSize("col-lg-8"))
+
+                    @addModel.FormGroupFor(x => x.QuantityBarang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.Penalty).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    
+                </div>
+
+                <div class="col-lg-6">
+
+                    @addModel.FormGroupFor(x => x.StartDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.MaturityDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.Requester).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PRId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PRDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.RewardBudget).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().TextFor("vm.cashback.poId").Title("Cashback ID").Disabled("true").LabelSize("col-lg-4").InputSize("col-lg-8"))
+
+                    @(Html.Angular().DateFor("vm.cashback.poDate").Title("Cashback Date").LabelSize("col-lg-4").InputSize("col-lg-8"))
+
+                    @*20190130, jeni, BEGIN*@
+
+                    @(Html.Angular().CheckboxFor("vm.selectedIsActive")
+                                    .Title("Grouping")
+                                    .OnChange("vm.onChangeIsActive()")
+                                    .SetLabelSize("col-sm-4").SetInputSize("col-sm-8")
+                    )<br />
+
+                    @(Html.Angular().PicklistFor("vm.selectedPOGroup2")
+                                    .Title("Cashback Group")
+                                    .Id("poGroupId")
+                                    .Name("poGroupId")
+                                    //.SearchParams("vm.data")
+                                    .ListService("vm.poGroupGetPage")
+                                    .OnSelect("vm.onSelectPOGroup()")
+                                    .Disabled("!vm.selectedIsActive")
+                                    .Message("vm.message")
+                                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @(Html.Angular().TextFor("vm.cashback.poDescription").Title("Keterangan").LabelSize("col-lg-4").InputSize("col-lg-8"))
+
+                    @(Html.Angular().TextFor("vm.cashback.additionalInfoDetailItem").Title("No. Batch").LabelSize("col-lg-4").InputSize("col-lg-8"))
+
+                    @(Html.Angular().TextFor("vm.cashback.catatanPO").Title("Catatan Cashback").LabelSize("col-lg-4").InputSize("col-lg-8"))
+
+                    @addModel.FormGroupFor(x => x.CCYDebet).Disabled("vm.selectedIsActive").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.CCYKredit).Disabled("vm.selectedIsActive").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    <br /><br />
+                    @*Attachment SP Nasabah &nbsp;&nbsp;<a href="" ng-show="vm.cashback.attachmentSPNasabah != null" ng-click="vm.cashbackviewsp(vm.cashback.attachmentSPNasabah)">View</a><br /><br />*@
+                    Attachment Memo Direksi &nbsp;&nbsp;<a href="" ng-show="vm.cashback.attachmentMemoDireksi != null" ng-click="vm.cashbackviewmemo(vm.cashback.attachmentMemoDireksi)">View</a><br /><br />
+                    <a href="" ng-click="vm.draftPurchaseRequestView(vm.cashback.draftPRId)">View Draft Purchase Request</a>
+                    <br />
+                    <br />
+                    <a href="" ng-click="vm.purchaseRequestView(vm.cashback.prId)">View Purchase Request</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    @(Html.Angular()
+                        .GridFor("vm.getJurnalCashback")
+                        .Title("Detail Jurnal Cashback")
+                        .SearchParams("vm.params")
+                        .Disabled("true")
+                        .HideSearch()
+                        .Columns<JurnalCashbackViewModel>(config =>
+                        {
+                            config.Add(x => x.KdCabang, "Kode Cabang");
+                            config.Add(x => x.NamaCabang);
+                            config.Add(x => x.AccountDebet);
+                            config.Add(x => x.AccountKredit);
+                            config.Add(x => x.Nominal, "Cashback Amount", "number: 2");
+                        }
+                    ))
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

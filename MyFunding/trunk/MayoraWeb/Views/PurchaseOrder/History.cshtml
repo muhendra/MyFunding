@@ -1,0 +1,134 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+@*@model MyWeb.Forms.Customers.CustomerForm
+    @{
+        var customer = Html.Angular().ModelFor("vm.customer");
+        ViewBag.Title = "Customer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+<div ng-controller="HistoryPurchaseOrderController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>History Purchase Order</b></div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().PicklistFor("vm.selectedCabang")
+                        .ListService("vm.cabanggetpage")
+                        .Title("Cabang")
+                        .OnSelect("vm.onSelectCabang()")
+                        .Name("branchName")
+                        .Id("branchCodeT24")
+                        .Message("vm.message")
+                        .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                        .Disabled("vm.isKpno == 'no'")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    <div class="col-lg-6">
+                        @(Html.Angular().EnumFor("vm.searchParams.jenisTabungan")
+                        .Title("Jenis Tabungan")
+                        .EnumType("MyWeb.Models.JenisTabungan,MyWeb")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                </div>
+                @*20200713, eka, BEGIN*@
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().DateFor("vm.searchParams.tanggalmulai")
+                    .Title("Start Date")
+                    .LabelSize("col-sm-4")
+                    .InputSize("col-sm-8"))
+                    </div>
+
+                    <div class="col-lg-6">
+                        @(Html.Angular().DateFor("vm.searchParams.tanggalakhir")
+                    .Title("End Date")
+                    .LabelSize("col-sm-4")
+                    .InputSize("col-sm-8"))
+                    </div>
+                </div>
+                @*20200713, eka, END*@
+                <div class="row">
+                    <div class="col-lg-6">
+                        @(Html.Angular().TextFor("vm.searchParams.no")
+                        //20190206, jeni, BEGIN
+                        //.Title("Purchase Order ID")
+                        .Title("Purchase Order Group ID")
+                        //20190206, jeni, END
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>
+                    @*<div class="col-lg-6">
+                        @(Html.Angular().DateFor("vm.searchParams.tanggal")
+                        .Title("Purchase Order Date")
+                        .SetInputSize("col-sm-8").SetLabelSize("col-sm-4"))
+                    </div>*@
+                    
+
+                    </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-success" ng-click="vm.search()">Search</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @(Html.Angular().GridFor("vm.historyPurchaseOrderGetPage")
+                    .SearchParams("vm.searchParams")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                    .TotalItems("vm.totalItems")
+                    .Response("vm.response")
+                    .RowStyle("vm.rowStyle")
+                    //20200710, eka, BEGIN
+                    .GetAll("vm.historyPurchaseOrderGetAll")
+                    //20200710, eka, END
+                    .AutoLoad(false)
+                    .HideSearch()
+                    .Columns<PurchaseOrderViewModel>(config =>
+                    {
+                        //config.Add(x => x, "Select", null, "<div><a href='' ng-click='grid.appScope.tableActions.onSelect(row.entity)'><i class='fa fa-edit fa-lg'></i></a></div>");
+                        config.Add(x => x, "Action", null, "<div>&nbsp;&nbsp;<a href='' ng-click='grid.appScope.tableActions.onDetail(row.entity)' title='detail'><i class='fa fa-eye fa-lg'></i></a>&nbsp;&nbsp;<a href='' title='Print data' ng-click='grid.appScope.tableActions.onReport(row.entity)'><i class='fa fa-print fa-lg'></i></a> </div>", width: 80);
+                        //20190206, jeni, BEGIN
+                        config.Add(x => x.POGroupId, "Purchase Order Group ID");
+                        //20190206, jeni, END
+                        config.Add(x => x.POId, "Purchase Order ID");
+                        config.Add(x => x.PODate, "Purchase Order Date", "dateFormat");
+                        config.Add(x => x.Quantity);
+                        config.Add(x => x.PaymentMethod);
+                        config.Add(x => x.DPAmount, null, "number: 2");
+                        config.Add(x => x.TotalPurchase, null, "number: 2");
+                        config.Add(x => x.Requester);
+                        config.Add(x => x.SupplierId);
+                        config.Add(x => x.SupplierName);
+                        //config.Add(x => x.VendorQuotationNo);
+                        //config.Add(x => x.VendorQuotationDate, "Vendor Quotation Date", "dateFormat");
+                        //config.Add(x => x.VendorQuotationAmount, null, "number: 2");    
+                        config.Add(x => x.CatatanCabang, width:500);
+                        config.Add(x => x.Keterangan); 
+                                                            
+                        config.Add(x => x.Merek);
+                        config.Add(x => x.TypeBarang);
+                        config.Add(x => x.Warna);
+                        config.Add(x => x.CategoryId);
+                        config.Add(x => x.PRId, "Purchase Request ID");
+                        config.Add(x => x.PRDate, "Purchase Request Date", "dateFormat");  
+                        config.Add(x => x.VendorInvoiceNo);
+                        config.Add(x => x.VendorInvoiceDate, "Vendor Invoice Date", "dateFormat");
+                        config.Add(x => x.VendorInvoiceAmount, null, "number: 2");
+                        config.Add(x => x.StatusData);                                                                          
+                    }))
+                </div>
+                @*<div class="panel-footer">
+                        Panel Footer
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <!-- /.colhttp://fontawesome.io/icon/plus-circle-lg-12 -->
+</div>
+

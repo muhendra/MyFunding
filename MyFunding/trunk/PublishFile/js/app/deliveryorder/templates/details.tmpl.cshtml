@@ -1,0 +1,95 @@
+﻿@using Core.Web.Helpers
+@model MyWeb.ViewModels.Reward.DeliveryOrderViewModel
+@{
+    var detailModel = Html.Angular().ModelFor("vm.deliveryorder");
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Draft Purchase Request</h3>
+    </div>
+    <table class="table">
+
+        <tr >
+            <th class="col-lg-4">PO ID : </th>
+            <td class="col-lg-8">
+                @detailModel.BindingFor(x => x.POId).
+            </td>
+        </tr>
+        <tr>
+            <th>PO Date : </th>
+            <td>
+                {{vm.deliveryorder.poDate | dateFormat}}
+            </td>
+        </tr>
+        <tr>
+            <th>Purchase Receive ID : </th>
+            <td>
+                @detailModel.BindingFor(x => x.PurchaseReceiveId)
+            </td>
+        </tr>
+        <tr>
+            <th>Purchase Receive Date : </th>
+            <td>
+                {{vm.deliveryorder.purchaseReceiveDate | dateFormat}}
+            </td>
+        </tr>
+        <tr>
+            <th>Promotion Code : </th>
+            <td>
+                @detailModel.BindingFor(x => x.PromotionCode)
+            </td>
+        </tr>
+        <tr>
+            <th>Type Barang : </th>
+            <td>
+                @detailModel.BindingFor(x => x.TypeBarang)
+            </td>
+        </tr>
+        <tr>
+            <th>Merek : </th>
+            <td>
+                @detailModel.BindingFor(x => x.Merek)
+            </td>
+        </tr>
+        <tr>
+            <th>Warna : </th>
+            <td>
+                @detailModel.BindingFor(x => x.Warna)
+            </td>
+        </tr>
+        <tr>
+            <th>Quantity : </th>
+            <td>
+                @detailModel.BindingFor(x => x.Quantity)
+            </td>
+        </tr>
+    </table>
+    <div class="row">
+        <div class="col-lg-12">
+            @(Html.Angular().GridFor("vm.deliveryorderGetPage")
+                                .SearchParams("vm.searchParams")
+                                .Message("vm.message")
+                                .TableActions("vm.tableActions")
+                                .RefreshData("vm.refreshData")
+                                .TotalItems("vm.totalItems")
+                                .Response("vm.response")
+                                .RowStyle("vm.rowStyle")
+                                        .HideSearch()
+                    //.AutoLoad(false)
+                                .Columns<MyWeb.ViewModels.Reward.DeliveryOrderViewModel>(config =>
+                                {
+                                    //config.Add(x => x, "Select", null, "<div><a href=''  ng-click='grid.appScope.tableActions.onSelect(row.entity)'><i class='fa fa-edit fa-lg'></i></a></div>");
+                                    config.Add(x => x, "Action", null, "<div><a href='' ng-show='row.entity.attachmentTandaTerima != null' ng-click='grid.appScope.tableActions.onDetail(row.entity)'><i class='fa fa-eye fa-lg'></i></a></div>");
+                            
+                                    //config.Add(x => x, "Attachment", null, "<div> <a href='' ng-click='grid.appScope.tableActions.onDetail(row.entity)' title='detail'><i class='fa fa-eye fa-lg'></i></a></div>");
+                                    config.Add(x => x.DeliveryOrderId, "Delivery Order ID");
+                                    config.Add(x => x.DeliveryOrderDate, "Delivery Order Date", "dateFormat");
+                                    config.Add(x => x.StatusBarang);
+                                    config.Add(x => x.Receiver);
+                                    config.Add(x => x.Condition);
+                                    config.Add(x => x.Description);
+                                }))
+        </div>
+    </div>
+
+</div>

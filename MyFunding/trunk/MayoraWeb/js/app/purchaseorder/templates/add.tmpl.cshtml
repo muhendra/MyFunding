@@ -1,0 +1,230 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model MyWeb.ViewModels.Reward.PurchaseOrderViewModel
+@{
+    var addModel = Html.Angular().ModelFor("vm.purchaseorder");
+}
+<form class="form-horizontal"
+      novalidate
+      name="vm.form"
+      form-submit="vm.save()">
+    <fieldset ng-disabled="vm.saving">
+
+        <div class="modal-header">
+            <h3 class="modal-title">Purchase Order</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.Angular().AlertGlobal("vm.message")
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+
+                    @addModel.FormGroupFor(x => x.NamaCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.TglBukaRekening).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.JenisTabungan).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.NoRekening).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.NamaNasabah).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    Attachment SP Nasabah &nbsp;&nbsp;<a href="" ng-show="vm.purchaseorder.attachmentSPNasabah != null" ng-click="vm.purchaseorderview(vm.purchaseorder.attachmentSPNasabah)">View</a>
+
+                    @addModel.FormGroupFor(x => x.DraftPRId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.DraftPRDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.CatatanCabang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().PicklistFor("vm.selectedDetailBarang")
+                    .Title("Kode Promosi")
+                    .Id("id")
+                    .Name("promotionCode")
+                    .SearchParams("vm.data")
+                    .ListService("vm.detailbarangGetPage")
+                    .OnSelect("vm.onSelectDetailBarang()")
+                    .Message("vm.message")
+                    .HideColumns("id,createBy,createDate,updateBy,updateDate")
+                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @addModel.FormGroupFor(x => x.KategoriBarang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.TypeBarang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.Merek).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.QuantityBarang).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.Penalty).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.StartDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.MaturityDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.Requester).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PRId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PRDate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.RewardBudget).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    Attachment Memo Direksi &nbsp;&nbsp;<a href="" ng-show="vm.purchaseorder.attachmentMemoDireksi != null" ng-click="vm.purchaseorderviewmemo(vm.purchaseorder.attachmentMemoDireksi)">View</a>
+
+                    @(Html.Angular().PicklistFor("vm.selectedSupplier")
+                    .Title("Supplier")
+                    .Id("supp_ID")
+                    .Name("nm_Supp")
+                    .ListService("vm.supplierGetPage")
+                    .OnSelect("vm.onSelectSupplier()")
+                    .Message("vm.message")
+                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @addModel.FormGroupFor(x => x.AlamatSupplier).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().PicklistFor("vm.selectedMasterUser")
+                    .Title("NIK Employee")
+                    .Id("nik")
+                    .Name("nik")
+                    .ListService("vm.masteruserGetPage")
+                    .OnSelect("vm.onSelectMasterUser()")
+                    .Message("vm.message")
+                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @addModel.FormGroupFor(x => x.DeptId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @*@(Html.Angular().FileUploadFor("vm.purchaseorder.uploadPO")
+                        .Title("Upload PO")
+                        //.OnChange("vm.onUploadFileChange()")
+                        //.Error("vm.fileerror")
+                        .MaxSize("10MB")
+                        .Folder("purchaseorders")
+                        .LabelSize("col-sm-4").InputSize("col-sm-8")
+                        .SetFile("vm.setFile"))*@
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    @addModel.FormGroupFor(x => x.POId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PODate).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().CheckboxFor("vm.selectedIsActive")
+                                    .Title("Grouping")
+                                    .OnChange("vm.onChangeIsActive()")
+                                    .SetLabelSize("col-sm-4").SetInputSize("col-sm-8")
+                    )
+
+                    @(Html.Angular().PicklistFor("vm.selectedPOGroup")
+                                    .Title("PO Group ID")
+                                    .Id("poGroupId")
+                                    .Name("poGroupId")
+                                    //.SearchParams("vm.data")
+                                    .ListService("vm.poGroupGetPage")
+                                    .OnSelect("vm.onSelectPOGroup()")
+                                    .Disabled("!vm.selectedIsActive")
+                                    .Message("vm.message")
+                                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @*20190130, jeni, END*@
+                    @addModel.FormGroupFor(x => x.CategoryId).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PolaId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.UnitId).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.TypeId).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PaymentMethod).OnChange("vm.disableDP()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @*20190131, jeni, BEGIN*@
+                    @addModel.FormGroupFor(x => x.PaymentType).Disabled("vm.selectedIsActive").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @*20190131, jeni, END*@
+                    @addModel.FormGroupFor(x => x.DPAmount).Disabled("vm.disableDPAmount").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.Quantity).OnBlur("vm.recalculate()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @*20190131, jeni, BEGIN*@
+                    @addModel.FormGroupFor(x => x.Currency).Disabled("vm.selectedIsActive").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @*20190131, jeni, END*@
+
+                    @addModel.FormGroupFor(x => x.NominalBarang).OnBlur("vm.recalculate()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.NominalPurchase).OnBlur("vm.recalculate()").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.TotalPurchase).Disabled("true").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.VendorQuotationNo).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.VendorQuotationDate).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.VendorQuotationAmount).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.PODescription).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @addModel.FormGroupFor(x => x.AdditionalInfoDetailItem).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+
+                    @(Html.Angular().PicklistFor("vm.selectedBank")
+                    .Title("Nama Bank")
+                    .Id("bankName")
+                    .Name("bankName")
+                    //20190131, jeni, BEGIN
+                    .Disabled("vm.selectedIsActive")
+                    //20190131, jeni, END
+                    .ListService("vm.bankGetPage")
+                    .OnSelect("vm.onSelectBank()")
+                    .Message("vm.message")
+                    .AddValidation("vm.isNotValidBank", "Bank Harus Diisi!")
+                    .SetLabelSize("col-lg-4").SetInputSize("col-lg-8"))
+
+                    @*20190129, jeni, BEGIN*@
+                    @addModel.FormGroupFor(x => x.NomorRekeningVendor).Disabled("vm.selectedIsActive").SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @addModel.FormGroupFor(x => x.PurchaseReceiveBy).SetLabelSize("col-lg-4").SetInputSize("col-lg-8")
+                    @*20190129, jeni, END*@
+                    <a href="" ng-click="vm.draftPurchaseRequestView(vm.purchaseorder.draftPRId)">View Draft Purchase Request</a>
+                    <br />
+                    <br />
+                    <a href="" ng-click="vm.purchaseRequestView(vm.purchaseorder.prId)">View Purchase Request</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    @(Html.Angular()
+                    .GridFor("vm.purchaseorder.detailBarangList")
+                    .Title("Detail Barang")
+                    .TableActions("vm.detailBarangTableActions")
+                    .RefreshData("vm.refreshDetailBarang")
+                    .Disabled("true")
+                    .HideSearch()
+                    .Columns<DetailbarangViewModel>(config =>
+                    {
+                        config.Add(x => x.PromotionCode);
+                        config.Add(x => x.KategoriBarang);
+                        config.Add(x => x.Keterangan);
+                        config.Add(x => x.TypeBarang);
+                        config.Add(x => x.Merek);
+                        config.Add(x => x.Penalty, null, "number: 2");
+                        config.Add(x => x.Quantity, null, "number: 2");
+                        config.Add(x => x.Warna, "Warna / Jenis");
+                    }))
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+
+    </fieldset>
+</form>

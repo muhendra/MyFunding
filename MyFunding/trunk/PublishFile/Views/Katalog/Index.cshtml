@@ -1,0 +1,44 @@
+﻿@using Core.Web.Helpers
+@using MyWeb.ViewModels.Reward
+@model dynamic
+@*@model MyWeb.Forms.Customers.CustomerForm
+    @{
+        var customer = Html.Angular().ModelFor("vm.customer");
+        ViewBag.Title = "Customer";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+<div ng-controller="KatalogController as vm">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Katalog</b></div>
+
+            <div class="panel-body">
+
+                <div class="row">
+                    @(Html.Angular().GridFor("vm.katalogGetPage")
+                    .Message("vm.message")
+                    .TableActions("vm.tableActions")
+                    .RefreshData("vm.refreshData")
+                    .Columns<KatalogViewModel>(config =>
+                    {
+                        //config.Add(x => x, "Select", null, "<div><a href='' ng-click='grid.appScope.tableActions.onSelect(row.entity)'><i class='fa fa-edit fa-lg'></i></a></div>");
+                        config.Add(x => x, "Action", null, "<div>&nbsp;&nbsp;<a href='' title='Edit data' ng-click='grid.appScope.tableActions.onEdit(row.entity)'><i class='fa fa-edit fa-lg'></i></a>&nbsp;&nbsp;<a href='' title='Details' ng-click='grid.appScope.tableActions.onDetail(row.entity)'><i class='fa fa-eye fa-lg'></i></a>&nbsp;&nbsp;<a href='' title='Hapus Data' ng-click='grid.appScope.tableActions.onDelete(row.entity)'><i class='fa fa-trash fa-lg'></i></a></div>", width: 100);
+                        //config.Add(x => x, "Kode_Promo", null, "<div>{{ row.entity.Kode_Promo2 +  row.entity.Kode_Promo1}}</div>");
+                        config.Add(x => x.Kode_Promo);
+                        config.Add(x => x.Keterangan, "Keterangan");
+                        config.Add(x => x.Kategory);
+                        config.Add(x => x.Merk);
+                        config.Add(x => x.Type);
+                        config.Add(x => x.JangkaWaktu);
+                        config.Add(x => x.MonthsYears);
+                        config.Add(x => x.NominalHold, cellFilter: "number");
+                        config.Add(x => x.Penalty, cellFilter: "number");
+                        config.Add(x => x.ProgramName);
+                    }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

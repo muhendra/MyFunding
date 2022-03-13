@@ -1,0 +1,2789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CEE973D5-3804-40BF-89DC-F3E48DA3FFFC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyWeb</RootNamespace>
+    <AssemblyName>MyWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ARSoft.Tools.Net, Version=2.2.9.0, Culture=neutral, PublicKeyToken=1940454cd762ec57, processorArchitecture=MSIL">
+      <HintPath>..\packages\ARSoft.Tools.Net.2.2.9\lib\net45\ARSoft.Tools.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Data">
+      <HintPath>..\packages\AutoMapper.Data.1.0.0-beta1\lib\net45\AutoMapper.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Core.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Core.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidationNA">
+      <HintPath>..\packages\FluentValidationNA.1.2.16\lib\net40\FluentValidationNA.dll</HintPath>
+    </Reference>
+    <Reference Include="Heroic.AutoMapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Heroic.AutoMapper.1.1.0\lib\net45\Heroic.AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Heroic.Web.IoC, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Heroic.Web.IoC.3.2.1\lib\net45\Heroic.Web.IoC.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags">
+      <HintPath>..\packages\HtmlTags.3.0.0.186\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.37.7\lib\portable-win+net40+sl50+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="License">
+      <HintPath>C:\Program Files (x86)\Eziriz\.NET Reactor\SDK\Binaries\License.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.Futures.5.0.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\MigraDoc.DocumentObjectModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\MigraDoc.Rendering.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\MigraDoc.RtfRendering.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Quartz, Version=2.6.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.6.1\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReportViewerForMvc">
+      <HintPath>..\packages\ReportViewerForMvc.1.0.1\lib\net45\ReportViewerForMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.0.5.130\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.0.5.130\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Linq.Dynamic, Version=1.1.14.15853, Culture=neutral, PublicKeyToken=b72be0322d1b32a8, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.Library.1.1.14\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral">
+      <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Tamir.SharpSSH.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Twilio.Api">
+      <HintPath>..\packages\Twilio.4.4.0\lib\3.5\Twilio.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\StructureMapConfig.cs" />
+    <Compile Include="Controllers\Applications\EmailFunding.cs" />
+    <Compile Include="Controllers\Applications\ReportController.cs" />
+    <Compile Include="Controllers\Customers\CustomerController.cs" />
+    <Compile Include="Controllers\Reward\BreakAmortisasiRequestController.cs" />
+    <Compile Include="Controllers\Reward\AmortisasiRequestController.cs" />
+    <Compile Include="Controllers\Reward\CompanyTemenosController.cs" />
+    <Compile Include="Controllers\Reward\StatusNasabahController.cs" />
+    <Compile Include="Controllers\Reward\NotificationLib.cs" />
+    <Compile Include="Controllers\Reward\KatalogController.cs" />
+    <Compile Include="Controllers\Reward\ParameterEmailController.cs" />
+    <Compile Include="Controllers\Reward\PaymentrequestController.cs" />
+    <Compile Include="Controllers\Reward\PencadanganController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\Reward\PurchaseorderController.cs" />
+    <Compile Include="Controllers\Reward\DeliveryorderController.cs" />
+    <Compile Include="Controllers\Reward\PurchasereceiveController.cs" />
+    <Compile Include="Controllers\Reward\PurchaserequestController.cs" />
+    <Compile Include="Controllers\Reward\EnquirytabunganController.cs" />
+    <Compile Include="Controllers\Reward\EnquirytabunganinputController.cs" />
+    <Compile Include="Controllers\Statement\Lib\CopyFile.cs" />
+    <Compile Include="Controllers\Statement\Lib\CreateDocument.cs" />
+    <Compile Include="Controllers\Statement\Lib\EmailTemplate.cs" />
+    <Compile Include="Controllers\Statement\Lib\ProsesFile.cs" />
+    <Compile Include="Controllers\Statement\ListEmailController.cs" />
+    <Compile Include="Controllers\Statement\MasterEmailTemplateController.cs" />
+    <Compile Include="Controllers\Statement\InsertLogController.cs" />
+    <Compile Include="Controllers\Statement\MasterParameterController.cs" />
+    <Compile Include="Controllers\Statement\MasterProductController.cs" />
+    <Compile Include="Controllers\Statement\MasterPromotionController.cs" />
+    <Compile Include="Controllers\Statement\RegisteredAccountController.cs" />
+    <Compile Include="Controllers\Statement\UploadTextfileController.cs" />
+    <Compile Include="DataLayer\Customers\CustomerConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\UploadNasabahConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\EnquiryTabunganConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\InternalAccountConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\KartuAmortisasiConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\MasterJurnalOtomatisConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\ParameterEmailConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\PecadanganConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\BreakAmortisasiRequestConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\KategoryConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\AmortisasiRequestConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\DetailBarangConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\KatalogConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\JurnalPelunasanConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\PaymentRequestConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\JurnalPembayaranConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\DeliveryOrderConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\PurchaseReceiveConfiguration.cs" />
+    <Compile Include="DataLayer\Reward\PurchaseOrderConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\MasterEmailTemplateConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\MasterParameterConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\MasterPDFConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\InsertLogConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\MasterProductConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\MasterPromotionConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\RegisteredAccountConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\TextFileConfiguration.cs" />
+    <Compile Include="DataLayer\Statement\UploadTextFileConfiguration.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlCore\SqlCoreConfiguration.cs" />
+    <Compile Include="Migrations\SqlCore\SqlCoreDbContext.cs" />
+    <Compile Include="Migrations\SqlFunding\201606220302577_addenquirytabungan.cs" />
+    <Compile Include="Migrations\SqlFunding\201606220302577_addenquirytabungan.Designer.cs">
+      <DependentUpon>201606220302577_addenquirytabungan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201606300931081_detailbarang.cs" />
+    <Compile Include="Migrations\SqlFunding\201606300931081_detailbarang.Designer.cs">
+      <DependentUpon>201606300931081_detailbarang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201607140241457_modifyenquiryinput.cs" />
+    <Compile Include="Migrations\SqlFunding\201607140241457_modifyenquiryinput.Designer.cs">
+      <DependentUpon>201607140241457_modifyenquiryinput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201607200312262_AddApprove2.cs" />
+    <Compile Include="Migrations\SqlFunding\201607200312262_AddApprove2.Designer.cs">
+      <DependentUpon>201607200312262_AddApprove2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201607210734348_modifytanggaldraft.cs" />
+    <Compile Include="Migrations\SqlFunding\201607210734348_modifytanggaldraft.Designer.cs">
+      <DependentUpon>201607210734348_modifytanggaldraft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201607250745348_addrequester.cs" />
+    <Compile Include="Migrations\SqlFunding\201607250745348_addrequester.Designer.cs">
+      <DependentUpon>201607250745348_addrequester.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201607270906557_addPurchaseRequest.cs" />
+    <Compile Include="Migrations\SqlFunding\201607270906557_addPurchaseRequest.Designer.cs">
+      <DependentUpon>201607270906557_addPurchaseRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201607280309591_modifydetailbarang.cs" />
+    <Compile Include="Migrations\SqlFunding\201607280309591_modifydetailbarang.Designer.cs">
+      <DependentUpon>201607280309591_modifydetailbarang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608091018168_paymentrequest.cs" />
+    <Compile Include="Migrations\SqlFunding\201608091018168_paymentrequest.Designer.cs">
+      <DependentUpon>201608091018168_paymentrequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608091021467_jurnalpembayaran.cs" />
+    <Compile Include="Migrations\SqlFunding\201608091021467_jurnalpembayaran.Designer.cs">
+      <DependentUpon>201608091021467_jurnalpembayaran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608100711133_modifypaymentrequest.cs" />
+    <Compile Include="Migrations\SqlFunding\201608100711133_modifypaymentrequest.Designer.cs">
+      <DependentUpon>201608100711133_modifypaymentrequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608120205213_purchasereceive.cs" />
+    <Compile Include="Migrations\SqlFunding\201608120205213_purchasereceive.Designer.cs">
+      <DependentUpon>201608120205213_purchasereceive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608230708542_addJurnalPelunasan.cs" />
+    <Compile Include="Migrations\SqlFunding\201608230708542_addJurnalPelunasan.Designer.cs">
+      <DependentUpon>201608230708542_addJurnalPelunasan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608230750047_Add_AmortisasiRequest001.cs" />
+    <Compile Include="Migrations\SqlFunding\201608230750047_Add_AmortisasiRequest001.Designer.cs">
+      <DependentUpon>201608230750047_Add_AmortisasiRequest001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608250133538_migrateKatalog001.cs" />
+    <Compile Include="Migrations\SqlFunding\201608250133538_migrateKatalog001.Designer.cs">
+      <DependentUpon>201608250133538_migrateKatalog001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608260419172_migrateKatalog0011.cs" />
+    <Compile Include="Migrations\SqlFunding\201608260419172_migrateKatalog0011.Designer.cs">
+      <DependentUpon>201608260419172_migrateKatalog0011.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608260220296_UpdateDebetKredit.cs" />
+    <Compile Include="Migrations\SqlFunding\201608260220296_UpdateDebetKredit.Designer.cs">
+      <DependentUpon>201608260220296_UpdateDebetKredit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608310319011_updatedeliveryorder.cs" />
+    <Compile Include="Migrations\SqlFunding\201608310319011_updatedeliveryorder.Designer.cs">
+      <DependentUpon>201608310319011_updatedeliveryorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201608310731288_migrateFunding002.cs" />
+    <Compile Include="Migrations\SqlFunding\201608310731288_migrateFunding002.Designer.cs">
+      <DependentUpon>201608310731288_migrateFunding002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609020156489_migrateamortisasi001.cs" />
+    <Compile Include="Migrations\SqlFunding\201609020156489_migrateamortisasi001.Designer.cs">
+      <DependentUpon>201609020156489_migrateamortisasi001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609020653458_updatejurnalpembayaran.cs" />
+    <Compile Include="Migrations\SqlFunding\201609020653458_updatejurnalpembayaran.Designer.cs">
+      <DependentUpon>201609020653458_updatejurnalpembayaran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609060410557_migrateAmortisasi002.cs" />
+    <Compile Include="Migrations\SqlFunding\201609060410557_migrateAmortisasi002.Designer.cs">
+      <DependentUpon>201609060410557_migrateAmortisasi002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609090826080_migrateBreakAmortisasi001.cs" />
+    <Compile Include="Migrations\SqlFunding\201609090826080_migrateBreakAmortisasi001.Designer.cs">
+      <DependentUpon>201609090826080_migrateBreakAmortisasi001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609090842492_migrateBreakAmortisasi002.cs" />
+    <Compile Include="Migrations\SqlFunding\201609090842492_migrateBreakAmortisasi002.Designer.cs">
+      <DependentUpon>201609090842492_migrateBreakAmortisasi002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609150241007_migrateAmortisai003.cs" />
+    <Compile Include="Migrations\SqlFunding\201609150241007_migrateAmortisai003.Designer.cs">
+      <DependentUpon>201609150241007_migrateAmortisai003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609160320544_migratePencadangan001.cs" />
+    <Compile Include="Migrations\SqlFunding\201609160320544_migratePencadangan001.Designer.cs">
+      <DependentUpon>201609160320544_migratePencadangan001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609190722359_migratePencadangan002.cs" />
+    <Compile Include="Migrations\SqlFunding\201609190722359_migratePencadangan002.Designer.cs">
+      <DependentUpon>201609190722359_migratePencadangan002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609220732299_migratePencadangan003.cs" />
+    <Compile Include="Migrations\SqlFunding\201609220732299_migratePencadangan003.Designer.cs">
+      <DependentUpon>201609220732299_migratePencadangan003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201609270329319_updatekodebarang.cs" />
+    <Compile Include="Migrations\SqlFunding\201609270329319_updatekodebarang.Designer.cs">
+      <DependentUpon>201609270329319_updatekodebarang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201610170655145_modifyuploadPO.cs" />
+    <Compile Include="Migrations\SqlFunding\201610170655145_modifyuploadPO.Designer.cs">
+      <DependentUpon>201610170655145_modifyuploadPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201703130403414_migrateKatalog0012.cs" />
+    <Compile Include="Migrations\SqlFunding\201703130403414_migrateKatalog0012.Designer.cs">
+      <DependentUpon>201703130403414_migrateKatalog0012.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201801110747481_Enhance_001.cs" />
+    <Compile Include="Migrations\SqlFunding\201801110747481_Enhance_001.Designer.cs">
+      <DependentUpon>201801110747481_Enhance_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201801120314264_Enhance_002.cs" />
+    <Compile Include="Migrations\SqlFunding\201801120314264_Enhance_002.Designer.cs">
+      <DependentUpon>201801120314264_Enhance_002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201802200354259_AddParameterEmail.cs" />
+    <Compile Include="Migrations\SqlFunding\201802200354259_AddParameterEmail.Designer.cs">
+      <DependentUpon>201802200354259_AddParameterEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201803020724103_AddKeterangan_detailbarang.cs" />
+    <Compile Include="Migrations\SqlFunding\201803020724103_AddKeterangan_detailbarang.Designer.cs">
+      <DependentUpon>201803020724103_AddKeterangan_detailbarang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201804110735248_AddApproveReceive.cs" />
+    <Compile Include="Migrations\SqlFunding\201804110735248_AddApproveReceive.Designer.cs">
+      <DependentUpon>201804110735248_AddApproveReceive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201804170834233_AddJurnalName.cs" />
+    <Compile Include="Migrations\SqlFunding\201804170834233_AddJurnalName.Designer.cs">
+      <DependentUpon>201804170834233_AddJurnalName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201804230727067_AddPOId_Amortisasi.cs" />
+    <Compile Include="Migrations\SqlFunding\201804230727067_AddPOId_Amortisasi.Designer.cs">
+      <DependentUpon>201804230727067_AddPOId_Amortisasi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201804240900381_AddVendorInvoice_Pelunasan.cs" />
+    <Compile Include="Migrations\SqlFunding\201804240900381_AddVendorInvoice_Pelunasan.Designer.cs">
+      <DependentUpon>201804240900381_AddVendorInvoice_Pelunasan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201804270829137_AddEnquiryTabungan_RejectBy2.cs" />
+    <Compile Include="Migrations\SqlFunding\201804270829137_AddEnquiryTabungan_RejectBy2.Designer.cs">
+      <DependentUpon>201804270829137_AddEnquiryTabungan_RejectBy2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201805140327297_AddAdditionalDetailItem.cs" />
+    <Compile Include="Migrations\SqlFunding\201805140327297_AddAdditionalDetailItem.Designer.cs">
+      <DependentUpon>201805140327297_AddAdditionalDetailItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201805150419158_AddMasterJurnalOtomatis.cs" />
+    <Compile Include="Migrations\SqlFunding\201805150419158_AddMasterJurnalOtomatis.Designer.cs">
+      <DependentUpon>201805150419158_AddMasterJurnalOtomatis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201805150657243_BjadiP.cs" />
+    <Compile Include="Migrations\SqlFunding\201805150657243_BjadiP.Designer.cs">
+      <DependentUpon>201805150657243_BjadiP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201806060757045_AddKartuAmortisasi.cs" />
+    <Compile Include="Migrations\SqlFunding\201806060757045_AddKartuAmortisasi.Designer.cs">
+      <DependentUpon>201806060757045_AddKartuAmortisasi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201806060820301_AddIsProceed.cs" />
+    <Compile Include="Migrations\SqlFunding\201806060820301_AddIsProceed.Designer.cs">
+      <DependentUpon>201806060820301_AddIsProceed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201806070149439_AddProceedby.cs" />
+    <Compile Include="Migrations\SqlFunding\201806070149439_AddProceedby.Designer.cs">
+      <DependentUpon>201806070149439_AddProceedby.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201810120237455_tambahtableinsertlog.cs" />
+    <Compile Include="Migrations\SqlFunding\201810120237455_tambahtableinsertlog.Designer.cs">
+      <DependentUpon>201810120237455_tambahtableinsertlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201811010332015_TambahInsertTableUploadNasabah.cs" />
+    <Compile Include="Migrations\SqlFunding\201811010332015_TambahInsertTableUploadNasabah.Designer.cs">
+      <DependentUpon>201811010332015_TambahInsertTableUploadNasabah.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201811140707568_edittable.cs" />
+    <Compile Include="Migrations\SqlFunding\201811140707568_edittable.Designer.cs">
+      <DependentUpon>201811140707568_edittable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201901150846504_RejectReason.cs" />
+    <Compile Include="Migrations\SqlFunding\201901150846504_RejectReason.Designer.cs">
+      <DependentUpon>201901150846504_RejectReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\201901290349501_PurchaseReceiveBy.cs" />
+    <Compile Include="Migrations\SqlFunding\201901290349501_PurchaseReceiveBy.Designer.cs">
+      <DependentUpon>201901290349501_PurchaseReceiveBy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlFunding\Configuration.cs" />
+    <Compile Include="Migrations\SqlFunding\SqlFundingConfiguration.cs" />
+    <Compile Include="Migrations\SqlFunding\SqlFundingDbContext.cs" />
+    <Compile Include="Migrations\SqlStatement\201808150846451__Migate01.cs" />
+    <Compile Include="Migrations\SqlStatement\201808150846451__Migate01.Designer.cs">
+      <DependentUpon>201808150846451__Migate01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808160724590_InitialSqlFunding.cs" />
+    <Compile Include="Migrations\SqlStatement\201808160724590_InitialSqlFunding.Designer.cs">
+      <DependentUpon>201808160724590_InitialSqlFunding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808160804010_Migrate_001.cs" />
+    <Compile Include="Migrations\SqlStatement\201808160804010_Migrate_001.Designer.cs">
+      <DependentUpon>201808160804010_Migrate_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808160816138_Migrate_002.cs" />
+    <Compile Include="Migrations\SqlStatement\201808160816138_Migrate_002.Designer.cs">
+      <DependentUpon>201808160816138_Migrate_002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808160821265_Migrate_003.cs" />
+    <Compile Include="Migrations\SqlStatement\201808160821265_Migrate_003.Designer.cs">
+      <DependentUpon>201808160821265_Migrate_003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808230704163__Migrate_004.cs" />
+    <Compile Include="Migrations\SqlStatement\201808230704163__Migrate_004.Designer.cs">
+      <DependentUpon>201808230704163__Migrate_004.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808230719338__Migrate_005.cs" />
+    <Compile Include="Migrations\SqlStatement\201808230719338__Migrate_005.Designer.cs">
+      <DependentUpon>201808230719338__Migrate_005.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808230728314__Migrate_006.cs" />
+    <Compile Include="Migrations\SqlStatement\201808230728314__Migrate_006.Designer.cs">
+      <DependentUpon>201808230728314__Migrate_006.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808240703023__Migrate_007.cs" />
+    <Compile Include="Migrations\SqlStatement\201808240703023__Migrate_007.Designer.cs">
+      <DependentUpon>201808240703023__Migrate_007.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808270813345__Migrate_008.cs" />
+    <Compile Include="Migrations\SqlStatement\201808270813345__Migrate_008.Designer.cs">
+      <DependentUpon>201808270813345__Migrate_008.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201808290222335__Migrate_009.cs" />
+    <Compile Include="Migrations\SqlStatement\201808290222335__Migrate_009.Designer.cs">
+      <DependentUpon>201808290222335__Migrate_009.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201809061014025_Migrate_10.cs" />
+    <Compile Include="Migrations\SqlStatement\201809061014025_Migrate_10.Designer.cs">
+      <DependentUpon>201809061014025_Migrate_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201809120451086_Migrate_010.cs" />
+    <Compile Include="Migrations\SqlStatement\201809120451086_Migrate_010.Designer.cs">
+      <DependentUpon>201809120451086_Migrate_010.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201809120658106_Migrate_011.cs" />
+    <Compile Include="Migrations\SqlStatement\201809120658106_Migrate_011.Designer.cs">
+      <DependentUpon>201809120658106_Migrate_011.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201809210352446_Migrate_012.cs" />
+    <Compile Include="Migrations\SqlStatement\201809210352446_Migrate_012.Designer.cs">
+      <DependentUpon>201809210352446_Migrate_012.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201809250329272__Migrate_013.cs" />
+    <Compile Include="Migrations\SqlStatement\201809250329272__Migrate_013.Designer.cs">
+      <DependentUpon>201809250329272__Migrate_013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201810120244356_TambahTableInsertLog.cs" />
+    <Compile Include="Migrations\SqlStatement\201810120244356_TambahTableInsertLog.Designer.cs">
+      <DependentUpon>201810120244356_TambahTableInsertLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201810120249219_TambahTableInsertLog1.cs" />
+    <Compile Include="Migrations\SqlStatement\201810120249219_TambahTableInsertLog1.Designer.cs">
+      <DependentUpon>201810120249219_TambahTableInsertLog1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201810120252060_TambahTableInsertLog2.cs" />
+    <Compile Include="Migrations\SqlStatement\201810120252060_TambahTableInsertLog2.Designer.cs">
+      <DependentUpon>201810120252060_TambahTableInsertLog2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201810120253150_TambahTableInsertLog21.cs" />
+    <Compile Include="Migrations\SqlStatement\201810120253150_TambahTableInsertLog21.Designer.cs">
+      <DependentUpon>201810120253150_TambahTableInsertLog21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201810120424528_TambahTableInsertLog3.cs" />
+    <Compile Include="Migrations\SqlStatement\201810120424528_TambahTableInsertLog3.Designer.cs">
+      <DependentUpon>201810120424528_TambahTableInsertLog3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\201810150842217_TambahTableInsertLog4.cs" />
+    <Compile Include="Migrations\SqlStatement\201810150842217_TambahTableInsertLog4.Designer.cs">
+      <DependentUpon>201810150842217_TambahTableInsertLog4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlStatement\SqlStatementConfiguration.cs" />
+    <Compile Include="Migrations\SqlStatement\SqlStatementDbContext.cs" />
+    <Compile Include="Models\ReceiveBy.cs" />
+    <Compile Include="Models\PaymentRequestType.cs" />
+    <Compile Include="Models\Reward\InternalAccount.cs" />
+    <Compile Include="Models\Reward\KartuAmortisasi.cs" />
+    <Compile Include="Models\Reward\MasterJurnalOtomatis.cs" />
+    <Compile Include="Models\Reward\ParameterEmail.cs" />
+    <Compile Include="Models\Reward\Pencandangan.cs" />
+    <Compile Include="Models\Reward\PencadanganTransaksi.cs" />
+    <Compile Include="Models\Reward\BreakAmortisasiRequestDetail.cs" />
+    <Compile Include="Models\Reward\BreakAmortisasiRequest.cs" />
+    <Compile Include="Models\Reward\UploadNasabah.cs" />
+    <Compile Include="Models\Statement\HeaderTextFile.cs" />
+    <Compile Include="Models\Statement\MasterEmailTemplate.cs" />
+    <Compile Include="Models\Statement\InsertLog.cs" />
+    <Compile Include="Models\Statement\MasterParameter.cs" />
+    <Compile Include="Models\Statement\MasterPDF.cs" />
+    <Compile Include="Models\Statement\MasterProduct.cs" />
+    <Compile Include="Models\Statement\MasterPromotion.cs" />
+    <Compile Include="Models\Statement\RegisteredAccount.cs" />
+    <Compile Include="Models\Statement\UploadTextFile.cs" />
+    <Compile Include="Models\StatusBarang.cs" />
+    <Compile Include="Models\Condition.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\PaymentType.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\Reward\Katalog.cs" />
+    <Compile Include="Models\Reward\AmortisasiRequestDetail.cs" />
+    <Compile Include="Models\Reward\JurnalPelunasan.cs" />
+    <Compile Include="Models\Reward\AmortisasiRequest.cs" />
+    <Compile Include="Models\Reward\DeliveryOrder.cs" />
+    <Compile Include="Models\Reward\PurchaseReceive.cs" />
+    <Compile Include="Models\Reward\PaymentRequest.cs" />
+    <Compile Include="Models\Reward\JurnalPembayaran.cs" />
+    <Compile Include="Models\DebetKredit.cs" />
+    <Compile Include="Models\UnitId.cs" />
+    <Compile Include="Models\JenisTabungan.cs" />
+    <Compile Include="Models\Reward\DetailBarang.cs" />
+    <Compile Include="Models\Reward\PurchaseOrder.cs" />
+    <Compile Include="Models\Reward\EnquiryTabunganInput.cs" />
+    <Compile Include="Models\Reward\EnquiryTabungan.cs" />
+    <Compile Include="Models\Customers\Customer.cs" />
+    <Compile Include="Models\Customers\CustomerType.cs" />
+    <Compile Include="Models\Customers\UploadData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Applications\dsApplication.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsApplication.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SQL_FUNDINGDataSet.cs">
+      <DependentUpon>SQL_FUNDINGDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SQL_FUNDINGDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SQL_FUNDINGDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MyReward\GetPageAmortisasiRequestViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\StatusNasabahViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\AccountViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\BankViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\CompanyViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\POGroupIDViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\UploadNasabahViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\InternalAccountViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\KartuAmortisasiViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\MasterJurnalOtomatisViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\ParameterEmailViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\PencadanganTransaksiViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\BreakAmortisasiRequestDetailViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\AmortisasiRequestDetailViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\BreakAmortisasiRequestViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\AmortisasiRequestViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\DeliveryOrderAmViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\KatalogViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\JurnalpelunasanViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\JurnalpembayaranViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\EnquirytabunganinputViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\DetailbarangViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\DeliveryOrderViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\PencadanganViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\MyReward\PurchasereceiveViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\PaymentrequestViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\PurchaserorderViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\EnquirytabunganViewModel.cs" />
+    <Compile Include="ViewModels\Customers\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\MyReward\SupplierViewModel.cs" />
+    <Compile Include="ViewModels\Statement\BodyTextFileViewModel.cs" />
+    <Compile Include="ViewModels\Statement\ConvertToPdfViewModel.cs" />
+    <Compile Include="ViewModels\Statement\HeaderTextFileViewModel.cs" />
+    <Compile Include="ViewModels\Statement\ListEmailViewModel.cs" />
+    <Compile Include="ViewModels\Statement\MasterEmailTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Statement\InsertLogViewModel.cs" />
+    <Compile Include="ViewModels\Statement\MasterParameterViewModel.cs" />
+    <Compile Include="ViewModels\Statement\MasterPDFViewModel.cs" />
+    <Compile Include="ViewModels\Statement\MasterProduct.cs" />
+    <Compile Include="ViewModels\Statement\MasterPromotionViewModel.cs" />
+    <Compile Include="ViewModels\Statement\RegisteredAccountViewModel.cs" />
+    <Compile Include="ViewModels\Statement\UploadTextFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\AutoMapper.Data.dll" />
+    <Content Include="bin\AutoMapper.dll" />
+    <Content Include="bin\Core.Web.dll" />
+    <Content Include="bin\Elmah.dll" />
+    <Content Include="bin\Elmah.Mvc.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\FluentValidationNA.dll" />
+    <Content Include="bin\Heroic.AutoMapper.dll" />
+    <Content Include="bin\Heroic.Web.IoC.dll" />
+    <Content Include="bin\HtmlTags.dll" />
+    <Content Include="bin\Humanizer.dll" />
+    <Content Include="bin\License.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.DataVisualization.DLL" />
+    <Content Include="bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.DLL" />
+    <Content Include="bin\Microsoft.SqlServer.Types.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Microsoft.Web.Mvc.dll" />
+    <Content Include="bin\MyWeb.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\ReportViewerForMvc.dll" />
+    <Content Include="bin\RestSharp.dll" />
+    <Content Include="bin\StructureMap.dll" />
+    <Content Include="bin\StructureMap.Net4.dll" />
+    <Content Include="bin\System.Linq.Dynamic.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\Twilio.Api.dll" />
+    <Content Include="bin\WebActivatorEx.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="bower_components\bootstrap-social\.gitignore" />
+    <Content Include="bower_components\bootstrap-social\bootstrap-social.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bower_components\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="bower_components\bootstrap\dist\js\npm.js" />
+    <Content Include="bower_components\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bower_components\bootstrap\Gruntfile.js" />
+    <Content Include="bower_components\bootstrap\grunt\bs-commonjs-generator.js" />
+    <Content Include="bower_components\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="bower_components\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="bower_components\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="bower_components\bootstrap\js\affix.js" />
+    <Content Include="bower_components\bootstrap\js\alert.js" />
+    <Content Include="bower_components\bootstrap\js\button.js" />
+    <Content Include="bower_components\bootstrap\js\carousel.js" />
+    <Content Include="bower_components\bootstrap\js\collapse.js" />
+    <Content Include="bower_components\bootstrap\js\dropdown.js" />
+    <Content Include="bower_components\bootstrap\js\modal.js" />
+    <Content Include="bower_components\bootstrap\js\popover.js" />
+    <Content Include="bower_components\bootstrap\js\scrollspy.js" />
+    <Content Include="bower_components\bootstrap\js\tab.js" />
+    <Content Include="bower_components\bootstrap\js\tooltip.js" />
+    <Content Include="bower_components\bootstrap\js\transition.js" />
+    <Content Include="bower_components\bootstrap\package.js" />
+    <Content Include="bower_components\datatables-plugins\api\average%28%29.js" />
+    <Content Include="bower_components\datatables-plugins\api\column%28%29.title%28%29.js" />
+    <Content Include="bower_components\datatables-plugins\api\columns%28%29.order%28%29.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnAddDataAndDisplay.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnAddTr.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnColumnIndexToVisible.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnDataUpdate.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnDisplayRow.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnDisplayStart.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnFakeRowspan.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnFilterAll.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnFilterClear.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnFilterOnReturn.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnFindCellRowIndexes.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnFindCellRowNodes.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnGetAdjacentTr.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnGetColumnData.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnGetColumnIndex.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnGetHiddenNodes.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnGetTd.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnGetTds.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnLengthChange.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnMultiFilter.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnPagingInfo.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnProcessingIndicator.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnReloadAjax.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnSetFilteringDelay.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnSortNeutral.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnStandingRedraw.js" />
+    <Content Include="bower_components\datatables-plugins\api\fnVisibleToColumnIndex.js" />
+    <Content Include="bower_components\datatables-plugins\api\index.html" />
+    <Content Include="bower_components\datatables-plugins\api\page.jumpToData%28%29.js" />
+    <Content Include="bower_components\datatables-plugins\api\sum%28%29.js" />
+    <Content Include="bower_components\datatables-plugins\features\alphabetSearch\dataTables.alphabetSearch.css" />
+    <Content Include="bower_components\datatables-plugins\features\alphabetSearch\dataTables.alphabetSearch.js" />
+    <Content Include="bower_components\datatables-plugins\features\alphabetSearch\dataTables.alphabetSearch.min.js" />
+    <Content Include="bower_components\datatables-plugins\features\lengthLinks\dataTables.lengthLinks.css" />
+    <Content Include="bower_components\datatables-plugins\features\lengthLinks\dataTables.lengthLinks.js" />
+    <Content Include="bower_components\datatables-plugins\features\lengthLinks\dataTables.lengthLinks.min.js" />
+    <Content Include="bower_components\datatables-plugins\features\searchHighlight\dataTables.searchHighlight.css" />
+    <Content Include="bower_components\datatables-plugins\features\searchHighlight\dataTables.searchHighlight.js" />
+    <Content Include="bower_components\datatables-plugins\features\searchHighlight\dataTables.searchHighlight.min.js" />
+    <Content Include="bower_components\datatables-plugins\filtering\index.html" />
+    <Content Include="bower_components\datatables-plugins\filtering\row-based\range_dates.js" />
+    <Content Include="bower_components\datatables-plugins\filtering\row-based\range_numbers.js" />
+    <Content Include="bower_components\datatables-plugins\filtering\row-based\TableTools.ShowSelectedOnly.js" />
+    <Content Include="bower_components\datatables-plugins\filtering\type-based\accent-neutralise.js" />
+    <Content Include="bower_components\datatables-plugins\filtering\type-based\html.js" />
+    <Content Include="bower_components\datatables-plugins\filtering\type-based\phoneNumber.js" />
+    <Content Include="bower_components\datatables-plugins\i18n\index.html" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\1\dataTables.bootstrap.css" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\1\dataTables.bootstrap.js" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\2\dataTables.bootstrap.css" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\2\dataTables.bootstrap.js" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\2\dataTables.bootstrap.min.js" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\2\index.html" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\3\dataTables.bootstrap.css" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\3\dataTables.bootstrap.js" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\3\dataTables.bootstrap.min.js" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\3\index.html" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\images\sort_asc.png" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\images\sort_asc_disabled.png" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\images\sort_both.png" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\images\sort_desc.png" />
+    <Content Include="bower_components\datatables-plugins\integration\bootstrap\images\sort_desc_disabled.png" />
+    <Content Include="bower_components\datatables-plugins\integration\font-awesome\bootstrap.html" />
+    <Content Include="bower_components\datatables-plugins\integration\font-awesome\dataTables.fontAwesome.css" />
+    <Content Include="bower_components\datatables-plugins\integration\font-awesome\datatables.html" />
+    <Content Include="bower_components\datatables-plugins\integration\font-awesome\foundation.html" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\dataTables.foundation.css" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\dataTables.foundation.js" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\dataTables.foundation.min.js" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\images\sort_asc.png" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\images\sort_asc_disabled.png" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\images\sort_both.png" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\images\sort_desc.png" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\images\sort_desc_disabled.png" />
+    <Content Include="bower_components\datatables-plugins\integration\foundation\index.html" />
+    <Content Include="bower_components\datatables-plugins\integration\jqueryui\dataTables.jqueryui.css" />
+    <Content Include="bower_components\datatables-plugins\integration\jqueryui\dataTables.jqueryui.js" />
+    <Content Include="bower_components\datatables-plugins\integration\jqueryui\dataTables.jqueryui.min.js" />
+    <Content Include="bower_components\datatables-plugins\integration\jqueryui\index.html" />
+    <Content Include="bower_components\datatables-plugins\pagination\ellipses.js" />
+    <Content Include="bower_components\datatables-plugins\pagination\extjs.js" />
+    <Content Include="bower_components\datatables-plugins\pagination\four_button.js" />
+    <Content Include="bower_components\datatables-plugins\pagination\index.html" />
+    <Content Include="bower_components\datatables-plugins\pagination\input.js" />
+    <Content Include="bower_components\datatables-plugins\pagination\jPaginator\dataTables.jPaginator.js" />
+    <Content Include="bower_components\datatables-plugins\pagination\scrolling.js" />
+    <Content Include="bower_components\datatables-plugins\pagination\select.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\alt-string.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\anti-the.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\chinese-string.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\currency.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\custom-data-source\dom-checkbox.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\custom-data-source\dom-select.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\custom-data-source\dom-text.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\date-dd-MMM-yyyy.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\date-de.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\date-eu.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\date-euro.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\date-uk.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\datetime-moment.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\datetime-us.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\enum.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\file-size.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\formatted-numbers.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\index.html" />
+    <Content Include="bower_components\datatables-plugins\sorting\ip-address.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\monthYear.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\natural.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\num-html.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\numeric-comma.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\percent.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\persian.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\scientific.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\signed-num.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\stringMonthYear.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\time.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\title-numeric.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\title-string.js" />
+    <Content Include="bower_components\datatables-plugins\sorting\turkish-string.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\currency.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\date-uk.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\file-size.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\formatted-num.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\index.html" />
+    <Content Include="bower_components\datatables-plugins\type-detection\ip-address.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\num-html.js" />
+    <Content Include="bower_components\datatables-plugins\type-detection\numeric-comma.js" />
+    <Content Include="bower_components\datatables-responsive\.gitignore" />
+    <Content Include="bower_components\datatables-responsive\css\dataTables.responsive.css" />
+    <Content Include="bower_components\datatables-responsive\docs\api\responsive.index%28%29.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\api\responsive.rebuild%28%29.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\api\responsive.recalc%28%29.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\option\responsive.breakpoints.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\option\responsive.details.renderer.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\option\responsive.details.target.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\option\responsive.details.type.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\option\responsive.details.xml" />
+    <Content Include="bower_components\datatables-responsive\docs\option\responsive.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\child-rows\column-control.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\child-rows\custom-renderer.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\child-rows\disable-child-rows.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\child-rows\index.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\child-rows\right-column.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\child-rows\whole-row-control.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\display-control\auto.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\display-control\classes.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\display-control\fixedHeader.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\display-control\index.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\display-control\init-classes.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\index.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\initialisation\ajax.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\initialisation\className.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\initialisation\default.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\initialisation\index.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\initialisation\new.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\initialisation\option.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\styling\bootstrap.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\styling\compact.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\styling\foundation.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\styling\index.xml" />
+    <Content Include="bower_components\datatables-responsive\examples\styling\scrolling.xml" />
+    <Content Include="bower_components\datatables-responsive\js\dataTables.responsive.js" />
+    <Content Include="bower_components\datatables-responsive\License.txt" />
+    <Content Include="bower_components\datatables\license.txt" />
+    <Content Include="bower_components\datatables\media\css\jquery.dataTables.css" />
+    <Content Include="bower_components\datatables\media\css\jquery.dataTables.min.css" />
+    <Content Include="bower_components\datatables\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="bower_components\datatables\media\images\favicon.ico" />
+    <Content Include="bower_components\datatables\media\images\sort_asc.png" />
+    <Content Include="bower_components\datatables\media\images\sort_asc_disabled.png" />
+    <Content Include="bower_components\datatables\media\images\sort_both.png" />
+    <Content Include="bower_components\datatables\media\images\sort_desc.png" />
+    <Content Include="bower_components\datatables\media\images\sort_desc_disabled.png" />
+    <Content Include="bower_components\datatables\media\js\jquery.dataTables.js" />
+    <Content Include="bower_components\datatables\media\js\jquery.dataTables.min.js" />
+    <Content Include="bower_components\datatables\media\js\jquery.js" />
+    <Content Include="bower_components\flot.tooltip\js\excanvas.min.js" />
+    <Content Include="bower_components\flot.tooltip\js\jquery.flot.js" />
+    <Content Include="bower_components\flot.tooltip\js\jquery.flot.tooltip.js" />
+    <Content Include="bower_components\flot.tooltip\js\jquery.flot.tooltip.min.js" />
+    <Content Include="bower_components\flot.tooltip\js\jquery.flot.tooltip.source.js" />
+    <Content Include="bower_components\flot\.gitignore" />
+    <Content Include="bower_components\flot\examples\ajax\index.html" />
+    <Content Include="bower_components\flot\examples\annotating\index.html" />
+    <Content Include="bower_components\flot\examples\axes-interacting\index.html" />
+    <Content Include="bower_components\flot\examples\axes-multiple\index.html" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\date.js" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\index.html" />
+    <Content Include="bower_components\flot\examples\axes-time\index.html" />
+    <Content Include="bower_components\flot\examples\background.png" />
+    <Content Include="bower_components\flot\examples\basic-options\index.html" />
+    <Content Include="bower_components\flot\examples\basic-usage\index.html" />
+    <Content Include="bower_components\flot\examples\canvas\index.html" />
+    <Content Include="bower_components\flot\examples\categories\index.html" />
+    <Content Include="bower_components\flot\examples\examples.css" />
+    <Content Include="bower_components\flot\examples\image\hs-2004-27-a-large-web.jpg" />
+    <Content Include="bower_components\flot\examples\image\index.html" />
+    <Content Include="bower_components\flot\examples\index.html" />
+    <Content Include="bower_components\flot\examples\interacting\index.html" />
+    <Content Include="bower_components\flot\examples\navigate\arrow-down.gif" />
+    <Content Include="bower_components\flot\examples\navigate\arrow-left.gif" />
+    <Content Include="bower_components\flot\examples\navigate\arrow-right.gif" />
+    <Content Include="bower_components\flot\examples\navigate\arrow-up.gif" />
+    <Content Include="bower_components\flot\examples\navigate\index.html" />
+    <Content Include="bower_components\flot\examples\percentiles\index.html" />
+    <Content Include="bower_components\flot\examples\realtime\index.html" />
+    <Content Include="bower_components\flot\examples\resize\index.html" />
+    <Content Include="bower_components\flot\examples\selection\index.html" />
+    <Content Include="bower_components\flot\examples\series-errorbars\index.html" />
+    <Content Include="bower_components\flot\examples\series-pie\index.html" />
+    <Content Include="bower_components\flot\examples\series-toggle\index.html" />
+    <Content Include="bower_components\flot\examples\series-types\index.html" />
+    <Content Include="bower_components\flot\examples\shared\jquery-ui\jquery-ui.min.css" />
+    <Content Include="bower_components\flot\examples\stacking\index.html" />
+    <Content Include="bower_components\flot\examples\symbols\index.html" />
+    <Content Include="bower_components\flot\examples\threshold\index.html" />
+    <Content Include="bower_components\flot\examples\tracking\index.html" />
+    <Content Include="bower_components\flot\examples\visitors\index.html" />
+    <Content Include="bower_components\flot\examples\zooming\index.html" />
+    <Content Include="bower_components\flot\excanvas.js" />
+    <Content Include="bower_components\flot\excanvas.min.js" />
+    <Content Include="bower_components\flot\jquery.colorhelpers.js" />
+    <Content Include="bower_components\flot\jquery.flot.canvas.js" />
+    <Content Include="bower_components\flot\jquery.flot.categories.js" />
+    <Content Include="bower_components\flot\jquery.flot.crosshair.js" />
+    <Content Include="bower_components\flot\jquery.flot.errorbars.js" />
+    <Content Include="bower_components\flot\jquery.flot.fillbetween.js" />
+    <Content Include="bower_components\flot\jquery.flot.image.js" />
+    <Content Include="bower_components\flot\jquery.flot.js" />
+    <Content Include="bower_components\flot\jquery.flot.navigate.js" />
+    <Content Include="bower_components\flot\jquery.flot.pie.js" />
+    <Content Include="bower_components\flot\jquery.flot.resize.js" />
+    <Content Include="bower_components\flot\jquery.flot.selection.js" />
+    <Content Include="bower_components\flot\jquery.flot.stack.js" />
+    <Content Include="bower_components\flot\jquery.flot.symbol.js" />
+    <Content Include="bower_components\flot\jquery.flot.threshold.js" />
+    <Content Include="bower_components\flot\jquery.flot.time.js" />
+    <Content Include="bower_components\flot\jquery.js" />
+    <Content Include="bower_components\flot\LICENSE.txt" />
+    <Content Include="bower_components\font-awesome\.gitignore" />
+    <Content Include="bower_components\font-awesome\css\font-awesome.css" />
+    <Content Include="bower_components\font-awesome\css\font-awesome.min.css" />
+    <Content Include="bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="bower_components\holderjs\.gitattributes" />
+    <Content Include="bower_components\holderjs\.gitignore" />
+    <Content Include="bower_components\holderjs\gulpfile.js" />
+    <Content Include="bower_components\holderjs\holder.js" />
+    <Content Include="bower_components\holderjs\src\augment.js" />
+    <Content Include="bower_components\holderjs\src\holder.js" />
+    <Content Include="bower_components\holderjs\src\ondomready.js" />
+    <Content Include="bower_components\holderjs\src\polyfills.js" />
+    <Content Include="bower_components\holderjs\test\.gitignore" />
+    <Content Include="bower_components\holderjs\test\image.jpg" />
+    <Content Include="bower_components\holderjs\test\index.html" />
+    <Content Include="bower_components\jquery\dist\jquery.js" />
+    <Content Include="bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="bower_components\jquery\MIT-LICENSE.txt" />
+    <Content Include="bower_components\jquery\src\ajax.js" />
+    <Content Include="bower_components\jquery\src\ajax\jsonp.js" />
+    <Content Include="bower_components\jquery\src\ajax\load.js" />
+    <Content Include="bower_components\jquery\src\ajax\parseJSON.js" />
+    <Content Include="bower_components\jquery\src\ajax\parseXML.js" />
+    <Content Include="bower_components\jquery\src\ajax\script.js" />
+    <Content Include="bower_components\jquery\src\ajax\var\nonce.js" />
+    <Content Include="bower_components\jquery\src\ajax\var\rquery.js" />
+    <Content Include="bower_components\jquery\src\ajax\xhr.js" />
+    <Content Include="bower_components\jquery\src\attributes.js" />
+    <Content Include="bower_components\jquery\src\attributes\attr.js" />
+    <Content Include="bower_components\jquery\src\attributes\classes.js" />
+    <Content Include="bower_components\jquery\src\attributes\prop.js" />
+    <Content Include="bower_components\jquery\src\attributes\support.js" />
+    <Content Include="bower_components\jquery\src\attributes\val.js" />
+    <Content Include="bower_components\jquery\src\callbacks.js" />
+    <Content Include="bower_components\jquery\src\core.js" />
+    <Content Include="bower_components\jquery\src\core\access.js" />
+    <Content Include="bower_components\jquery\src\core\init.js" />
+    <Content Include="bower_components\jquery\src\core\parseHTML.js" />
+    <Content Include="bower_components\jquery\src\core\ready.js" />
+    <Content Include="bower_components\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="bower_components\jquery\src\css.js" />
+    <Content Include="bower_components\jquery\src\css\addGetHookIf.js" />
+    <Content Include="bower_components\jquery\src\css\curCSS.js" />
+    <Content Include="bower_components\jquery\src\css\defaultDisplay.js" />
+    <Content Include="bower_components\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="bower_components\jquery\src\css\support.js" />
+    <Content Include="bower_components\jquery\src\css\swap.js" />
+    <Content Include="bower_components\jquery\src\css\var\cssExpand.js" />
+    <Content Include="bower_components\jquery\src\css\var\getStyles.js" />
+    <Content Include="bower_components\jquery\src\css\var\isHidden.js" />
+    <Content Include="bower_components\jquery\src\css\var\rmargin.js" />
+    <Content Include="bower_components\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="bower_components\jquery\src\data.js" />
+    <Content Include="bower_components\jquery\src\data\accepts.js" />
+    <Content Include="bower_components\jquery\src\data\Data.js" />
+    <Content Include="bower_components\jquery\src\data\var\data_priv.js" />
+    <Content Include="bower_components\jquery\src\data\var\data_user.js" />
+    <Content Include="bower_components\jquery\src\deferred.js" />
+    <Content Include="bower_components\jquery\src\deprecated.js" />
+    <Content Include="bower_components\jquery\src\dimensions.js" />
+    <Content Include="bower_components\jquery\src\effects.js" />
+    <Content Include="bower_components\jquery\src\effects\animatedSelector.js" />
+    <Content Include="bower_components\jquery\src\effects\Tween.js" />
+    <Content Include="bower_components\jquery\src\event.js" />
+    <Content Include="bower_components\jquery\src\event\ajax.js" />
+    <Content Include="bower_components\jquery\src\event\alias.js" />
+    <Content Include="bower_components\jquery\src\event\support.js" />
+    <Content Include="bower_components\jquery\src\exports\amd.js" />
+    <Content Include="bower_components\jquery\src\exports\global.js" />
+    <Content Include="bower_components\jquery\src\intro.js" />
+    <Content Include="bower_components\jquery\src\jquery.js" />
+    <Content Include="bower_components\jquery\src\manipulation.js" />
+    <Content Include="bower_components\jquery\src\manipulation\support.js" />
+    <Content Include="bower_components\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="bower_components\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="bower_components\jquery\src\offset.js" />
+    <Content Include="bower_components\jquery\src\outro.js" />
+    <Content Include="bower_components\jquery\src\queue.js" />
+    <Content Include="bower_components\jquery\src\queue\delay.js" />
+    <Content Include="bower_components\jquery\src\selector-native.js" />
+    <Content Include="bower_components\jquery\src\selector-sizzle.js" />
+    <Content Include="bower_components\jquery\src\selector.js" />
+    <Content Include="bower_components\jquery\src\serialize.js" />
+    <Content Include="bower_components\jquery\src\sizzle\dist\sizzle.js" />
+    <Content Include="bower_components\jquery\src\sizzle\dist\sizzle.min.js" />
+    <Content Include="bower_components\jquery\src\traversing.js" />
+    <Content Include="bower_components\jquery\src\traversing\findFilter.js" />
+    <Content Include="bower_components\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="bower_components\jquery\src\var\arr.js" />
+    <Content Include="bower_components\jquery\src\var\class2type.js" />
+    <Content Include="bower_components\jquery\src\var\concat.js" />
+    <Content Include="bower_components\jquery\src\var\hasOwn.js" />
+    <Content Include="bower_components\jquery\src\var\indexOf.js" />
+    <Content Include="bower_components\jquery\src\var\pnum.js" />
+    <Content Include="bower_components\jquery\src\var\push.js" />
+    <Content Include="bower_components\jquery\src\var\rnotwhite.js" />
+    <Content Include="bower_components\jquery\src\var\slice.js" />
+    <Content Include="bower_components\jquery\src\var\strundefined.js" />
+    <Content Include="bower_components\jquery\src\var\support.js" />
+    <Content Include="bower_components\jquery\src\var\toString.js" />
+    <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="bower_components\metisMenu\dist\metisMenu.css" />
+    <Content Include="bower_components\metisMenu\dist\metisMenu.js" />
+    <Content Include="bower_components\metisMenu\dist\metisMenu.min.css" />
+    <Content Include="bower_components\metisMenu\dist\metisMenu.min.js" />
+    <Content Include="bower_components\metisMenu\Gruntfile.js" />
+    <Content Include="bower_components\metisMenu\src\metisMenu.css" />
+    <Content Include="bower_components\metisMenu\src\metisMenu.js" />
+    <Content Include="bower_components\mocha\media\logo.svg" />
+    <Content Include="bower_components\mocha\mocha.css" />
+    <Content Include="bower_components\mocha\mocha.js" />
+    <Content Include="bower_components\morrisjs\.gitignore" />
+    <Content Include="bower_components\morrisjs\examples\area-as-line.html" />
+    <Content Include="bower_components\morrisjs\examples\area.html" />
+    <Content Include="bower_components\morrisjs\examples\bar-colors.html" />
+    <Content Include="bower_components\morrisjs\examples\bar-no-axes.html" />
+    <Content Include="bower_components\morrisjs\examples\bar.html" />
+    <Content Include="bower_components\morrisjs\examples\days.html" />
+    <Content Include="bower_components\morrisjs\examples\decimal-custom-hover.html" />
+    <Content Include="bower_components\morrisjs\examples\diagonal-xlabels-bar.html" />
+    <Content Include="bower_components\morrisjs\examples\diagonal-xlabels.html" />
+    <Content Include="bower_components\morrisjs\examples\donut-colors.html" />
+    <Content Include="bower_components\morrisjs\examples\donut-formatter.html" />
+    <Content Include="bower_components\morrisjs\examples\donut.html" />
+    <Content Include="bower_components\morrisjs\examples\dst.html" />
+    <Content Include="bower_components\morrisjs\examples\events.html" />
+    <Content Include="bower_components\morrisjs\examples\goals.html" />
+    <Content Include="bower_components\morrisjs\examples\lib\example.css" />
+    <Content Include="bower_components\morrisjs\examples\lib\example.js" />
+    <Content Include="bower_components\morrisjs\examples\months-no-smooth.html" />
+    <Content Include="bower_components\morrisjs\examples\negative.html" />
+    <Content Include="bower_components\morrisjs\examples\no-grid.html" />
+    <Content Include="bower_components\morrisjs\examples\non-continuous.html" />
+    <Content Include="bower_components\morrisjs\examples\non-date.html" />
+    <Content Include="bower_components\morrisjs\examples\quarters.html" />
+    <Content Include="bower_components\morrisjs\examples\resize.html" />
+    <Content Include="bower_components\morrisjs\examples\stacked_bars.html" />
+    <Content Include="bower_components\morrisjs\examples\timestamps.html" />
+    <Content Include="bower_components\morrisjs\examples\updating.html" />
+    <Content Include="bower_components\morrisjs\examples\weeks.html" />
+    <Content Include="bower_components\morrisjs\examples\years.html" />
+    <Content Include="bower_components\morrisjs\examples\_template.html" />
+    <Content Include="bower_components\morrisjs\Gruntfile.js" />
+    <Content Include="bower_components\morrisjs\morris.css" />
+    <Content Include="bower_components\morrisjs\morris.js" />
+    <Content Include="bower_components\morrisjs\morris.min.js" />
+    <Content Include="bower_components\morrisjs\spec\specs.html" />
+    <Content Include="bower_components\morrisjs\spec\viz\examples.js" />
+    <Content Include="bower_components\morrisjs\spec\viz\exemplary\area0.png" />
+    <Content Include="bower_components\morrisjs\spec\viz\exemplary\bar0.png" />
+    <Content Include="bower_components\morrisjs\spec\viz\exemplary\line0.png" />
+    <Content Include="bower_components\morrisjs\spec\viz\exemplary\stacked_bar0.png" />
+    <Content Include="bower_components\morrisjs\spec\viz\test.html" />
+    <Content Include="bower_components\morrisjs\spec\viz\visual_specs.js" />
+    <Content Include="bower_components\raphael\dev\amdDev.js" />
+    <Content Include="bower_components\raphael\dev\index.js" />
+    <Content Include="bower_components\raphael\dev\require.js" />
+    <Content Include="bower_components\raphael\license.txt" />
+    <Content Include="bower_components\raphael\raphael-min.js" />
+    <Content Include="bower_components\raphael\raphael.js" />
+    <Content Include="Content\angular-block-ui.css" />
+    <Content Include="Content\angular-block-ui.min.css" />
+    <Content Include="Content\angular-gantt.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\codepen.min.css" />
+    <Content Include="Content\sb-admin-2.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\timeline.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="css\bootstrap-rtl.css" />
+    <Content Include="css\bootstrap-rtl.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\layout.css" />
+    <Content Include="css\ng-bs3-datepicker.css" />
+    <Content Include="css\sb-admin-rtl.css" />
+    <Content Include="css\sb-admin.css" />
+    <Content Include="css\ui-grid v3.0.0-RC.18.css" />
+    <Content Include="css\ui-grid.css" />
+    <Content Include="css\ui-grid.svg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Files\UjiCoba\0c4ff3ab-8e59-406e-977e-efadb327f2f7-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\0ec5782c-1b8c-4e0e-8e63-a5172a536106-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\1012adab-2659-4d67-958a-7dfe4e14a3bd-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\16447bef-1722-472e-a11b-36a2eeefe2ca-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\19205c60-a6e2-4f6a-81f1-b3a4c6e37e21-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\27bf76d2-ed78-4b7c-9563-f6e98e2f1cb2-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\2df1363b-a931-4faa-917b-52754e7044e3-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\321c02f1-9b52-487b-b3fd-d221acd3aafc-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\382d7610-7312-47f3-8327-1d5e8dcf6480-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\39d00c08-93a6-47fe-abd1-47b2284ec37f-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\3a7508c2-e3c4-4836-9135-e3030dfd9448-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\41793516-d9c9-4b83-8978-2cf88417e8ec-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\42f5a4d4-9040-44b1-b86f-7d747191d7a1-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\43a7d48c-dd93-4562-b752-5e5e060c91ef-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\455898d9-075b-4a43-b3d2-2a1025dd3366-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\469e8ef6-7ced-48dd-a1c2-f8fa688d870d-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\46a20a3c-93f1-4eff-a871-c07e47bad357-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\4d9a9136-8452-4195-a9ca-8427e451f54a-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\4dafbff1-c520-4a2f-9a00-cbbb00b9b60a-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\5740b934-988e-4998-9fd0-acf54b586476-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\5bd3065b-b2f6-4594-bffe-f571121ac364-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\601f58ea-9260-4d5a-913f-ce9e0f67ab3a-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\61e4ecd3-9f41-4ce4-84b3-52dd7e28a4c1-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\642242e5-3ea4-4189-ac74-57346fcf9f5f-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\6520137f-55a7-4e00-95ce-fbd27878ecc5-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\76bad0b5-831f-4602-a158-c991b56d33fc-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\7bd9150b-201e-43cd-a9f3-99798d61bc50-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\7f332673-70fa-4013-b95d-ca03ab583229-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\7fced03d-9582-4262-af32-0f89c99c8285-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\938e668c-52de-44be-b698-a9b6bd37a420-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\95425f6b-4eff-444b-9ca8-de223ed249be-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\9811d95b-4bfc-433e-943c-8c0dd8e857c7-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\9a9e5d93-5dcf-4f4d-9196-31326f5d0c83-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\a4f9c997-5082-4f88-bf00-7f31936824e7-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\a5536b68-18ff-4177-8bf5-c21b32bd9b2c-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\ab7b720a-bf13-4832-bf5e-9bf39e964619-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\b530064c-8d90-4d4a-99b8-3cc99096969f-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\bcb1898a-53c0-42f2-bdd6-2fc8efdd485e-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\c0b1f1a4-f135-4304-b7da-68f280a9763d-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\c0be1ae4-c649-474b-af70-b2998ef7f33a-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\c1948b02-c036-4a56-8ed8-913806323a06-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\c62e21b3-4915-4472-bb40-4bb343955be5-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\cb86b28b-eb46-478c-aaeb-797ea17f5111-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\cf0f7f05-33f2-45f7-a801-e485349986ee-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\d4336200-30fe-45cd-889a-b5332f53b19d-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\d720a4f9-a2fe-4602-80bd-d785158c57f3-aa.txt" />
+    <Content Include="Files\UjiCoba\d895ed0c-7293-4998-8930-01e937812d1e-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\e1314482-79ec-4a54-8500-a75aaa69c00a-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\e22493b3-8ca3-4d24-a860-a2b5934e545e-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\e4c77b32-1930-4293-bbbc-cd63ac25e3c8-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\e65dd34c-0195-493a-a710-1313751df388-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\e68cbdf1-ab6a-4118-aae4-f28700d6217d-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\eb88cbb4-424f-4078-b49e-96d62a32914f-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\edd2c68c-b47c-4439-9fae-0cbf9f4047a7-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\ee58fac0-fd1e-4f24-9182-457049685dd7-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\f06c4414-e7e6-40f2-8664-71d7b5117fb1-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\f29983ae-1276-45ae-9970-80b168198356-KCP A YANI BEKASI.txt" />
+    <Content Include="Files\UjiCoba\f3332317-6405-48a6-8f9c-cb69d87b0541-KCP A YANI BEKASI.txt" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\bankmayora_home.jpg" />
+    <Content Include="Images\bankmayora_logo.png" />
+    <Content Include="Info\Info.txt" />
+    <Content Include="js\angular-animate.js" />
+    <Content Include="js\angular-bootstrap-datepicker.js" />
+    <Content Include="js\angular-sanitize.min.js" />
+    <Content Include="js\angular-modal-service.min.js" />
+    <Content Include="js\angular-fcsa-number.js" />
+    <Content Include="js\angular-messages.js" />
+    <Content Include="js\angular.js" />
+    <Content Include="js\app\enquirytabungan\AddDetailUpload.js" />
+    <Content Include="js\app\enquirytabungan\EditRejectDirective.js" />
+    <Content Include="js\app\enquirytabungan\RejectenquirytabunganController.js" />
+    <Content Include="js\app\purchaseorder\RejectreasonbacktoprDirective.js" />
+    <Content Include="js\app\purchaserequest\EditRejectDirective.js" />
+    <Content Include="js\app\purchaserequest\RejectreasonbacktodprDirective.js" />
+    <Content Include="js\app\purchaserequest\RejectreasonDirective.js" />
+    <Content Include="js\app\StatusNasabah\StatusNasabahController.js" />
+    <Content Include="js\app\StatusNasabah\StatusNasabahService.js" />
+    <Content Include="js\app\ListEmail\ListEmailPendingController.js" />
+    <Content Include="js\app\ListEmail\ListEmailService.js" />
+    <Content Include="js\app\ListEmail\ListEmailProcessedController.js" />
+    <Content Include="js\app\MasterEmailTemplate\DeleteDirective.js" />
+    <Content Include="js\app\MasterEmailTemplate\EditDirective.js" />
+    <Content Include="js\app\MasterEmailTemplate\AddDirective.js" />
+    <Content Include="js\app\MasterEmailTemplate\MasterEmailTemplateController.js" />
+    <Content Include="js\app\MasterEmailTemplate\MasterEmailTemplateService.js" />
+    <Content Include="js\app\InsertLog\InsertLogController.js" />
+    <Content Include="js\app\InsertLog\InsertLogService.js" />
+    <Content Include="js\app\MasterParameter\DeleteDirective.js" />
+    <Content Include="js\app\MasterParameter\EditDirective.js" />
+    <Content Include="js\app\MasterParameter\AddDirective.js" />
+    <Content Include="js\app\MasterParameter\MasterParameterController.js" />
+    <Content Include="js\app\MasterParameter\MasterParameterService.js" />
+    <Content Include="js\app\MasterProduct\DeleteDirective.js" />
+    <Content Include="js\app\MasterProduct\EditDirective.js" />
+    <Content Include="js\app\MasterProduct\MasterProductController.js" />
+    <Content Include="js\app\MasterProduct\MasterProductService.js" />
+    <Content Include="js\app\MasterProduct\AddDirective.js" />
+    <Content Include="js\app\MasterPromotion\AddDirective.js" />
+    <Content Include="js\app\MasterPromotion\DeleteDirective .js" />
+    <Content Include="js\app\MasterPromotion\EditDirective.js" />
+    <Content Include="js\app\MasterPromotion\MasterPromotionController.js" />
+    <Content Include="js\app\MasterPromotion\MasterPromotionService.js" />
+    <Content Include="js\app\Pencadangan\AmortisasiRequestAuthorizeController.js" />
+    <Content Include="js\app\Pencadangan\AmortisasiRequestController.js" />
+    <Content Include="js\app\Pencadangan\AmortisasiRequestService.js" />
+    <Content Include="js\app\Pencadangan\ApproveDirective.js" />
+    <Content Include="js\app\Pencadangan\DeleteDirective.js" />
+    <Content Include="js\app\Pencadangan\detailjurnalDirective.js" />
+    <Content Include="js\app\Pencadangan\DetailsDirective.js" />
+    <Content Include="js\app\Pencadangan\EditDirective.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\AddDirective.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\BreakAmortisasiRequestAuthorizeController.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\BreakAmortisasiRequestController.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\BreakAmortisasiRequestService.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\ApproveDirective.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\DeleteDirective.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\detailjurnalDirective.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\DetailsDirective.js" />
+    <Content Include="js\app\BreakAmortisasiRequest\EditDirective.js" />
+    <Content Include="js\app\AmortisasiRequest\AmortisasiRequestAuthorizeController.js" />
+    <Content Include="js\app\AmortisasiRequest\ApproveDirective.js" />
+    <Content Include="js\app\AmortisasiRequest\detailjurnalDirective.js" />
+    <Content Include="js\app\app.js" />
+    <Content Include="js\app\applicationusers\ApplicationUsersController.js" />
+    <Content Include="js\app\applicationusers\ApplicationUsersService.js" />
+    <Content Include="js\app\application\AddDirective.js" />
+    <Content Include="js\app\application\ApplicationController.js" />
+    <Content Include="js\app\application\ApplicationService.js" />
+    <Content Include="js\app\application\DetailsDirective.js" />
+    <Content Include="js\app\application\EditDirective.js" />
+    <Content Include="js\app\enquirytabungan\AddDetailBarang.js" />
+    <Content Include="js\app\enquirytabungan\ApproveDirective.js" />
+    <Content Include="js\app\enquirytabungan\AuthorizeenquirytabunganController.js" />
+    <Content Include="js\app\AmortisasiRequest\AddDirective.js" />
+    <Content Include="js\app\AmortisasiRequest\DeleteDirective.js" />
+    <Content Include="js\app\AmortisasiRequest\DetailsDirective.js" />
+    <Content Include="js\app\AmortisasiRequest\EditDirective.js" />
+    <Content Include="js\app\AmortisasiRequest\AmortisasiRequestController.js" />
+    <Content Include="js\app\AmortisasiRequest\AmortisasiRequestService.js" />
+    <Content Include="js\app\Katalog\AddDetailBarang.js" />
+    <Content Include="js\app\Katalog\AddDirective.js" />
+    <Content Include="js\app\Katalog\DeleteDirective.js" />
+    <Content Include="js\app\Katalog\DetailsDirective.js" />
+    <Content Include="js\app\Katalog\EditDirective.js" />
+    <Content Include="js\app\Katalog\KatalogController.js" />
+    <Content Include="js\app\Katalog\KatalogService.js" />
+    <Content Include="js\app\deliveryorder\AddDirective.js" />
+    <Content Include="js\app\deliveryorder\AuthorizedeliveryorderController.js" />
+    <Content Include="js\app\deliveryorder\DetailsDirective.js" />
+    <Content Include="js\app\deliveryorder\EditDirective.js" />
+    <Content Include="js\app\deliveryorder\DeliveryorderController.js" />
+    <Content Include="js\app\deliveryorder\DeliveryorderService.js" />
+    <Content Include="js\app\purchaseorder\HistoryDirective.js" />
+    <Content Include="js\app\purchaseorder\HistoryPurchaseOrderController.js" />
+    <Content Include="js\app\purchasereceive\AddJurnalpelunasanDirective.js" />
+    <Content Include="js\app\purchasereceive\AddpelunasanDirective.js" />
+    <Content Include="js\app\purchasereceive\AddDirective.js" />
+    <Content Include="js\app\purchasereceive\AuthorizeReceiveController.js" />
+    <Content Include="js\app\purchasereceive\AuthorizepurchasereceiveController.js" />
+    <Content Include="js\app\purchasereceive\DetailsReceiveDirective.js" />
+    <Content Include="js\app\purchasereceive\DetailsDirective.js" />
+    <Content Include="js\app\purchasereceive\EditDirective.js" />
+    <Content Include="js\app\purchasereceive\PurchasereceiveController.js" />
+    <Content Include="js\app\purchasereceive\PurchasereceiveService.js" />
+    <Content Include="js\app\paymentrequest\AddJurnalPembayaran.js" />
+    <Content Include="js\app\paymentrequest\AddDirective.js" />
+    <Content Include="js\app\paymentrequest\AuthorizepaymentrequestController.js" />
+    <Content Include="js\app\paymentrequest\DetailsDirective.js" />
+    <Content Include="js\app\paymentrequest\EditDirective.js" />
+    <Content Include="js\app\paymentrequest\PaymentrequestController.js" />
+    <Content Include="js\app\paymentrequest\PaymentrequestService.js" />
+    <Content Include="js\app\purchaseorder\AddDetailBarang.js" />
+    <Content Include="js\app\purchaseorder\AddDirective.js" />
+    <Content Include="js\app\purchaseorder\AuthorizepurchaseorderController.js" />
+    <Content Include="js\app\purchaseorder\DetailsDirective.js" />
+    <Content Include="js\app\purchaseorder\EditDirective.js" />
+    <Content Include="js\app\purchaseorder\PurchaseorderController.js" />
+    <Content Include="js\app\purchaseorder\PurchaseorderService.js" />
+    <Content Include="js\app\purchaserequest\AddDirective.js" />
+    <Content Include="js\app\purchaserequest\AuthorizepurchaserequestController.js" />
+    <Content Include="js\app\purchaserequest\DetailsDirective.js" />
+    <Content Include="js\app\purchaserequest\EditDirective.js" />
+    <Content Include="js\app\purchaserequest\PurchaserequestController.js" />
+    <Content Include="js\app\purchaserequest\PurchaserequestService.js" />
+    <Content Include="js\app\enquirytabungan\AddDirective.js" />
+    <Content Include="js\app\enquirytabungan\EnquirytabunganController.js" />
+    <Content Include="js\app\enquirytabungan\EnquirytabunganService.js" />
+    <Content Include="js\app\enquirytabungan\DetailsDirective.js" />
+    <Content Include="js\app\enquirytabungan\EditDirective.js" />
+    <Content Include="js\app\customertemenos\CustomerTemenosService.js" />
+    <Content Include="js\app\area\AreaService.js" />
+    <Content Include="js\app\company\AddDirective.js" />
+    <Content Include="js\app\company\CompanyController.js" />
+    <Content Include="js\app\company\CompanyService.js" />
+    <Content Include="js\app\company\DetailsDirective.js" />
+    <Content Include="js\app\company\EditDirective.js" />
+    <Content Include="js\app\customer\DetailsDirective.js" />
+    <Content Include="js\app\customer\AddDirective.js" />
+    <Content Include="js\app\customer\CustomerController.js" />
+    <Content Include="js\app\customer\CustomerService.js" />
+    <Content Include="js\app\customer\EditDirective.js" />
+    <Content Include="js\app\branch\BranchService.js" />
+    <Content Include="js\app\employee\EmployeeService.js" />
+    <Content Include="js\app\jabatan\JabatanService.js" />
+    <Content Include="js\app\department\DepartmentService.js" />
+    <Content Include="js\app\imageclass\AddDirective.js" />
+    <Content Include="js\app\imageclass\EditDirective.js" />
+    <Content Include="js\app\imageclass\ImageClassService.js" />
+    <Content Include="js\app\imageclass\ImageClassController.js" />
+    <Content Include="js\app\imageclass\DetailsDirective.js" />
+    <Content Include="js\app\imageclass\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\imageclass\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\menurole\MenuRoleController.js" />
+    <Content Include="js\app\menurole\MenuRoleService.js" />
+    <Content Include="js\app\profile\EditProfileController.js" />
+    <Content Include="js\app\RegisteredAccount\RegisteredAccountController.js" />
+    <Content Include="js\app\RegisteredAccount\RegisteredAccountService.js" />
+    <Content Include="js\app\services\alerts.js" />
+    <Content Include="js\app\services\LocationService.js" />
+    <Content Include="js\app\services\exceptionOverride.js" />
+    <Content Include="js\app\UploadFile\AddDirective.js" />
+    <Content Include="js\app\UploadFile\UploadFileController.js" />
+    <Content Include="js\app\UploadFile\UploadFileService.js" />
+    <Content Include="js\app\utility\ComboboxDirective.js" />
+    <Content Include="js\app\utility\CsvDirective.js" />
+    <Content Include="js\app\utility\DateExtensions.js" />
+    <Content Include="js\app\utility\BootstrapAlerts.js" />
+    <Content Include="js\app\utility\filereader.js" />
+    <Content Include="js\app\utility\FileUploadDirective.js" />
+    <Content Include="js\app\utility\FormMessageDirective.js" />
+    <Content Include="js\app\utility\MvcGridDirective.js" />
+    <Content Include="js\app\utility\MyMonthpickerDirective.js" />
+    <Content Include="js\app\utility\MyMonthpickerInputDirective.js" />
+    <Content Include="js\app\utility\MyTexthtmlDirective.js" />
+    <Content Include="js\app\utility\UploadFileDirective.js" />
+    <Content Include="js\app\utility\UploadDirective.js" />
+    <Content Include="js\app\utility\MyDatepickerInputDirective.js" />
+    <Content Include="js\app\utility\MyNumberDirective.js" />
+    <Content Include="js\app\utility\PicklistDirective.js" />
+    <Content Include="js\app\utility\MyDatepickerDirective.js" />
+    <Content Include="js\app\utility\TimePickerDirective.js" />
+    <Content Include="js\ng-bs3-datepicker.js" />
+    <Content Include="js\app\utility\ArrayExtensions.js" />
+    <Content Include="js\app\utility\FormGroupValidationDirective.js" />
+    <Content Include="js\app\utility\InputValidationIconsDirective.js" />
+    <Content Include="js\app\utility\DateFilter.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\ods.js" />
+    <Content Include="js\timepickerpop.js" />
+    <Content Include="js\ui-bootstrap-tpls.js" />
+    <Content Include="js\ui-bootstrap.js" />
+    <Content Include="js\ui-grid.js" />
+    <Content Include="js\xlsx.full.min.js" />
+    <Content Include="license.txt" />
+    <Content Include="PackageContents\readme.txt" />
+    <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="Scripts\alasql.min.js" />
+    <Content Include="Scripts\angular-block-ui.js" />
+    <Content Include="Scripts\angular-block-ui.min.js" />
+    <Content Include="Scripts\angular-gantt.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="bower_components\bootstrap-social\.bower.json" />
+    <Content Include="bower_components\bootstrap-social\.editorconfig" />
+    <Content Include="bower_components\bootstrap-social\bootstrap-social.less" />
+    <Content Include="bower_components\bootstrap-social\bootstrap-social.scss" />
+    <Content Include="bower_components\bootstrap-social\bower.json" />
+    <Content Include="bower_components\bootstrap-social\README.md" />
+    <Content Include="bower_components\bootstrap\.bower.json" />
+    <Content Include="bower_components\bootstrap\bower.json" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="bower_components\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bower_components\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="bower_components\bootstrap\grunt\.jshintrc" />
+    <Content Include="bower_components\bootstrap\grunt\configBridge.json" />
+    <Content Include="bower_components\bootstrap\grunt\sauce_browsers.yml" />
+    <Content Include="bower_components\bootstrap\js\.jscsrc" />
+    <Content Include="bower_components\bootstrap\js\.jshintrc" />
+    <Content Include="bower_components\bootstrap\less\.csscomb.json" />
+    <Content Include="bower_components\bootstrap\less\.csslintrc" />
+    <Content Include="bower_components\bootstrap\less\alerts.less" />
+    <Content Include="bower_components\bootstrap\less\badges.less" />
+    <Content Include="bower_components\bootstrap\less\bootstrap.less" />
+    <Content Include="bower_components\bootstrap\less\breadcrumbs.less" />
+    <Content Include="bower_components\bootstrap\less\button-groups.less" />
+    <Content Include="bower_components\bootstrap\less\buttons.less" />
+    <Content Include="bower_components\bootstrap\less\carousel.less" />
+    <Content Include="bower_components\bootstrap\less\close.less" />
+    <Content Include="bower_components\bootstrap\less\code.less" />
+    <Content Include="bower_components\bootstrap\less\component-animations.less" />
+    <Content Include="bower_components\bootstrap\less\dropdowns.less" />
+    <Content Include="bower_components\bootstrap\less\forms.less" />
+    <Content Include="bower_components\bootstrap\less\glyphicons.less" />
+    <Content Include="bower_components\bootstrap\less\grid.less" />
+    <Content Include="bower_components\bootstrap\less\input-groups.less" />
+    <Content Include="bower_components\bootstrap\less\jumbotron.less" />
+    <Content Include="bower_components\bootstrap\less\labels.less" />
+    <Content Include="bower_components\bootstrap\less\list-group.less" />
+    <Content Include="bower_components\bootstrap\less\media.less" />
+    <Content Include="bower_components\bootstrap\less\mixins.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\alerts.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\buttons.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\center-block.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\forms.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\gradients.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\grid.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\image.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\labels.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\list-group.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\opacity.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\pagination.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\panels.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\resize.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\size.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\table-row.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="bower_components\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="bower_components\bootstrap\less\modals.less" />
+    <Content Include="bower_components\bootstrap\less\navbar.less" />
+    <Content Include="bower_components\bootstrap\less\navs.less" />
+    <Content Include="bower_components\bootstrap\less\normalize.less" />
+    <Content Include="bower_components\bootstrap\less\pager.less" />
+    <Content Include="bower_components\bootstrap\less\pagination.less" />
+    <Content Include="bower_components\bootstrap\less\panels.less" />
+    <Content Include="bower_components\bootstrap\less\popovers.less" />
+    <Content Include="bower_components\bootstrap\less\print.less" />
+    <Content Include="bower_components\bootstrap\less\progress-bars.less" />
+    <Content Include="bower_components\bootstrap\less\responsive-embed.less" />
+    <Content Include="bower_components\bootstrap\less\responsive-utilities.less" />
+    <Content Include="bower_components\bootstrap\less\scaffolding.less" />
+    <Content Include="bower_components\bootstrap\less\tables.less" />
+    <Content Include="bower_components\bootstrap\less\theme.less" />
+    <Content Include="bower_components\bootstrap\less\thumbnails.less" />
+    <Content Include="bower_components\bootstrap\less\tooltip.less" />
+    <Content Include="bower_components\bootstrap\less\type.less" />
+    <Content Include="bower_components\bootstrap\less\utilities.less" />
+    <Content Include="bower_components\bootstrap\less\variables.less" />
+    <Content Include="bower_components\bootstrap\less\wells.less" />
+    <Content Include="bower_components\bootstrap\LICENSE" />
+    <Content Include="bower_components\bootstrap\package.json" />
+    <Content Include="bower_components\bootstrap\README.md" />
+    <Content Include="bower_components\datatables-plugins\.bower.json" />
+    <Content Include="bower_components\datatables-plugins\i18n\Afrikaans.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Albanian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Arabic.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Azerbaijan.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Bangla.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Belarusian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Bulgarian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Catalan.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Chinese-traditional.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Chinese.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Croatian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Czech.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Danish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Dutch.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\English.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Estonian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Filipino.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Finnish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\French.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Galician.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Georgian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\German.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Greek.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Gujarati.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Hebrew.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Hindi.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Hungarian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Icelandic.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Indonesian-Alternative.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Indonesian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Irish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Italian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Japanese.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Korean.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Latvian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Lithuanian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Macedonian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Malay.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Norwegian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Persian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Polish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Portuguese-Brasil.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Portuguese.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Romanian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Russian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Serbian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Slovak.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Slovenian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Spanish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Swahili.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Swedish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Tamil.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Thai.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Turkish.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Ukranian.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Urdu.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Uzbek.lang" />
+    <Content Include="bower_components\datatables-plugins\i18n\Vietnamese.lang" />
+    <Content Include="bower_components\datatables-plugins\integration\jqueryui\dataTables.jqueryui.scss" />
+    <Content Include="bower_components\datatables-plugins\make.sh" />
+    <Content Include="bower_components\datatables-plugins\README.md" />
+    <Content Include="bower_components\datatables-responsive\.bower.json" />
+    <Content Include="bower_components\datatables-responsive\bower.json" />
+    <Content Include="bower_components\datatables-responsive\css\dataTables.responsive.scss" />
+    <Content Include="bower_components\datatables-responsive\make.sh" />
+    <Content Include="bower_components\datatables-responsive\Readme.md" />
+    <Content Include="bower_components\datatables\.bower.json" />
+    <Content Include="bower_components\datatables\bower.json" />
+    <Content Include="bower_components\datatables\Contributing.md" />
+    <Content Include="bower_components\datatables\media\images\Sorting icons.psd" />
+    <Content Include="bower_components\datatables\Readme.md" />
+    <Content Include="bower_components\flot.tooltip\.bower.json" />
+    <Content Include="bower_components\flot.tooltip\bower.json" />
+    <Content Include="bower_components\flot\.bower.json" />
+    <Content Include="bower_components\flot\.travis.yml" />
+    <Content Include="bower_components\flot\API.md" />
+    <Content Include="bower_components\flot\component.json" />
+    <Content Include="bower_components\flot\CONTRIBUTING.md" />
+    <Content Include="bower_components\flot\examples\ajax\data-eu-gdp-growth-1.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-eu-gdp-growth-2.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-eu-gdp-growth-3.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-eu-gdp-growth-4.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-eu-gdp-growth-5.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-eu-gdp-growth.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-japan-gdp-growth.json" />
+    <Content Include="bower_components\flot\examples\ajax\data-usa-gdp-growth.json" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\africa" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\antarctica" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\asia" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\australasia" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\backward" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\etcetera" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\europe" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\factory" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\iso3166.tab" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\leapseconds" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\northamerica" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\pacificnew" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\solar87" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\solar88" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\solar89" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\southamerica" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\systemv" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\yearistype.sh" />
+    <Content Include="bower_components\flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="bower_components\flot\FAQ.md" />
+    <Content Include="bower_components\flot\flot.jquery.json" />
+    <Content Include="bower_components\flot\Makefile" />
+    <Content Include="bower_components\flot\NEWS.md" />
+    <Content Include="bower_components\flot\package.json" />
+    <Content Include="bower_components\flot\PLUGINS.md" />
+    <Content Include="bower_components\flot\README.md" />
+    <Content Include="bower_components\font-awesome\.bower.json" />
+    <Content Include="bower_components\font-awesome\.npmignore" />
+    <Content Include="bower_components\font-awesome\bower.json" />
+    <Content Include="bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="bower_components\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="bower_components\font-awesome\less\bordered-pulled.less" />
+    <Content Include="bower_components\font-awesome\less\core.less" />
+    <Content Include="bower_components\font-awesome\less\extras.less" />
+    <Content Include="bower_components\font-awesome\less\fixed-width.less" />
+    <Content Include="bower_components\font-awesome\less\font-awesome.less" />
+    <Content Include="bower_components\font-awesome\less\icons.less" />
+    <Content Include="bower_components\font-awesome\less\larger.less" />
+    <Content Include="bower_components\font-awesome\less\list.less" />
+    <Content Include="bower_components\font-awesome\less\mixins.less" />
+    <Content Include="bower_components\font-awesome\less\path.less" />
+    <Content Include="bower_components\font-awesome\less\rotated-flipped.less" />
+    <Content Include="bower_components\font-awesome\less\spinning.less" />
+    <Content Include="bower_components\font-awesome\less\stacked.less" />
+    <Content Include="bower_components\font-awesome\less\variables.less" />
+    <Content Include="bower_components\font-awesome\scss\font-awesome.scss" />
+    <Content Include="bower_components\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="bower_components\font-awesome\scss\_core.scss" />
+    <Content Include="bower_components\font-awesome\scss\_extras.scss" />
+    <Content Include="bower_components\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="bower_components\font-awesome\scss\_icons.scss" />
+    <Content Include="bower_components\font-awesome\scss\_larger.scss" />
+    <Content Include="bower_components\font-awesome\scss\_list.scss" />
+    <Content Include="bower_components\font-awesome\scss\_mixins.scss" />
+    <Content Include="bower_components\font-awesome\scss\_path.scss" />
+    <Content Include="bower_components\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="bower_components\font-awesome\scss\_spinning.scss" />
+    <Content Include="bower_components\font-awesome\scss\_stacked.scss" />
+    <Content Include="bower_components\font-awesome\scss\_variables.scss" />
+    <Content Include="bower_components\holderjs\.bower.json" />
+    <Content Include="bower_components\holderjs\.jshintrc" />
+    <Content Include="bower_components\holderjs\bower.json" />
+    <Content Include="bower_components\holderjs\composer.json" />
+    <Content Include="bower_components\holderjs\package.json" />
+    <Content Include="bower_components\holderjs\README.md" />
+    <Content Include="bower_components\jquery\.bower.json" />
+    <Content Include="bower_components\jquery\bower.json" />
+    <Content Include="bower_components\jquery\dist\jquery.min.map" />
+    <Content Include="bower_components\jquery\src\sizzle\dist\sizzle.min.map" />
+    <Content Include="bower_components\metisMenu\.bower.json" />
+    <Content Include="bower_components\metisMenu\bower.json" />
+    <Content Include="bower_components\metisMenu\LICENSE" />
+    <Content Include="bower_components\metisMenu\package.json" />
+    <Content Include="bower_components\metisMenu\README.md" />
+    <Content Include="bower_components\mocha\.bower.json" />
+    <Content Include="bower_components\mocha\bower.json" />
+    <Content Include="bower_components\mocha\History.md" />
+    <Content Include="bower_components\mocha\LICENSE" />
+    <Content Include="bower_components\mocha\Readme.md" />
+    <Content Include="bower_components\morrisjs\.bower.json" />
+    <Content Include="bower_components\morrisjs\.travis.yml" />
+    <Content Include="bower_components\morrisjs\bower.json" />
+    <Content Include="bower_components\morrisjs\bower.travis.json" />
+    <Content Include="bower_components\morrisjs\less\morris.core.less" />
+    <Content Include="bower_components\morrisjs\lib\morris.area.coffee" />
+    <Content Include="bower_components\morrisjs\lib\morris.bar.coffee" />
+    <Content Include="bower_components\morrisjs\lib\morris.coffee" />
+    <Content Include="bower_components\morrisjs\lib\morris.donut.coffee" />
+    <Content Include="bower_components\morrisjs\lib\morris.grid.coffee" />
+    <Content Include="bower_components\morrisjs\lib\morris.hover.coffee" />
+    <Content Include="bower_components\morrisjs\lib\morris.line.coffee" />
+    <Content Include="bower_components\morrisjs\package.json" />
+    <Content Include="bower_components\morrisjs\README.md" />
+    <Content Include="bower_components\morrisjs\spec\lib\area\area_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\bar\bar_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\bar\colours.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\commas_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\donut\donut_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\grid\auto_grid_lines_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\grid\set_data_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\grid\y_label_format_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\hover_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\label_series_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\line\line_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\pad_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\lib\parse_time_spec.coffee" />
+    <Content Include="bower_components\morrisjs\spec\support\placeholder.coffee" />
+    <Content Include="bower_components\morrisjs\spec\viz\run.sh" />
+    <Content Include="bower_components\raphael\.bower.json" />
+    <Content Include="bower_components\raphael\bower.json" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\sb-admin-2.less" />
+    <Content Include="Content\less\variables.less" />
+    <Content Include="js\app\customer\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="css\ui-grid.eot" />
+    <Content Include="css\ui-grid.ttf" />
+    <Content Include="css\ui-grid.woff" />
+    <Content Include="js\app\imageclass\templates\list.tmpl.cshtml" />
+    <Content Include="js\app\imageclass\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\customer\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\customer\templates\edit.tmpl.cshtml" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="js\app\utility\templates\picklistmodal.tmpl.cshtml" />
+    <Content Include="js\app\utility\templates\picklist.tmpl.cshtml" />
+    <Content Include="js\app\application\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\application\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\application\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\company\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\company\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\company\templates\edit.tmpl.cshtml" />
+    <Content Include="js\number-input.min.js" />
+    <Content Include="js\app\utility\templates\combobox.tmpl.cshtml" />
+    <Content Include="js\app\utility\templates\rowTemplate.tmpl.cshtml" />
+    <Content Include="Content\angular-block-ui.css.map" />
+    <Content Include="js\xls.full.min.js" />
+    <Content Include="js\app\enquirytabungan\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\enquirytabungan\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\enquirytabungan\templates\adddetailbarang.tmpl.cshtml" />
+    <Content Include="js\app\purchaserequest\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\purchaserequest\templates\adddetailbarang.tmpl.cshtml" />
+    <Content Include="js\app\purchaserequest\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\enquirytabungan\templates\approve.tmpl.cshtml" />
+    <Content Include="js\app\purchaseorder\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\purchaseorder\templates\adddetailbarang.tmpl.cshtml" />
+    <Content Include="js\app\purchaseorder\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\paymentrequest\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\paymentrequest\templates\addjurnalpembayaran.tmpl.cshtml" />
+    <Content Include="js\app\paymentrequest\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\purchasereceive\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\purchasereceive\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\Katalog\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\Katalog\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\Katalog\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\Katalog\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\purchasereceive\templates\addpelunasan.tmpl.cshtml" />
+    <Content Include="js\app\purchasereceive\templates\addjurnalpelunasan.tmpl.cshtml" />
+    <Content Include="js\app\deliveryorder\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\deliveryorder\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\AmortisasiRequest\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\AmortisasiRequest\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\AmortisasiRequest\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\AmortisasiRequest\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\AmortisasiRequest\templates\detailjurnal.tmpl.cshtml" />
+    <Content Include="js\app\AmortisasiRequest\templates\approve.tmpl.cshtml" />
+    <Content Include="js\app\BreakAmortisasiRequest\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\BreakAmortisasiRequest\templates\approve.tmpl.cshtml" />
+    <Content Include="js\app\BreakAmortisasiRequest\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\BreakAmortisasiRequest\templates\detailjurnal.tmpl.cshtml" />
+    <Content Include="js\app\BreakAmortisasiRequest\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\BreakAmortisasiRequest\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\Pencadangan\templates\approve.tmpl.cshtml" />
+    <Content Include="js\app\Pencadangan\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\Pencadangan\templates\detailjurnal.tmpl.cshtml" />
+    <Content Include="js\app\Pencadangan\templates\details.tmpl.cshtml" />
+    <Content Include="js\app\Pencadangan\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\purchaseorder\templates\history.tmpl.cshtml" />
+    <Content Include="js\app\MasterProduct\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\MasterProduct\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\MasterProduct\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\UploadFile\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\MasterPromotion\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\MasterPromotion\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\MasterPromotion\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\MasterEmailTemplate\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\MasterEmailTemplate\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\MasterEmailTemplate\templates\delete.tmpl.cshtml" />
+    <Content Include="js\app\MasterParameter\templates\add.tmpl.cshtml" />
+    <Content Include="js\app\MasterParameter\templates\edit.tmpl.cshtml" />
+    <Content Include="js\app\MasterParameter\templates\delete.tmpl.cshtml" />
+    <Content Include="Files\PDF\5300066323_201808.pdf" />
+    <Content Include="Files\UjiCoba\01a5630c-6f60-4d8d-b455-0c776f9469e5-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\01dd89e7-a4b5-42f2-8a0d-f4a249ddd0de-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\029f429f-0621-46fd-be55-b080caa83934-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\02a058a2-28fe-44b2-865b-37c382909414-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\03c36e95-e9bf-4564-8b2a-09ce9b588ae8-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\08b517d1-a953-4b46-9f67-04f0612256fa-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\0ba0a32a-1333-4090-954a-d67aea49b848-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\0cd9a772-462d-42f2-a9de-84699b73ec7a-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\0e3a801c-4da1-449e-996c-8cea85115b35-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\0f052082-d5e6-47c3-b38d-738ef02e4421-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\13364003-1090-4c2e-87cf-882d2f9c0f16-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\14a2d33a-62e5-47d2-846b-5bdb5a2609cb-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\14ec351b-c691-458d-9295-023b17d3e4ea-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\187496c1-772e-43cb-8fb4-36a342c13337-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\1ccc6861-bb9c-4a0c-b03b-793efd0c30f6-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\1d82a4ac-256d-4aa3-951b-fe7f8143d192-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\1ece7db3-90c7-41a5-a616-538771c56eef-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\22cf690d-fb93-48a7-8be5-6629f3e076d5-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\22f02321-85f4-4582-9528-0b4e88e455e4-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\23c744dd-3ec5-4f7d-b805-abbc6c305d40-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\25c0e380-436f-45a4-9f88-05bcb7981a98-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\26af4526-c59c-4bd0-a36f-b087d45e2988-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\27782699-2a47-4914-b86a-357d0fcc3efc-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\29bd524d-219c-4296-bc4e-c5590ca55fc4-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2aa8220a-3fb9-496a-9572-4df8a17b31f0-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2c3659b8-3a81-4de0-9260-3470bc9b5de4-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2c691838-8354-49c8-b31a-fd0879c9b806-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2d243ea1-bac6-4685-b708-5f995e06939f-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2d434e77-47db-4008-a1bd-8edd525bbe84-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2d68a546-4bf2-439a-9c85-ddb3b2879da5-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2db9142e-7045-4bcd-a80f-8c2d958f4370-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2e28ff68-21ce-4103-94cb-0010bcfa3c2a-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\2eb472ff-7242-44ca-b32d-026e6a84dc06-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\3068e263-d1ac-4187-ad6c-365aaea5f613-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\36a1acfe-8f1a-4c2f-8efe-be1db788271c-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\382ab809-a181-44ff-9fa1-5841375924ef-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\3df8a7f1-f9f5-47e8-914e-b3150cc04b49-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\3fa7bbad-3b61-49d5-a7b4-b4d940cdecbd-KCP A YANI BEKASI.STMT" />
+    <Content Include="Files\UjiCoba\41cc20c3-6a9c-4daa-92fe-ff0268e3f9ad-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\44667fa0-eb63-4e9c-aad2-b7b4c3975c6a-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\4594bf4a-35ed-44ae-a0c2-94a181efa534-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\46851143-9647-4fc1-af27-ec1c5f933ef3-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\46fd3db4-ccb6-4761-a4be-748969669f6c-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\49b969f1-824d-484d-9846-f2106ddf53a9-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\4a421053-3959-4274-8d2c-5fdc1d167700-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\4cad1fd7-886a-473b-a073-4732fc4d0872-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\513e3e3d-911d-42e4-8762-63a98cad4ec0-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\51fbe281-e114-48b6-9f90-f5c4f2be899d-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\552c2454-4798-4d45-8f11-823fd5615c13-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\576574e0-ae79-4237-bc5e-2c312c40a723-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\58d34565-39c2-4c96-b38e-e4e268582492-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\5d09f04a-8832-488b-8e28-230f495e3e3a-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\5f8cf780-0114-4293-96af-70dcbbb40e42-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\5f960e8a-d6bf-4696-be83-f81e646bccc4-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\603256c9-a228-4860-aeab-6f604f272c81-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6122d8a2-d8e9-4614-bc51-cf894b4edb92-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\62dc4c64-583b-4ccd-900a-47a4cf3fc03c-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\65943602-d763-4271-a35b-a78c354482d7-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6609d250-4a36-413b-8f3b-0c4d093ee0c6-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\662d4fc1-6186-4da3-b4fc-c31777eb1db8-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\66d3a521-e2bd-4c27-bc90-ea585917d4ef-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\67cdbaeb-c326-4988-bc03-2724f28b8df7-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\680d92f4-9e46-49fb-832b-88953f41485e-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\69b0b3d2-1f54-4cb0-9c6a-369b69662219-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\69c0d258-ca0b-4b8f-835b-bca6c6d54b11-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6c7c854e-e31a-482d-8fe8-52e0bf90b077-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6d8ab7e8-7430-479c-9f18-0850a17b15bc-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6e2de5d6-e94e-4da3-8b16-fa75736e65cb-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6ed12784-5f31-4c5f-8164-7998cb813883-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6f1ad08b-93e7-4f12-9e2a-6e969389ab71-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\6f78c67d-1466-463f-8a2c-fb2976d673b6-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\7170b201-a7ef-4fda-84da-a3368c4a4b67-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\72159f1e-b7e1-47a8-a3ba-a73ccb8afaf6-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\73150ea6-6182-4327-8026-2a84da374863-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\753ea2c8-a863-4c3b-bd23-812ca2ba3d02-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\770d728a-759e-4da6-8137-07b97ce6f4e2-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\79acf49d-ea15-403b-9aaf-3198187dfc86-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\7a83e084-c487-44bd-8e24-88f437ab7b87-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\81e89fce-40b3-487c-a3a1-3501ce1933b8-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\834b18c6-277a-472b-ab77-18dbf661f0c1-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\85e45007-8849-4894-b57a-be1921dcd86f-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8624a443-d015-44be-afb1-9d08486937f4-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\86482650-6ad6-4d39-94a4-3807aaa636fb-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\87d94a45-8025-4a2e-95fd-889be2ba2202-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\891ce56a-d383-4c56-bb1f-f1809a8069fb-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\89ae1247-ac9f-48f3-b7fe-48b80bee34c3-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8a4ec733-81fe-474f-b9d9-b25571f924a0-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8b85da02-75a3-4905-9acc-b161e5c0c3ad-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8ca92331-0710-4918-8b34-1ccd40002ff0-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8d71c38f-73b5-4d8f-813b-ebb8becf26d5-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8dc50e5b-8be8-454b-95e9-82bdccab6c55-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8ec54213-3a34-40ab-892b-739484b89e33-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\8ece8ed5-fd85-46bf-bd49-02457c719db7-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\94ea09ca-5774-4421-8647-a7b78eff5b34-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\95a29edf-0ddf-45d9-87b4-93adccdb043f-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\968d6a64-ffd1-4f38-8d94-cd9a6215375e-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\9859e6e4-208e-4201-8b47-fd2ecb8de03b-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\9925c454-a07c-4f4e-a5bb-9b55eeba02dc-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\99e04a22-0ae6-4997-84e2-9a7069416cc2-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\9a72d971-972e-47f8-8ad9-91c5941d262c-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\9b807371-5e7e-44c3-9070-514feacc5e60-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\a1cd6cda-a31a-47c0-a58d-d65a0b0e4105-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\a2273dc7-2650-4ee5-961d-823f9df415da-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\a6f0aaf2-89ba-4720-90ee-6b4a45bc27c1-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\aab2f2ba-0cab-4623-97f9-67dbf6d7ea72-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ab4b5fc1-bbc7-4422-b3ef-bbd0f547ab7e-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ab9fe8b8-7703-471d-80e5-d88b873538af-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ad086d49-193b-4297-8ee1-332b710510ae-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\af690299-5956-4467-ad56-53509c3d0fe7-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\b447e98c-1da0-41c3-82d5-a1bfb9b96110-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\bbf329f3-b965-40d6-8b29-a227cbc7390c-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\bc249f91-eba7-4778-9f3c-1e11b381b56b-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\bd83f13a-93e1-4a25-b00e-9ed824f68911-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\c118c61f-dd0c-4d48-a321-2462427f8cef-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\c12d4d4a-ac2b-49e4-8882-38eaae37ffbc-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\c385f429-8b41-4f61-8e5d-33a44645184a-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\c77dc71e-ef5e-43d4-89b5-4224d491e613-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\c86ec40f-5eea-4f58-9dae-04f155ef5d04-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\c9dac9b5-3478-4cb9-900f-134ca42dd7e5-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\cd64791c-192d-4069-9251-55ce85b77cb0-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\cddab6a8-6568-426d-82c9-9e0362e3b807-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\cea5c6ff-52c7-43ba-974f-9965b22f7f8b-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\d46d6eef-6536-4819-a880-816ded2d4abd-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\d5276ab3-3479-44e9-8a2c-0f1dfb381082-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\d5a15007-45f3-4096-a529-5bb04396b04d-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\d8b08ae4-d125-440f-ab58-d6faf126b0ce-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\d8f3528a-ad85-455f-8854-1473411e39d1-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\db7f63f8-1f11-479f-bfd1-008cf4eedae1-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\dbdcba29-dae5-4840-b539-722264e2a9f8-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\dc81c754-e6e9-40e6-824f-2b1a60082a59-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\e1180b04-4432-4e63-8387-12f774d5e535-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\e1f7e3f6-9793-4eb0-b1f1-630e27c253d8-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\e3c41e42-1554-4dca-bca6-0cf6e02fb600-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\e7e58083-8c3b-4367-8cfc-50f77377b84f-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\e8d7dcbb-c912-404e-b5d6-ccb66d50c136-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\e999ac60-7fbb-40ab-af50-38d5a6a63d37-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ea3305ab-92a1-4c58-806a-7cf2c2c32502-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\eba38dc8-8b62-4751-961b-052872366759-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ed3232d1-fa5a-4e93-a003-7aecf44314f6-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ed9f7a16-05d7-49a6-ad12-233e85bd28d6-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ef9bf099-eae4-4b9b-9185-15d998dfdb85-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\f52c8b93-bde0-4478-80d6-5e437a800e54-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\f7b6ef04-f760-4356-b366-f1a46c9732f2-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\fb0ecd4b-0d14-410c-9543-2877e15385f0-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\fe4c0ad8-9bb5-4946-8ced-7df0d27432e5-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ff18b7df-397c-4036-8634-9419218e379b-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\UjiCoba\ffcc545c-6873-4f01-99cc-341c49404662-KCP A YANI BEKASI.stmt" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300053752_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300066323_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300115828_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300116328_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300117475_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300117963_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300118269_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300118706_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300118854_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300119044_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300119303_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300119378_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300121348_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300122107_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300162168_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300209795_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300333127_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300392247_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300499696_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300533727_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\5300552678_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000040213_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000128161_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000206235_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000207525_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000257492_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000512972_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000537417_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000608589_201808.pdf" />
+    <Content Include="Files\PDF\E-Statement\2018-08\6000932475_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\5300066323_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\5300117475_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\5300118269_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\5300333127_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\5300392247_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\5300499696_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\6000040213_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\6000206235_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\6000207525_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\6000257492_201808.pdf" />
+    <Content Include="Files\PDF\2018-08\6000512972_201808.pdf" />
+    <Content Include="Files\PDF\201808\ADIM.pdf" />
+    <Content Include="Files\PDF\201808\ALAMIYANTI LESTARI.pdf" />
+    <Content Include="Files\PDF\201808\ANDRY ALVANIUS.pdf" />
+    <Content Include="Files\PDF\201808\BASIRUN.pdf" />
+    <Content Include="Files\PDF\201808\IKA SARTIKA BUNAWAN.pdf" />
+    <Content Include="Files\PDF\201808\KARNADI ADIKUSUMA.pdf" />
+    <Content Include="Files\PDF\201808\LIE YOHANES BAMBANG.pdf" />
+    <Content Include="Files\PDF\201808\LIONARD CHANDRA TJ.pdf" />
+    <Content Include="Files\PDF\201808\RUDI HARTONO.pdf" />
+    <Content Include="Files\PDF\201808\TJIA TJEN TJUNG.pdf" />
+    <Content Include="Files\PDF\201808\WIRADIANTO E BDN KA.pdf" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="js\app\enquirytabungan\templates\adddetailupload.tmpl.cshtml" />
+    <Content Include="js\app\enquirytabungan\templates\editreject.tmpl.cshtml" />
+    <Content Include="js\app\purchaserequest\templates\rejectreason.tmpl.cshtml" />
+    <Content Include="js\app\purchaserequest\templates\rejectreasonbacktodpr.tmpl.cshtml" />
+    <Content Include="js\app\purchaserequest\templates\editreject.tmpl.cshtml" />
+    <Content Include="js\app\purchaseorder\templates\rejectreasonbacktopr.tmpl.cshtml" />
+    <None Include="Properties\PublishProfiles\E-Statement.pubxml" />
+    <None Include="Properties\PublishProfiles\MyFunding.pubxml" />
+    <None Include="Properties\PublishProfiles\MyWeb.pubxml" />
+    <Content Include="Reports\Applications\dsApplication.xsc">
+      <DependentUpon>dsApplication.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\Applications\dsApplication.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsApplication.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\Applications\dsApplication.xss">
+      <DependentUpon>dsApplication.xsd</DependentUpon>
+    </Content>
+    <Content Include="Scripts\angular-block-ui.min.js.map" />
+    <Content Include="Scripts\angular-block-ui.js.map" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\FileAPI.flash.swf" />
+    <Content Include="Scripts\FileAPI.js" />
+    <Content Include="Scripts\FileAPI.min.js" />
+    <Content Include="Scripts\flot-data.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\morris-data.js" />
+    <Content Include="Scripts\ng-file-upload-all.js" />
+    <Content Include="Scripts\ng-file-upload-all.min.js" />
+    <Content Include="Scripts\ng-file-upload-shim.js" />
+    <Content Include="Scripts\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\ng-file-upload.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sb-admin-2.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.js" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Home\FlotCharts.cshtml" />
+    <Content Include="Views\Home\MorrisCharts.cshtml" />
+    <Content Include="Views\Home\Tables.cshtml" />
+    <Content Include="Views\Home\Forms.cshtml" />
+    <Content Include="Views\Home\Panels.cshtml" />
+    <Content Include="Views\Home\Buttons.cshtml" />
+    <Content Include="Views\Home\Notifications.cshtml" />
+    <Content Include="Views\Home\Typography.cshtml" />
+    <Content Include="Views\Home\Icons.cshtml" />
+    <Content Include="Views\Home\Grid.cshtml" />
+    <Content Include="Views\Home\Blank.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\CheckYourEmail.cshtml" />
+    <Content Include="Views\Account\UnconfirmedAccount.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\ChangeProfile.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\ApplicationRoles\Create.cshtml" />
+    <Content Include="Views\ApplicationRoles\Delete.cshtml" />
+    <Content Include="Views\ApplicationRoles\Details.cshtml" />
+    <Content Include="Views\ApplicationRoles\Edit.cshtml" />
+    <Content Include="Views\ApplicationRoles\Index.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\ImageClass\Create.cshtml" />
+    <Content Include="Views\ImageClass\Delete.cshtml" />
+    <Content Include="Views\ImageClass\Edit.cshtml" />
+    <Content Include="Views\ImageClass\Index.cshtml" />
+    <Content Include="Views\Navbar\Create.cshtml" />
+    <Content Include="Views\Navbar\Delete.cshtml" />
+    <Content Include="Views\Navbar\Edit.cshtml" />
+    <Content Include="Views\Navbar\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\MenuRole\Index.cshtml" />
+    <Content Include="Views\Account\Login - Copy.cshtml" />
+    <Content Include="Views\Application\Index.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Account\AccessDenied.cshtml" />
+    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Shared\_ModalError.cshtml" />
+    <Content Include="Views\Shared\_ModalSuccess.cshtml" />
+    <Content Include="Views\Manage\ChangeProfile - Copy.cshtml" />
+    <Content Include="Views\EnquiryTabungan\Index.cshtml" />
+    <Content Include="Views\PurchaseRequest\Index.cshtml" />
+    <Content Include="Views\EnquiryTabungan\Authorize.cshtml" />
+    <Content Include="Views\PurchaseRequest\Authorize.cshtml" />
+    <Content Include="Views\PurchaseOrder\Authorize.cshtml" />
+    <Content Include="Views\PurchaseOrder\Index.cshtml" />
+    <Content Include="Views\PaymentRequest\Authorize.cshtml" />
+    <Content Include="Views\PaymentRequest\Index.cshtml" />
+    <Content Include="Views\PurchaseReceive\Authorize.cshtml" />
+    <Content Include="Views\PurchaseReceive\Index.cshtml" />
+    <Content Include="Views\Katalog\Index.cshtml" />
+    <Content Include="Views\PurchaseReceive\Index2.cshtml" />
+    <Content Include="Views\DeliveryOrder\Authorize.cshtml" />
+    <Content Include="Views\DeliveryOrder\Index.cshtml" />
+    <Content Include="Views\AmortisasiRequest\Index.cshtml" />
+    <Content Include="Views\AmortisasiRequest\Authorize.cshtml" />
+    <Content Include="Views\BreakAmortisasiRequest\Authorize.cshtml" />
+    <Content Include="Views\BreakAmortisasiRequest\Index.cshtml" />
+    <Content Include="Views\Pencadangan\Authorize.cshtml" />
+    <Content Include="Views\Pencadangan\Index.cshtml" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Views\PurchaseOrder\History.cshtml" />
+    <Content Include="SQL_FUNDINGDataSet.xsc">
+      <DependentUpon>SQL_FUNDINGDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="SQL_FUNDINGDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SQL_FUNDINGDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SQL_FUNDINGDataSet.xss">
+      <DependentUpon>SQL_FUNDINGDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="Views\PurchaseOrder\ViewReport.cshtml" />
+    <Content Include="Views\MasterProduct\Index.cshtml" />
+    <Content Include="Views\UploadTextfile\Index.cshtml" />
+    <Content Include="Views\MasterPromotion\Index.cshtml" />
+    <Content Include="Views\MasterEmailTemplate\Index.cshtml" />
+    <Content Include="Views\MasterParameter\Index.cshtml" />
+    <Content Include="Views\RegisteredAccount\Index.cshtml" />
+    <Content Include="Views\ListEmail\Index.cshtml" />
+    <Content Include="Views\ListEmail\IndexProcessed.cshtml" />
+    <Content Include="Views\ListEmail\Contents.cshtml" />
+    <Content Include="Views\InsertLog\Index.cshtml" />
+    <Content Include="Views\ParameterEmail\Index.cshtml" />
+    <Content Include="Views\StatusNasabah\Index.cshtml" />
+    <Content Include="Views\EnquiryTabungan\Rejected.cshtml" />
+    <Content Include="Views\PurchaseRequest\Rejected.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Backup\" />
+    <Folder Include="bin\af\" />
+    <Folder Include="bin\ar\" />
+    <Folder Include="bin\bg\" />
+    <Folder Include="bin\bn-BD\" />
+    <Folder Include="bin\cs\" />
+    <Folder Include="bin\da\" />
+    <Folder Include="bin\de\" />
+    <Folder Include="bin\el\" />
+    <Folder Include="bin\es\" />
+    <Folder Include="bin\fa\" />
+    <Folder Include="bin\fi-FI\" />
+    <Folder Include="bin\fr-BE\" />
+    <Folder Include="bin\fr\" />
+    <Folder Include="bin\he\" />
+    <Folder Include="bin\hu\" />
+    <Folder Include="bin\id\" />
+    <Folder Include="bin\it\" />
+    <Folder Include="bin\ja\" />
+    <Folder Include="bin\nb-NO\" />
+    <Folder Include="bin\nb\" />
+    <Folder Include="bin\nl\" />
+    <Folder Include="bin\pl\" />
+    <Folder Include="bin\pt\" />
+    <Folder Include="bin\ro\" />
+    <Folder Include="bin\ru\" />
+    <Folder Include="bin\sk\" />
+    <Folder Include="bin\sl\" />
+    <Folder Include="bin\sr-Latn\" />
+    <Folder Include="bin\sr\" />
+    <Folder Include="bin\sv\" />
+    <Folder Include="bin\tr\" />
+    <Folder Include="bin\uk\" />
+    <Folder Include="bin\uz-Cyrl-UZ\" />
+    <Folder Include="bin\uz-Latn-UZ\" />
+    <Folder Include="bin\vi\" />
+    <Folder Include="bin\zh-CN\" />
+    <Folder Include="bin\zh-Hans\" />
+    <Folder Include="bin\zh-Hant\" />
+    <Folder Include="Files\BreakMemo\Temp\" />
+    <Folder Include="Files\deliveryorder\Temp\" />
+    <Folder Include="Files\enquirytabungan\Temp\" />
+    <Folder Include="Files\PDF\E-Statement3\" />
+    <Folder Include="Files\PDF\Temp\" />
+    <Folder Include="Files\purchaseorder\Temp\" />
+    <Folder Include="Files\purchaserequest\Temp\" />
+    <Folder Include="Files\UjiCoba\Temp\" />
+    <Folder Include="js\app\area\templates\" />
+    <Folder Include="js\app\branch\templates\" />
+    <Folder Include="js\app\customertemenos\templates\" />
+    <Folder Include="js\app\department\templates\" />
+    <Folder Include="js\app\employee\templates\" />
+    <Folder Include="js\app\InsertLog\templates\" />
+    <Folder Include="js\app\jabatan\templates\" />
+    <Folder Include="js\app\StatusNasabah\templates\" />
+    <Folder Include="Migrations\Application\" />
+    <Folder Include="Migrations\SqlMyPeople\" />
+    <Folder Include="Scripts\skins\lightgray\fonts\" />
+    <Folder Include="Scripts\skins\lightgray\img\" />
+    <Folder Include="SQL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\SqlFunding\201606220302577_addenquirytabungan.resx">
+      <DependentUpon>201606220302577_addenquirytabungan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201606300931081_detailbarang.resx">
+      <DependentUpon>201606300931081_detailbarang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201607140241457_modifyenquiryinput.resx">
+      <DependentUpon>201607140241457_modifyenquiryinput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201607200312262_AddApprove2.resx">
+      <DependentUpon>201607200312262_AddApprove2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201607210734348_modifytanggaldraft.resx">
+      <DependentUpon>201607210734348_modifytanggaldraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201607250745348_addrequester.resx">
+      <DependentUpon>201607250745348_addrequester.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201607270906557_addPurchaseRequest.resx">
+      <DependentUpon>201607270906557_addPurchaseRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201607280309591_modifydetailbarang.resx">
+      <DependentUpon>201607280309591_modifydetailbarang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608091018168_paymentrequest.resx">
+      <DependentUpon>201608091018168_paymentrequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608091021467_jurnalpembayaran.resx">
+      <DependentUpon>201608091021467_jurnalpembayaran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608100711133_modifypaymentrequest.resx">
+      <DependentUpon>201608100711133_modifypaymentrequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608120205213_purchasereceive.resx">
+      <DependentUpon>201608120205213_purchasereceive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608230708542_addJurnalPelunasan.resx">
+      <DependentUpon>201608230708542_addJurnalPelunasan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608230750047_Add_AmortisasiRequest001.resx">
+      <DependentUpon>201608230750047_Add_AmortisasiRequest001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608250133538_migrateKatalog001.resx">
+      <DependentUpon>201608250133538_migrateKatalog001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608260419172_migrateKatalog0011.resx">
+      <DependentUpon>201608260419172_migrateKatalog0011.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608260220296_UpdateDebetKredit.resx">
+      <DependentUpon>201608260220296_UpdateDebetKredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608310319011_updatedeliveryorder.resx">
+      <DependentUpon>201608310319011_updatedeliveryorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201608310731288_migrateFunding002.resx">
+      <DependentUpon>201608310731288_migrateFunding002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609020156489_migrateamortisasi001.resx">
+      <DependentUpon>201609020156489_migrateamortisasi001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609020653458_updatejurnalpembayaran.resx">
+      <DependentUpon>201609020653458_updatejurnalpembayaran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609060410557_migrateAmortisasi002.resx">
+      <DependentUpon>201609060410557_migrateAmortisasi002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609090826080_migrateBreakAmortisasi001.resx">
+      <DependentUpon>201609090826080_migrateBreakAmortisasi001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609090842492_migrateBreakAmortisasi002.resx">
+      <DependentUpon>201609090842492_migrateBreakAmortisasi002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609150241007_migrateAmortisai003.resx">
+      <DependentUpon>201609150241007_migrateAmortisai003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609160320544_migratePencadangan001.resx">
+      <DependentUpon>201609160320544_migratePencadangan001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609190722359_migratePencadangan002.resx">
+      <DependentUpon>201609190722359_migratePencadangan002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609220732299_migratePencadangan003.resx">
+      <DependentUpon>201609220732299_migratePencadangan003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201609270329319_updatekodebarang.resx">
+      <DependentUpon>201609270329319_updatekodebarang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201610170655145_modifyuploadPO.resx">
+      <DependentUpon>201610170655145_modifyuploadPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201703130403414_migrateKatalog0012.resx">
+      <DependentUpon>201703130403414_migrateKatalog0012.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201801110747481_Enhance_001.resx">
+      <DependentUpon>201801110747481_Enhance_001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201801120314264_Enhance_002.resx">
+      <DependentUpon>201801120314264_Enhance_002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201810120237455_tambahtableinsertlog.resx">
+      <DependentUpon>201810120237455_tambahtableinsertlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201811010332015_TambahInsertTableUploadNasabah.resx">
+      <DependentUpon>201811010332015_TambahInsertTableUploadNasabah.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201811140707568_edittable.resx">
+      <DependentUpon>201811140707568_edittable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201901150846504_RejectReason.resx">
+      <DependentUpon>201901150846504_RejectReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlFunding\201901290349501_PurchaseReceiveBy.resx">
+      <DependentUpon>201901290349501_PurchaseReceiveBy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808150846451__Migate01.resx">
+      <DependentUpon>201808150846451__Migate01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808160724590_InitialSqlFunding.resx">
+      <DependentUpon>201808160724590_InitialSqlFunding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808160804010_Migrate_001.resx">
+      <DependentUpon>201808160804010_Migrate_001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808160816138_Migrate_002.resx">
+      <DependentUpon>201808160816138_Migrate_002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808160821265_Migrate_003.resx">
+      <DependentUpon>201808160821265_Migrate_003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808230704163__Migrate_004.resx">
+      <DependentUpon>201808230704163__Migrate_004.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808230719338__Migrate_005.resx">
+      <DependentUpon>201808230719338__Migrate_005.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808230728314__Migrate_006.resx">
+      <DependentUpon>201808230728314__Migrate_006.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808240703023__Migrate_007.resx">
+      <DependentUpon>201808240703023__Migrate_007.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808270813345__Migrate_008.resx">
+      <DependentUpon>201808270813345__Migrate_008.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201808290222335__Migrate_009.resx">
+      <DependentUpon>201808290222335__Migrate_009.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201809061014025_Migrate_10.resx">
+      <DependentUpon>201809061014025_Migrate_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201809120451086_Migrate_010.resx">
+      <DependentUpon>201809120451086_Migrate_010.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201809120658106_Migrate_011.resx">
+      <DependentUpon>201809120658106_Migrate_011.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201809210352446_Migrate_012.resx">
+      <DependentUpon>201809210352446_Migrate_012.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201809250329272__Migrate_013.resx">
+      <DependentUpon>201809250329272__Migrate_013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201810120244356_TambahTableInsertLog.resx">
+      <DependentUpon>201810120244356_TambahTableInsertLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201810120249219_TambahTableInsertLog1.resx">
+      <DependentUpon>201810120249219_TambahTableInsertLog1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201810120252060_TambahTableInsertLog2.resx">
+      <DependentUpon>201810120252060_TambahTableInsertLog2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201810120253150_TambahTableInsertLog21.resx">
+      <DependentUpon>201810120253150_TambahTableInsertLog21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201810120424528_TambahTableInsertLog3.resx">
+      <DependentUpon>201810120424528_TambahTableInsertLog3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SqlStatement\201810150842217_TambahTableInsertLog4.resx">
+      <DependentUpon>201810150842217_TambahTableInsertLog4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Applications\ApplicationReportExample.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Funding\PurchaseOrderReport - Copy %282%29.rdlc" />
+    <EmbeddedResource Include="Reports\Funding\PurchaseOrderReport - Copy.rdlc" />
+    <EmbeddedResource Include="Reports\Funding\PurchaseOrderReport.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>29128</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://10.10.2.18/MyFunding</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties Reactor_Deploy="0" Reactor_Output="" Reactor_Configuration="ALL" Reactor_Project="" Reactor_Commands="" Reactor_Enabled="0" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
